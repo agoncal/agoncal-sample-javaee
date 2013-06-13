@@ -1,14 +1,10 @@
-# Sample - Arquilian - What You Test Is What You Run
+# Sample - Java EE - MaxiMe
 
 ## Purpose of this sample
 
-The purpose of this sample is to show you how to test an EJB in several ways :
+The purpose of this sample is to show that you can add as many Java EE annotations as you want ;o)
 
-* Unit testing with Mockito
-* Integration testing with the standard EJBContainer of the EJB 3.1
-* Integration testing with Arquillian
-
-[Read more on my blog](http://agoncal.wordpress.com/2012/01/16/wytiwyr-what-you-test-is-what-you-run/)
+[Read more on my blog](http://agoncal.wordpress.com/2013/06/25/minime/)
 
 ## Class diagram
 
