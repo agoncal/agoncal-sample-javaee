@@ -1,4 +1,4 @@
-package org.agoncal.sample.javaee.maxime;
+package org.agoncal.sample.javaee.monster;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

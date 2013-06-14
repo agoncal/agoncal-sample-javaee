@@ -5,10 +5,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.agoncal.sample.javaee</groupId>
-    <artifactId>maxime</artifactId>
+    <artifactId>monster</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>01 - Maxi Me : A huge Java EE component</name>
+    <name>01 - Monster : A huge Java EE component</name>
 
     <parent>
         <groupId>org.agoncal.sample.javaee</groupId>
