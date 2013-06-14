@@ -32,11 +32,15 @@ import java.util.List;
 @WebServlet(urlPatterns = "/monster")
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Books.findAll", query = "SELECT c FROM Book c")
+        @NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
 })
-@Interceptors(LoggingInterceptor.class)
 @javax.faces.bean.ManagedBean
 public class Book extends HttpServlet {
+
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -65,15 +69,18 @@ public class Book extends HttpServlet {
 
     @ElementCollection
     @CollectionTable(name = "tags")
-    private List<String> tags = new ArrayList<String>();
+    private List<String> tags = new ArrayList<>();
 
     @Transient
-    @PersistenceContext(unitName = "MonsterPU")
+    @PersistenceContext(unitName = "monsterPU")
     private EntityManager em;
 
+    // ======================================
+    // =          Business methods          =
+    // ======================================
+
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String param = request.getParameter("name");    // if null, validation will fail
         try {
             response.getWriter().println("In Servlet calling the EJB side " + monsterEJB.listAllBooks(param));
@@ -87,9 +94,9 @@ public class Book extends HttpServlet {
         this.name = name;
         hardcode(name);
         em.persist(this);
-        Query allMonsterQuery = em.createNamedQuery("Books.findAll");
-        List allMonsters = allMonsterQuery.getResultList();
-        return "BusinessMethod from EJB :" + allMonsters.toString();
+        TypedQuery<Book> query = em.createNamedQuery("findAll", Book.class);
+        List<Book> allBooks = query.getResultList();
+        return "BusinessMethod from EJB :" + allBooks.toString();
     }
 
     private void hardcode(String romain) {
@@ -97,9 +104,27 @@ public class Book extends HttpServlet {
         this.price = new Float(0.01);
         this.description = "The hard-coded description";
         this.isbn = "978-1-4302-1954-5";
-        this.nbOfPage = new Integer(210);
+        this.nbOfPage = 210;
         this.illustrations = Boolean.TRUE;
     }
+
+    // ======================================
+    // =            Interceptor             =
+    // ======================================
+
+    @AroundInvoke
+    public Object logMethod(InvocationContext ic) throws Exception {
+        System.out.println("> " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
+        try {
+            return ic.proceed();
+        } finally {
+            System.out.println("< " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
+        }
+    }
+
+    // ======================================
+    // =            Constructors            =
+    // ======================================
 
     public Book() {
     }
@@ -200,18 +225,5 @@ public class Book extends HttpServlet {
         sb.append(", tags=").append(getTagsAsString());
         sb.append('}');
         return sb.toString();
-    }
-}
-
-class LoggingInterceptor {
-
-    @AroundInvoke
-    public Object logMethod(InvocationContext ic) throws Exception {
-        System.out.println("> " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
-        try {
-            return ic.proceed();
-        } finally {
-            System.out.println("< " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
-        }
     }
 }
