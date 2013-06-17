@@ -19,9 +19,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,8 @@ import java.util.List;
 @WebServlet(urlPatterns = "/MonsterServlet")
 @Entity
 @Table(name = "MonsterEntity")
-@XmlRootElement
+@XmlRootElement(name = "MonsterXML")
+@XmlAccessorType(XmlAccessType.FIELD)
 @NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
 public class Book extends HttpServlet {
 
@@ -73,6 +72,7 @@ public class Book extends HttpServlet {
     @EJB
     Book monsterEJB;
 
+    @XmlTransient
     @Transient
     @PersistenceContext(unitName = "monsterPU")
     private EntityManager em;
@@ -99,14 +99,7 @@ public class Book extends HttpServlet {
     @GET
     @Produces(MediaType.APPLICATION_XML)
     public List<Book> listAllBooks(String title) {
-        setDummyBook(title);
-        em.persist(this);
-        TypedQuery<Book> query = em.createNamedQuery("findAll", Book.class);
-        List<Book> allBooks = query.getResultList();
-        return allBooks;
-    }
-
-    private void setDummyBook(String title) {
+        // Sets data
         this.title = title;
         this.price = new Float(0.01);
         this.description = "The hard-coded description";
@@ -117,6 +110,14 @@ public class Book extends HttpServlet {
         tags.add("Monster");
         tags.add("Component");
         this.tags = tags;
+
+        // Persists the book
+        em.persist(this);
+
+        // Returns all books
+        TypedQuery<Book> query = em.createNamedQuery("findAll", Book.class);
+        List<Book> allBooks = query.getResultList();
+        return allBooks;
     }
 
     // ======================================

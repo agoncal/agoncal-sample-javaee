@@ -27,7 +27,7 @@ public class BookTest {
     // =             Attributes             =
     // ======================================
 
-    public static final String creditCardXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><book><title>Dummy JAXB</title><contentLanguage>EN</contentLanguage><illustrations>true</illustrations><isbn>1234-5678-9010</isbn><nbOfPage>135</nbOfPage></book>";
+    public static final String creditCardXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><MonsterXML><isbn>1234-5678-9010</isbn><nbOfPage>135</nbOfPage><illustrations>true</illustrations><contentLanguage>EN</contentLanguage><title>Dummy JAXB</title><price>10.5</price><description>JAXB Marshalling</description></MonsterXML>";
 
     // ======================================
     // =              Unit tests            =
