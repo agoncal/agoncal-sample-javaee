@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        contentType="text/html"
+        encoding="UTF-8">
+
+    <!--HEAD-->
+    <h:head>
+        <title>
+            <ui:insert name="title">Default title</ui:insert>
+        </title>
+    </h:head>
+
+    <!--BODY-->
+    <h:body>
+        <h1><ui:insert name="title">Default title</ui:insert></h1>
+        <ui:insert name="body">Default content</ui:insert>
+    </h:body>
+</f:view>
+</html>

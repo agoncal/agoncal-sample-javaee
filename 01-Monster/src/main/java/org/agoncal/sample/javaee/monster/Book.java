@@ -6,8 +6,8 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
+import javax.jws.WebService;
 import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.ws.rs.Path;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +31,13 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
-
+//@Path("/monster")
+//@WebService
 @Stateless
 @WebServlet(urlPatterns = "/monster")
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
-})
-@javax.faces.bean.ManagedBean
+//@XmlRootElement
+@NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
 public class Book extends HttpServlet {
 
     // ======================================
@@ -46,11 +49,13 @@ public class Book extends HttpServlet {
     private Long id;
 
     @Size(max = 50, min = 5, message = "more than {min}, less than {max}")
-    @NotNull()
+    @NotNull
     @Transient
+//    @XmlTransient
     // should not be stored in the DB
     private String name;
 
+//    @XmlTransient
     @Transient
     @EJB
     Book monsterEJB;
@@ -62,9 +67,11 @@ public class Book extends HttpServlet {
 
     @Column(nullable = false)
     @Size(min = 5, max = 50)
+//    @XmlElement(nillable = false)
     protected String title;
     protected Float price;
     @Column(length = 2000)
+    @Size(max = 2000)
     protected String description;
 
     @ElementCollection
@@ -76,7 +83,7 @@ public class Book extends HttpServlet {
     private EntityManager em;
 
     // ======================================
-    // =          Business methods          =
+    // =        Servlet Entry Point         =
     // ======================================
 
     @Override
@@ -89,6 +96,10 @@ public class Book extends HttpServlet {
             ee.printStackTrace();
         }
     }
+
+    // ======================================
+    // =          Business methods          =
+    // ======================================
 
     public String listAllBooks(String name) {
         this.name = name;
