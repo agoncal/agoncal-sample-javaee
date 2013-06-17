@@ -57,18 +57,19 @@ public class BookIT {
 
         // Check JNDI dependencies
         assertNotNull(ctx.lookup("java:global/classes/Book"));
+        assertNotNull(ctx.lookup("java:global/classes/Book!org.agoncal.sample.javaee.monster.Book"));
         assertNotNull(ctx.lookup("java:comp/DefaultDataSource"));
 
         // Looks up for the EJB
         Book bookEJB = (Book) ctx.lookup("java:global/classes/Book");
 
         // Creates and Finds all the books
-        List<Book> allBooks = bookEJB.listAllBooks("EJB IT : " + new Date());
+        List<Book> allBooks = bookEJB.listAllBooks("EJB IT1 : " + new Date());
 
         int initSize = allBooks.size();
 
         // Creates and Finds all the books a second time
-        allBooks = bookEJB.listAllBooks("dummy name");
+        allBooks = bookEJB.listAllBooks("EJB IT2 : " + new Date());
 
         assertEquals(initSize + 1, allBooks.size());
 
