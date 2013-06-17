@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -29,12 +33,12 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
-//@Path("/monster")
+@Path("/MonsterRest")
 //@WebService
 @Stateless
-@WebServlet(urlPatterns = "/monster")
+@WebServlet(urlPatterns = "/MonsterServlet")
 @Entity
-@Table(name = "MonsterBook")
+@Table(name = "MonsterEntity")
 @XmlRootElement
 @NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
 public class Book extends HttpServlet {
@@ -79,9 +83,9 @@ public class Book extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String param = request.getParameter("name");    // if null, validation will fail
+        String title = request.getParameter("title");    // if null, validation will fail
         try {
-            response.getWriter().println("In Servlet calling the EJB side " + monsterEJB.listAllBooks(param));
+            response.getWriter().println("In Servlet calling the EJB side " + monsterEJB.listAllBooks(title));
         } catch (EJBException ee) {
             response.getWriter().println(ee.getCausedByException().getMessage());
             ee.printStackTrace();
@@ -92,6 +96,8 @@ public class Book extends HttpServlet {
     // =          Business methods          =
     // ======================================
 
+    @GET
+    @Produces(MediaType.APPLICATION_XML)
     public List<Book> listAllBooks(String title) {
         setDummyBook(title);
         em.persist(this);
