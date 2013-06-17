@@ -36,7 +36,7 @@ import java.util.List;
 @Stateless
 @WebServlet(urlPatterns = "/monster")
 @Entity
-//@XmlRootElement
+@XmlRootElement
 @NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
 public class Book extends HttpServlet {
 
@@ -51,11 +51,10 @@ public class Book extends HttpServlet {
     @Size(max = 50, min = 5, message = "more than {min}, less than {max}")
     @NotNull
     @Transient
-//    @XmlTransient
-    // should not be stored in the DB
+    @XmlTransient
     private String name;
 
-//    @XmlTransient
+    @XmlTransient
     @Transient
     @EJB
     Book monsterEJB;
@@ -67,7 +66,7 @@ public class Book extends HttpServlet {
 
     @Column(nullable = false)
     @Size(min = 5, max = 50)
-//    @XmlElement(nillable = false)
+    @XmlElement(nillable = false)
     protected String title;
     protected Float price;
     @Column(length = 2000)

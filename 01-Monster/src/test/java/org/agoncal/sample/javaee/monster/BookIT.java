@@ -6,10 +6,14 @@ import org.junit.Test;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import java.io.File;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -50,7 +54,7 @@ public class BookIT {
     // ======================================
 
     @Test
-    public void shouldFindAllBooks() throws Exception {
+    public void shouldFindAllBooksWithEJB() throws Exception {
 
         // Check JNDI dependencies
         assertNotNull(ctx.lookup("java:global/classes/Book"));
