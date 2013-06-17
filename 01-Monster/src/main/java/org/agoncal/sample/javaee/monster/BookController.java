@@ -4,6 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Antonio Goncalves
@@ -21,7 +22,7 @@ public class BookController {
     @Inject
     private Book book;
 
-    private String books;
+    private List<Book> books;
 
     // ======================================
     // =              Public Methods        =
@@ -36,11 +37,11 @@ public class BookController {
     // =         Getters & setters          =
     // ======================================
 
-    public String getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(String books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }
