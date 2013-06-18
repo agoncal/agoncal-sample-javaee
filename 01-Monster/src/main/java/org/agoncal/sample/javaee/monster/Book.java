@@ -100,6 +100,7 @@ public class Book extends HttpServlet {
     @Produces(MediaType.APPLICATION_XML)
     public List<Book> listAllBooks(String title) {
         // Sets data
+        this.id = null;
         this.title = title;
         this.price = new Float(0.01);
         this.description = "The hard-coded description";
