@@ -7,6 +7,7 @@ import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
+import javax.jws.WebService;
 import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.*;
@@ -31,16 +31,16 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Path("/MonsterRest")
-//@WebService
+//@Path("/MonsterRest")
+@WebService
 @Stateless
-@WebServlet(urlPatterns = "/MonsterServlet")
+//@WebServlet(urlPatterns = "/MonsterServlet")
 @Entity
 @Table(name = "MonsterEntity")
 @XmlRootElement(name = "MonsterXML")
 @XmlAccessorType(XmlAccessType.FIELD)
 @NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
-public class Book extends HttpServlet {
+public class Book /*extends HttpServlet*/ {
 
     // ======================================
     // =             Attributes             =
@@ -81,9 +81,9 @@ public class Book extends HttpServlet {
     // =        Servlet Entry Point         =
     // ======================================
 
-    @Override
+//    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title = request.getParameter("title");    // if null, validation will fail
+        String title = request.getParameter("title");
         try {
             response.getWriter().println("In Servlet calling the EJB side " + monsterEJB.listAllBooks(title));
         } catch (EJBException ee) {
