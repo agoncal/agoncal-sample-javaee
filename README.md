@@ -2,7 +2,7 @@
 
 Several samples about Java EE : 
 
-* 01-MaxiMe : A huge Java EE component
+* 01-Monster : A huge Java EE component
 
 # Licensing
 
