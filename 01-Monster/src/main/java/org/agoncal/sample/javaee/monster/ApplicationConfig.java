@@ -2,43 +2,26 @@ package org.agoncal.sample.javaee.monster;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @author Antonio Goncalves
- *         APress Book - Beginning Java EE 7 with Glassfish 4
- *         http://www.apress.com/
  *         http://www.antoniogoncalves.org
  *         --
  */
-@ApplicationPath("rs")
+
+@ApplicationPath("/rest")
 public class ApplicationConfig extends Application {
 
     // ======================================
-    // =             Attributes             =
-    // ======================================
-
-    private final Set<Class<?>> classes;
-
-    // ======================================
-    // =            Constructors            =
-    // ======================================
-
-    public ApplicationConfig() {
-        HashSet<Class<?>> c = new HashSet<>();
-        c.add(Book.class);
-
-        classes = Collections.unmodifiableSet(c);
-    }
-
-    // ======================================
-    // =          Getters & Setters         =
+    // =          Business methods          =
     // ======================================
 
     @Override
     public Set<Class<?>> getClasses() {
+        Set<Class<?>> classes = new HashSet<>();
+        classes.add(Book.class);
         return classes;
     }
 }
