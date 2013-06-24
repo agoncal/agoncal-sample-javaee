@@ -1,9 +1,8 @@
 package org.agoncal.sample.javaee.monster;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,8 +18,8 @@ public class BookController {
     // =             Attributes             =
     // ======================================
 
-    @Inject
-    private Book book;
+    @EJB
+    private Book bookEJB;
 
     private List<Book> books;
 
@@ -29,8 +28,8 @@ public class BookController {
     // ======================================
 
     public String doInvokeEJB() {
-        books = book.listAllBooks("EJB " + new Date());
-        return "showbooks.faces";
+        books = bookEJB.listAllBooks("TitleFromEJB");
+        return "showbooksejb.faces";
     }
 
     // ======================================
