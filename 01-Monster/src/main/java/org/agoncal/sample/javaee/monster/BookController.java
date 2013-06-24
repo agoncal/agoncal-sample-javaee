@@ -29,7 +29,7 @@ public class BookController {
 
     public String doInvokeEJB() {
         books = bookEJB.listAllBooks("TitleFromEJB");
-        return "showbooksejb.faces";
+        return "showbooks.faces";
     }
 
     // ======================================
