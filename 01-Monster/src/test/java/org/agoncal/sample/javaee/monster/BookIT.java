@@ -7,7 +7,6 @@ import org.junit.Test;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import java.io.File;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,12 +63,12 @@ public class BookIT {
         Book bookEJB = (Book) ctx.lookup("java:global/classes/Book");
 
         // Creates and Finds all the books
-        List<Book> allBooks = bookEJB.listAllBooks("EJB IT1 : " + new Date());
+        List<Book> allBooks = bookEJB.listAllBooks("TitleFromEJB1");
 
         int initSize = allBooks.size();
 
         // Creates and Finds all the books a second time
-        allBooks = bookEJB.listAllBooks("EJB IT2 : " + new Date());
+        allBooks = bookEJB.listAllBooks("TitleFromEJB1");
 
         assertEquals(initSize + 1, allBooks.size());
 
