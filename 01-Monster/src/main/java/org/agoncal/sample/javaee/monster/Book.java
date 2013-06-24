@@ -3,25 +3,25 @@ package org.agoncal.sample.javaee.monster;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
-import javax.jws.WebService;
 import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,16 +31,15 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
-//@Path("/MonsterRest")
-@WebService
+@Path("/MonsterRest")
 @Stateless
-//@WebServlet(urlPatterns = "/MonsterServlet")
+@WebServlet(urlPatterns = "/MonsterServlet")
 @Entity
 @Table(name = "MonsterEntity")
-@XmlRootElement(name = "MonsterXML")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @NamedQuery(name = "findAll", query = "SELECT c FROM Book c")
-public class Book /*extends HttpServlet*/ {
+public class Book extends HttpServlet {
 
     // ======================================
     // =             Attributes             =
@@ -55,7 +54,6 @@ public class Book /*extends HttpServlet*/ {
     private String contentLanguage;
     @Column(nullable = false)
     @Size(min = 5, max = 50)
-    @NotNull
     @XmlElement(nillable = false)
     private String title;
     private Float price;
@@ -66,11 +64,14 @@ public class Book /*extends HttpServlet*/ {
     @CollectionTable(name = "tags")
     private List<String> tags = new ArrayList<>();
 
+    // ======================================
+    // =         Injected Resources         =
+    // ======================================
 
     @XmlTransient
     @Transient
     @EJB
-    Book monsterEJB;
+    private Book monsterEJB;
 
     @XmlTransient
     @Transient
@@ -81,14 +82,13 @@ public class Book /*extends HttpServlet*/ {
     // =        Servlet Entry Point         =
     // ======================================
 
-//    @Override
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         try {
             response.getWriter().println("In Servlet calling the EJB side " + monsterEJB.listAllBooks(title));
-        } catch (EJBException ee) {
-            response.getWriter().println(ee.getCausedByException().getMessage());
-            ee.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -97,11 +97,12 @@ public class Book /*extends HttpServlet*/ {
     // ======================================
 
     @GET
+    @Path("/{title}")
     @Produces(MediaType.APPLICATION_XML)
-    public List<Book> listAllBooks(String title) {
+    public List<Book> listAllBooks(@PathParam("title") String title) {
         // Sets data
         this.id = null;
-        this.title = title;
+        this.title = title + " " + new Date();
         this.price = new Float(0.01);
         this.description = "The hard-coded description";
         this.isbn = "978-1-4302-1954-5";
@@ -127,11 +128,11 @@ public class Book /*extends HttpServlet*/ {
 
     @AroundInvoke
     public Object logMethod(InvocationContext ic) throws Exception {
-        System.out.println("> " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
+        System.out.println(">>> " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
         try {
             return ic.proceed();
         } finally {
-            System.out.println("< " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
+            System.out.println("<<< " + ic.getTarget().getClass() + " - " + ic.getMethod().getName());
         }
     }
 
