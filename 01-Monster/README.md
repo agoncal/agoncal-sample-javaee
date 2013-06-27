@@ -1,4 +1,4 @@
-# Sample - Java EE - MaxiMe
+# Sample - Java EE - Monster Component
 
 ## Purpose of this sample
 
