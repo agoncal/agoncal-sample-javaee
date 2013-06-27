@@ -2,6 +2,7 @@ package org.agoncal.sample.javaee.monster;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ejb.embeddable.EJBContainer;
@@ -73,5 +74,15 @@ public class BookIT {
         assertEquals(initSize + 1, allBooks.size());
 
         System.out.println("############ " + allBooks);
+    }
+
+    @Test(expected = Exception.class) @Ignore("the @NotNull in the createAndListBooks method doesn't seem to work")
+    public void shouldNotCreateABookWithNullTitle() throws Exception {
+
+        // Looks up for the EJB
+        Book bookEJB = (Book) ctx.lookup("java:global/classes/Book");
+
+        // Creates and Finds all the books
+        List<Book> allBooks = bookEJB.createAndListBooks(null);
     }
 }

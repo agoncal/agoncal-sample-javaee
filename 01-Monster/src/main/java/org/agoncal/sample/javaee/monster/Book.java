@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -99,7 +100,7 @@ public class Book extends HttpServlet {
     @GET
     @Path("/{title}")
     @Produces(MediaType.APPLICATION_XML)
-    public List<Book> createAndListBooks(@PathParam("title") String title) {
+    public List<Book> createAndListBooks(@PathParam("title") @NotNull String title) {
         // Sets data
         this.id = null;
         this.title = title + " " + new Date();
