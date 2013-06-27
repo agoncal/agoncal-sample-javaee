@@ -83,6 +83,6 @@ public class BookIT {
         Book bookEJB = (Book) ctx.lookup("java:global/classes/Book");
 
         // Creates and Finds all the books
-        List<Book> allBooks = bookEJB.createAndListBooks(null);
+        bookEJB.createAndListBooks(null);
     }
 }
