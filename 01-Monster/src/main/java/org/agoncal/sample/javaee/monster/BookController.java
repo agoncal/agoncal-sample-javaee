@@ -28,7 +28,7 @@ public class BookController {
     // ======================================
 
     public String doInvokeEJB() {
-        books = bookEJB.listAllBooks("TitleFromEJB");
+        books = bookEJB.createAndListBooks("TitleFromEJB");
         return "showbooks.faces";
     }
 

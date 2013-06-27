@@ -63,12 +63,12 @@ public class BookIT {
         Book bookEJB = (Book) ctx.lookup("java:global/classes/Book");
 
         // Creates and Finds all the books
-        List<Book> allBooks = bookEJB.listAllBooks("TitleFromEJB1");
+        List<Book> allBooks = bookEJB.createAndListBooks("TitleFromEJB1");
 
         int initSize = allBooks.size();
 
         // Creates and Finds all the books a second time
-        allBooks = bookEJB.listAllBooks("TitleFromEJB1");
+        allBooks = bookEJB.createAndListBooks("TitleFromEJB1");
 
         assertEquals(initSize + 1, allBooks.size());
 

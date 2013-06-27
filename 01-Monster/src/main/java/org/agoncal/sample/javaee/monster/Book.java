@@ -86,7 +86,7 @@ public class Book extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         try {
-            response.getWriter().println("In Servlet calling the EJB side " + monsterEJB.listAllBooks(title));
+            response.getWriter().println("In Servlet calling the EJB side " + monsterEJB.createAndListBooks(title));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -99,7 +99,7 @@ public class Book extends HttpServlet {
     @GET
     @Path("/{title}")
     @Produces(MediaType.APPLICATION_XML)
-    public List<Book> listAllBooks(@PathParam("title") String title) {
+    public List<Book> createAndListBooks(@PathParam("title") String title) {
         // Sets data
         this.id = null;
         this.title = title + " " + new Date();
