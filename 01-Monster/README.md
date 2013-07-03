@@ -4,7 +4,7 @@
 
 The purpose of this sample is to show that you can add as many Java EE annotations as you want ;o)
 
-[Read more on my blog](http://agoncal.wordpress.com/2013/06/25/minime/)
+[Read more on my blog](http://antoniogoncalves.org/2013/07/03/monster-component-in-java-ee-7/)
 
 ## Compile and package
 
