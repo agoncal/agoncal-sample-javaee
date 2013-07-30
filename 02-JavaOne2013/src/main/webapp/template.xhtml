@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <f:view xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -15,21 +13,65 @@
             <ui:insert name="title">Default title</ui:insert>
         </title>
 
-        <h:outputStylesheet library="webjars/bootstrap/2.3.2/css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="webjars/bootstrap/3.0.0-rc1/css" name="bootstrap.min.css"/>
     </h:head>
 
     <!--BODY-->
     <h:body>
-        <h1>
-            <ui:insert name="title">Default title</ui:insert>
-        </h1>
-        <ui:insert name="body">Default content</ui:insert>
+        <!-- NAVBAR
+        ================================================== -->
+        <div class="navbar-wrapper">
+            <div class="container">
 
-        <!-- Le javascript
+                <div class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <h:link class="navbar-brand" value="Java One 2013" outcome="main"/>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <h:link value="Books" outcome="books"/>
+                                </li>
+                                <li>
+                                    <h:link value="Tweets" outcome="tweets"/>
+                                </li>
+                                <li>
+                                    <h:link value="Talks" outcome="talks"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Content
+        ================================================== -->
+
+        <div class="container">
+            <div class="row">
+                <ui:insert name="body">Default content</ui:insert>
+            </div>
+
+            <!-- FOOTER -->
+            <footer>
+                <p class="pull-right"><a href="#">Back to top</a></p>
+            </footer>
+        </div>
+
+
+        <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <h:outputScript name="webjars/jquery/1.9.1/jquery.min.js"/>
-        <h:outputScript library="webjars/bootstrap/2.0.3/js" name="bootstrap.min.js"/>
+        <h:outputScript name="webjars/jquery/2.0.3/jquery.min.js"/>
+        <h:outputScript library="webjars/bootstrap/3.0.0-rc1/js" name="bootstrap.min.js"/>
 
     </h:body>
 </f:view>
