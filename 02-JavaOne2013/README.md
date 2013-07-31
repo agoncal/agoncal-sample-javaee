@@ -30,16 +30,11 @@ This sample has been tested with GlassFish 4.0 in several modes :
 
 ## Execute the sample
 
-Once deployed go to [http://localhost:8080/sampleJavaEEMonster](http://localhost:8080/sampleJavaEEMonster) and you'll see a wab page where you can:
+Once deployed go to [http://localhost:8080/sampleJavaOne2013](http://localhost:8080/sampleJavaOne2013) and you'll see a wab page where you can:
 
-* Invoke the Monster component as an EJB
-* Invoke the Monster component as a RESTful Web Service at `http://localhost:8080/sampleJavaEEMonster/rest/MonsterRest/TitleFromRest`
-* Invoke the Monster component as a Servlet at `http://localhost:8080/sampleJavaEEMonster/MonsterServlet?title=TitleFromServlet`
-
-The purpose of this sample is to execute unit and integration tests. So to execute it you can run :
-
-* `mvn test` : this will execute the unit test `BookTest` with JAXB
-* `mvn integration-test` : this will execute both integration tests `BookIT`
+* Check the Java EE 7 Books
+* Get realtime Tweets
+* Check the Java EE 7 talks
 
 # JBoss Forge
 
