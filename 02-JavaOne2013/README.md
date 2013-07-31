@@ -38,7 +38,9 @@ Once deployed go to [http://localhost:8080/sampleJavaOne2013](http://localhost:8
 
 # JBoss Forge
 
-I've used [JBoss Forge](http://forge.jboss.org/) to bootstrap the application. It allows me to quickly have some Java EE code and scaffold a UI that I then change. You can check the `generate.fsh` script.
+I've used [JBoss Forge](http://forge.jboss.org/) to bootstrap the application. It allows me to quickly have some Java EE code and scaffold a UI that I then change. You can check the `agoncal-application-javaone2013.fsh` script. Execute it by entering the following commands :
+`forge`
+`run agoncal-application-javaone2013.fsh`
 
 
 <div class="footer">
