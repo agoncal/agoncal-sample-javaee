@@ -42,6 +42,11 @@ I've used [JBoss Forge](http://forge.jboss.org/) to bootstrap the application. I
 `forge`
 `run agoncal-application-javaone2013.fsh`
 
+There is a bug either in Forge or in GlassFish that doesn't register the JAX-RS Application servlet. You need to manually add the following to the web.xml :
+ <servlet>
+  <servlet-name>javax.ws.rs.core.Application</servlet-name>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
 
 <div class="footer">
     <span class="footerTitle"><span class="uc">a</span>ntonio <span class="uc">g</span>oncalves</span>
