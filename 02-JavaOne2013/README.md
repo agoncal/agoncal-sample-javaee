@@ -2,7 +2,20 @@
 
 ## Purpose of this sample
 
-The application developped in this sample is used during a talk at Java One 2013
+The application developped in this sample is used during a talk at Java One 2013. It shows new functionalities of Java EE 7 in action :
+* JPA: Schema Generation properties
+* JTA: @Transactional
+* Bean Validation: Method parameter and return value on POJOs
+* Default resources: DataSource
+* JSF: Pass-through Attributes
+* JSF: h:inputFile
+* JAX-RS: Client API
+* JSON-P: JsonParser and JsonGenerator
+* Batch
+ 
+It uses the external tools/librairies
+* JBoss Forge
+* Twitter Bootstrap
 
 ## Compile and package
 
