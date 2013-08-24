@@ -3,6 +3,7 @@
 Several samples about Java EE : 
 
 * 01-Monster : A huge Java EE component
+* 02-JavaOne2013 : The application developped for JavaOne 2013
 
 # Licensing
 

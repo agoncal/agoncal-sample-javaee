@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.agoncal.sample.javaee</groupId>
+    <artifactId>javaone2013</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+    <name>02 - Java One 2013 : The application developped during the talk</name>
+
+    <parent>
+        <groupId>org.agoncal.sample.javaee</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <dependencies>
+        <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6...-->
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+        </dependency>
+
+        <!-- Web -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>bootstrap</artifactId>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>sampleJavaEEJavaOne</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <!-- Run mvn clean package embedded-glassfish:run -->
+            <!--     mvn clean package org.glassfish:maven-embedded-glassfish-plugin:3.1.1:run-->
+            <!--     mvn -Dmaven.test.skip=true clean package org.glassfish:maven-embedded-glassfish-plugin:3.1.1:run-->
+            <!-- and go to http://localhost:8080/sampleArquilianWytiwyr/ -->
+            <plugin>
+                <groupId>org.glassfish</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <version>${version.maven.embedded.glassfish.plugin}</version>
+                <configuration>
+                    <app>${project.build.directory}/${project.build.finalName}.war</app>
+                    <port>8080</port>
+                    <contextRoot>${project.build.finalName}</contextRoot>
+                    <name>${project.build.finalName}</name>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>wsdl</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jvnet.jax-ws-commons</groupId>
+                        <artifactId>jaxws-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>wsgen</goal>
+                                </goals>
+                                <configuration>
+                                    <sei>org.agoncal.sample.javaee.monster.Dummy</sei>
+                                    <!--Optional-->
+                                    <!--Reads a JAX-WS service endpoint implementation class and generates all of the portable artifacts for a JAX-WS web service-->
+                                    <genWsdl>true</genWsdl>
+                                    <verbose>true</verbose>
+                                    <keep>true</keep>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
