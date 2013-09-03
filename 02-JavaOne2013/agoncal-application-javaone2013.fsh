@@ -39,7 +39,7 @@ java new-enum-type --named Language --package org.agoncal.application.javaone201
 java new-enum-const ENGLISH ;
 java new-enum-const FRENCH ;
 
-@/* Book */;
+@/* Books */;
 entity --named Book ;
 field string --named isbn ;
 field string --named title ;
@@ -56,6 +56,28 @@ constraint NotNull --onProperty title ;
 constraint NotNull --onProperty author ;
 constraint Size --min 10 --max 2000 --onProperty description ;
 
+@/* Speakers */;
+entity --named Speaker ;
+field string --named name ;
+field string --named surname ;
+field string --named bio ;
+field string --named twitter ;
+
+constraint NotNull --onProperty name ;
+constraint NotNull --onProperty surname ;
+
+@/* Talks */;
+entity --named Talk ;
+field string --named title ;
+field string --named description ;
+field oneToMany --named speakers --fieldType org.agoncal.application.javaone2013.model.Speaker.java
+field string --named room ;
+field temporal --type DATE --named date
+
+constraint NotNull --onProperty title ;
+constraint NotNull --onProperty room ;
+
+@/* Tweets */;
 
 @/* ================= */;
 @/* == Scaffolding == */;
