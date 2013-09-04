@@ -1,4 +1,12 @@
 @/* Generates the draft of the application */;
+@/* ================= */;
+@/* ==   Plugins   == */;
+@/* ================= */;
+@/* If the following plugins are not installed :
+@/* forge install-plugin arquillian
+@/* forge install-plugin jrebel
+@/* forge install-plugin primefaces
+
 
 clear ;
 set ACCEPT_DEFAULTS true ;
@@ -13,6 +21,12 @@ new-project --named agoncal-application-javaone2013 --topLevelPackage org.agonca
 @/* =========================== */;
 @/* == Setting up the project == */;
 @/* =========================== */;
+
+@/* Setup JRebel */;
+jrebel setup ;
+
+@/* Setup Primefaces */;
+primefaces setup ;
 
 @/* Setup JPA */;
 persistence setup --provider ECLIPSELINK --container GLASSFISH_3 --named javaone2013PU ;
@@ -56,6 +70,7 @@ constraint NotNull --onProperty title ;
 constraint NotNull --onProperty author ;
 constraint Size --min 10 --max 2000 --onProperty description ;
 
+
 @/* Speakers */;
 entity --named Speaker ;
 field string --named name ;
@@ -78,6 +93,18 @@ constraint NotNull --onProperty title ;
 constraint NotNull --onProperty room ;
 
 @/* Tweets */;
+
+@/* ================= */;
+@/* == Arquillian  == */;
+@/* ================= */;
+
+arquillian setup --containerName GLASSFISH_EMBEDDED_3.1 --containerType EMBEDDED ;
+arquillian configure-container --profile arq-glassfish_embedded_3.1 ;
+
+arquillian create-test --class org.agoncal.application.javaone2013.rest.BookEndpoint.java ;
+arquillian create-test --class org.agoncal.application.javaone2013.rest.SpeakerEndpoint.java ;
+arquillian create-test --class org.agoncal.application.javaone2013.rest.TalkEndpoint.java ;
+
 
 @/* ================= */;
 @/* == Scaffolding == */;
@@ -113,3 +140,17 @@ cd ~~;
 @/*   <servlet-name>javax.ws.rs.core.Application</servlet-name> */;
 @/*   <load-on-startup>1</load-on-startup> */;
 @/* </servlet> */;
+
+@/* ====================================== */;
+@/* == From Java EE 6 to 7 Dependencies == */;
+@/* ====================================== */;
+
+project remove-dependency org.hibernate.javax.persistence:hibernate-jpa-2.0-api ;
+project remove-dependency javax.validation:validation-api ;
+project remove-dependency org.hibernate:hibernate-validator ;
+project remove-dependency javax.enterprise:cdi-api ;
+project remove-dependency org.jboss.spec.javax.annotation:jboss-annotations-api_1.1_spec ;
+project remove-dependency org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_1.1_spec ;
+project remove-dependency org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec ;
+project remove-dependency org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec ;
+project add-dependency javax:javaee-api:7.0:provided ;
