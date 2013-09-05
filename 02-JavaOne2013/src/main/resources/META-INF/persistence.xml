@@ -5,8 +5,9 @@
              version="2.1">
 
     <persistence-unit name="javaone2013PU" transaction-type="JTA">
+        <description>Forge Persistence Unit</description>
         <jta-data-source>java:comp/DefaultDataSource</jta-data-source>
-        <class>org.agoncal.sample.javaee.monster.Book</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="javax.persistence.sql-load-script-source" value="insert.sql"/>
