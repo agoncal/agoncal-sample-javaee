@@ -1,11 +1,11 @@
-@/* Generates the draft of the application */;
-@/* ================= */;
-@/* ==   Plugins   == */;
-@/* ================= */;
-@/* If the following plugins are not installed :
-@/* forge install-plugin arquillian
-@/* forge install-plugin jrebel
-@/* forge install-plugin primefaces
+@/* Generates the draft of the application */ ;
+@/* ================= */ ;
+@/* ==   Plugins   == */ ;
+@/* ================= */ ;
+@/* If the following plugins are not installed */ ;
+@/* forge install-plugin arquillian */ ;
+@/* forge install-plugin jrebel */ ;
+@/* forge install-plugin primefaces */ ;
 
 
 clear ;
@@ -15,18 +15,12 @@ set ACCEPT_DEFAULTS true ;
 @/* == Creating the project == */;
 @/* ========================== */;
 
-new-project --named agoncal-application-javaone2013 --topLevelPackage org.agoncal.application.javaone2013 --type war ;
+new-project --named agoncal-application-javaone2013140 --topLevelPackage org.agoncal.application.javaone2013 --type war ;
 
 
 @/* =========================== */;
 @/* == Setting up the project == */;
 @/* =========================== */;
-
-@/* Setup JRebel */;
-jrebel setup ;
-
-@/* Setup Primefaces */;
-primefaces setup ;
 
 @/* Setup JPA */;
 persistence setup --provider ECLIPSELINK --container GLASSFISH_3 --named javaone2013PU ;
@@ -42,6 +36,12 @@ rest setup;
 
 @/* Turn our Java project into a Web project with JSF, CDI, EJB, and JPA */;
 scaffold setup --scaffoldType faces ;
+
+@/* Setup Primefaces */;
+@/* primefaces setup */;
+
+@/* Setup JRebel */;
+jrebel setup ;
 
 
 @/* =========================== */;
@@ -94,23 +94,23 @@ constraint NotNull --onProperty room ;
 
 @/* Tweets */;
 
-@/* ================= */;
-@/* == Arquillian  == */;
-@/* ================= */;
+@/* ================= */ ;
+@/* == Arquillian  == */ ;
+@/* ================= */ ;
 
-arquillian setup --containerName GLASSFISH_EMBEDDED_3.1 --containerType EMBEDDED ;
-arquillian configure-container --profile arq-glassfish_embedded_3.1 ;
+@/* arquillian setup --containerName GLASSFISH_EMBEDDED_3.1 --containerType EMBEDDED */ ;
+@/* arquillian configure-container --profile arq-glassfish_embedded_3.1 */ ;
 
-arquillian create-test --class org.agoncal.application.javaone2013.rest.BookEndpoint.java ;
-arquillian create-test --class org.agoncal.application.javaone2013.rest.SpeakerEndpoint.java ;
-arquillian create-test --class org.agoncal.application.javaone2013.rest.TalkEndpoint.java ;
+@/* arquillian create-test --class org.agoncal.application.javaone2013.rest.BookEndpoint.java */ ;
+@/* arquillian create-test --class org.agoncal.application.javaone2013.rest.SpeakerEndpoint.java */ ;
+@/* arquillian create-test --class org.agoncal.application.javaone2013.rest.TalkEndpoint.java */ ;
 
 
 @/* ================= */;
 @/* == Scaffolding == */;
 @/* ================= */;
 
-@/* Generate the UI for all the @Entities */;
+@/* Generate the UI for all the @Entities */ ;
 scaffold from-entity ~.model.* ;
 
 @/* Generate CRUD endpoints for all the @Entities */;
@@ -134,7 +134,6 @@ cd ~~;
 @/* == Running the application == */;
 @/* ============================= */;
 
-@/* There is a bug either in Forge or in GlassFish that doesn't register the JAX-RS Application servlet */;
 @/* You need to manually add the following to the web.xml */;
 @/* <servlet> */;
 @/*   <servlet-name>javax.ws.rs.core.Application</servlet-name> */;
@@ -153,4 +152,5 @@ project remove-dependency org.jboss.spec.javax.annotation:jboss-annotations-api_
 project remove-dependency org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_1.1_spec ;
 project remove-dependency org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec ;
 project remove-dependency org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec ;
+project remove-dependency org.jboss.spec.javax.faces:jboss-jsf-api_2.1_spec ;
 project add-dependency javax:javaee-api:7.0:provided ;
