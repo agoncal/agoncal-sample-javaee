@@ -3,6 +3,8 @@ package org.agoncal.application.javaone2013.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +16,8 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "findAllBooks", query = "SELECT b FROM Book b")
 })
-public class Book {
+@XmlRootElement
+public class Book implements Serializable {
 
     // ======================================
     // =             Attributes             =
@@ -23,6 +26,8 @@ public class Book {
     @Id
     @GeneratedValue
     private Long id;
+    @Version
+    private int version;
     @NotNull
     private String isbn;
     @NotNull
@@ -33,6 +38,7 @@ public class Book {
     private String description;
     private Float price;
     private Integer nbOfPage;
+    @Temporal(TemporalType.DATE)
     private Date publicationDate;
     private String publisher;
     private Language language;

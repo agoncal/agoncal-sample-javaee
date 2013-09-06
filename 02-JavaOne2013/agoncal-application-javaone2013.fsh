@@ -85,9 +85,9 @@ constraint NotNull --onProperty surname ;
 entity --named Talk ;
 field string --named title ;
 field string --named description ;
-field oneToMany --named speakers --fieldType org.agoncal.application.javaone2013.model.Speaker.java
 field string --named room ;
-field temporal --type DATE --named date
+field temporal --type DATE --named date ;
+field oneToMany --named speakers --fieldType org.agoncal.application.javaone2013.model.Speaker.java ;
 
 constraint NotNull --onProperty title ;
 constraint NotNull --onProperty room ;
