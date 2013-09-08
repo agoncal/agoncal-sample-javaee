@@ -31,7 +31,7 @@
         <!--Maven Plugins-->
         <version.maven.embedded.glassfish.plugin>3.1.2.2</version.maven.embedded.glassfish.plugin>
         <version.maven.clean.plugin>2.4.1</version.maven.clean.plugin>
-        <version.maven.war.plugin>2.3</version.maven.war.plugin>
+        <version.maven.war.plugin>2.4</version.maven.war.plugin>
         <version.maven.compiler.plugin>3.1</version.maven.compiler.plugin>
         <version.maven.failsafe.plugin>2.14.1</version.maven.failsafe.plugin>
         <version.maven.exec.plugin>1.2.1</version.maven.exec.plugin>
@@ -42,6 +42,14 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- Java EE -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>7.0</version>
+                <scope>provided</scope>
+            </dependency>
 
             <!-- GlassFish -->
             <dependency>
