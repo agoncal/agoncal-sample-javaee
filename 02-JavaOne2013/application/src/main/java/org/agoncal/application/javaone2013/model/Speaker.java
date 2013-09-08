@@ -27,7 +27,7 @@ public class Speaker implements Serializable {
     @Version
     private int version;
     @NotNull
-    private String name;
+    private String firstname;
     @NotNull
     private String surname;
     private String bio;
@@ -40,8 +40,8 @@ public class Speaker implements Serializable {
     public Speaker() {
     }
 
-    public Speaker(String name, String surname, String bio, String twitter) {
-        this.name = name;
+    public Speaker(String firstname, String surname, String bio, String twitter) {
+        this.firstname = firstname;
         this.surname = surname;
         this.bio = bio;
         this.twitter = twitter;
@@ -55,12 +55,12 @@ public class Speaker implements Serializable {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getSurname() {

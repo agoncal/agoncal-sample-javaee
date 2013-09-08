@@ -73,12 +73,12 @@ constraint Size --min 10 --max 2000 --onProperty description ;
 
 @/* Speakers */;
 entity --named Speaker ;
-field string --named name ;
+field string --named firstname ;
 field string --named surname ;
 field string --named bio ;
 field string --named twitter ;
 
-constraint NotNull --onProperty name ;
+constraint NotNull --onProperty firstname ;
 constraint NotNull --onProperty surname ;
 
 @/* Talks */;
