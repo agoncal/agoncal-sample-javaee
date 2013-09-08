@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<!--HEAD-->
+<h:head>
+    <title>#{empty pageTitle ? '{#pageTitle}' : pageTitle}</title>
+    <link rel="icon" href="#{resource['favicon.ico']}"/>
+    <h:outputStylesheet library="webjars/bootstrap/2.3.2/css" name="bootstrap.css"/>
+    <h:outputStylesheet name="forge-style.css"/>
+</h:head>
+
+<!--BODY-->
+<h:body>
+
+    <!-- NAVBAR
+    ================================================== -->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <h:link id="brandLink" outcome="/index.xhtml" styleClass="brand">Java EE 7 at JavaOne 2013</h:link>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="http://forge.jboss.org/docs/important_plugins/ui-scaffolding.html">How to
+                            Customize</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container forgecontainer">
+        <div id="navigation">
+            <h:link id="homeLink" outcome="/index.xhtml">
+                <img src="#{resource['forge-logo.png']}" alt="Forge... get hammered" border="0"/>
+            </h:link>
+            <ul>
+                <li>
+                    <h:link outcome="/book/search" value="Book"/>
+                </li>
+                <li>
+                    <h:link outcome="/speaker/search" value="Speaker"/>
+                </li>
+                <li>
+                    <h:link outcome="/talk/search" value="Talk"/>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CONTENT
+        ================================================== -->
+        <div id="content">
+            <h1>
+                <ui:insert name="header"/>
+            </h1>
+            <h2>
+                <ui:insert name="subheader"/>
+            </h2>
+
+            <ui:insert name="main"/>
+        </div>
+    </div>
+
+    <!-- FOOTER
+    ================================================== -->
+    <footer>
+        <div id="footer-wrapper">
+            <p>Powered by <a href="http://jboss.org/forge">Forge</a></p>
+        </div>
+    </footer>
+
+</h:body>
+</html>

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="page" value="#{speakerBean.page}"/>
+        <f:event type="preRenderView" listener="#{speakerBean.paginate}"/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Search Speaker entities"/>
+
+    <ui:define name="header">
+        Speaker
+    </ui:define>
+
+    <ui:define name="subheader">
+        Search Speaker entities
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="search">
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="search">
+
+                    <h:panelGrid columnClasses="label,component,required" columns="3">
+                        <h:outputLabel for="speakerBeanExampleFirstname" value="Firstname:"/>
+                        <h:panelGroup>
+                            <h:inputText id="speakerBeanExampleFirstname" value="#{speakerBean.example.firstname}"/>
+                            <h:message for="speakerBeanExampleFirstname" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="speakerBeanExampleSurname" value="Surname:"/>
+                        <h:panelGroup>
+                            <h:inputText id="speakerBeanExampleSurname" value="#{speakerBean.example.surname}"/>
+                            <h:message for="speakerBeanExampleSurname" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="speakerBeanExampleBio" value="Bio:"/>
+                        <h:panelGroup>
+                            <h:inputText id="speakerBeanExampleBio" value="#{speakerBean.example.bio}"/>
+                            <h:message for="speakerBeanExampleBio" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="speakerBeanExampleTwitter" value="Twitter:"/>
+                        <h:panelGroup>
+                            <h:inputText id="speakerBeanExampleTwitter" value="#{speakerBean.example.twitter}"/>
+                            <h:message for="speakerBeanExampleTwitter" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                    </h:panelGrid>
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Search" action="#{speakerBean.search}" styleClass="btn btn-primary"/>
+                        <h:commandLink value="Create New" action="#{speakerBean.create}" styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
+            <h:dataTable id="speakerBeanPageItems" styleClass="data-table" value="#{speakerBean.pageItems}" var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Firstname"/>
+                    </f:facet>
+                    <h:link outcome="/speaker/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemFirstname" value="#{_item.firstname}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Surname"/>
+                    </f:facet>
+                    <h:link outcome="/speaker/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemSurname" value="#{_item.surname}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+            <ui:include src="/resources/scaffold/paginator.xhtml">
+                <ui:param name="paginatorBean" value="#{speakerBean}"/>
+            </ui:include>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

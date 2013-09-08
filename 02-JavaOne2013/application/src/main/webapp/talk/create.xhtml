@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{talkBean.id}"/>
+        <f:event type="preRenderView" listener="#{talkBean.retrieve}"/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Create Talk"/>
+
+    <ui:define name="header">
+        Talk
+    </ui:define>
+
+    <ui:define name="subheader">
+        <c:choose>
+            <c:when test="#{!empty talkBean.id}">
+                Edit existing Talk
+            </c:when>
+            <c:otherwise>
+                Create a new Talk
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="create">
+            <h:messages globalOnly="true" styleClass="error"/>
+
+            <h:panelGrid columnClasses="label,component,required" columns="3">
+                <h:outputLabel for="talkBeanTalkTitle" value="Title:"/>
+                <h:panelGroup>
+                    <h:inputText id="talkBeanTalkTitle" required="true" value="#{talkBean.talk.title}"/>
+                    <h:message for="talkBeanTalkTitle" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="talkBeanTalkDescription" value="Description:"/>
+                <h:panelGroup>
+                    <h:inputText id="talkBeanTalkDescription" value="#{talkBean.talk.description}"/>
+                    <h:message for="talkBeanTalkDescription" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="talkBeanTalkRoom" value="Room:"/>
+                <h:panelGroup>
+                    <h:inputText id="talkBeanTalkRoom" required="true" value="#{talkBean.talk.room}"/>
+                    <h:message for="talkBeanTalkRoom" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="talkBeanTalkDate" value="Date:"/>
+                <h:panelGroup>
+                    <h:inputText id="talkBeanTalkDate" value="#{talkBean.talk.date}">
+                        <f:convertDateTime type="date"/>
+                    </h:inputText>
+                    <h:message for="talkBeanTalkDate" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="talkBeanTalkSpeakers" value="Speakers:"/>
+                <h:panelGroup>
+                    <ui:param name="_collection" value="#{talkBean.talk.speakers}"/>
+                    <h:dataTable id="talkBeanTalkSpeakers" styleClass="data-table"
+                                 value="#{forgeview:asList(_collection)}" var="_item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Firstname"/>
+                            </f:facet>
+                            <h:link outcome="/speaker/view">
+                                <f:param name="id" value="#{_item.id}"/>
+                                <h:outputText id="itemFirstname" value="#{_item.firstname}"/>
+                            </h:link>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Surname"/>
+                            </f:facet>
+                            <h:link outcome="/speaker/view">
+                                <f:param name="id" value="#{_item.id}"/>
+                                <h:outputText id="itemSurname" value="#{_item.surname}"/>
+                            </h:link>
+                        </h:column>
+                        <h:column footerClass="remove-column" headerClass="remove-column">
+                            <h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:panelGrid columnClasses=",remove-column" columns="2" styleClass="data-table-footer">
+                        <h:selectOneMenu converter="#{speakerBean.converter}" id="talkBeanTalkSpeakersSelect"
+                                         value="#{requestScope['talkBeanTalkSpeakersSelect']}">
+                            <f:selectItem/>
+                            <f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}"
+                                           value="#{speakerBean.all}" var="_item"/>
+                        </h:selectOneMenu>
+                        <h:commandLink action="#{_collection.add(requestScope['talkBeanTalkSpeakersSelect'])}"
+                                       id="talkBeanTalkSpeakersAdd"
+                                       onclick="if (document.getElementById(document.forms[0].id+':talkBeanTalkSpeakersSelect').selectedIndex &lt; 1) { alert('Must select a Speaker'); return false; }"
+                                       styleClass="add-button"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+                <h:outputText/>
+            </h:panelGrid>
+
+            <div class="buttons">
+                <h:commandLink value="Save" action="#{talkBean.update}" styleClass="btn btn-primary"/>
+                <c:choose>
+                    <c:when test="#{!empty talkBean.id}">
+                        <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+                            <f:param name="id" value="#{talkBean.id}"/>
+                        </h:link>
+                        <h:commandLink value="Delete" action="#{talkBean.delete}" styleClass="btn btn-primary"/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
