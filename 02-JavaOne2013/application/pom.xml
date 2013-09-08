@@ -17,15 +17,11 @@
     </parent>
 
     <dependencies>
-        <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6...-->
-        <dependency>
-            <groupId>org.glassfish.main.extras</groupId>
-            <artifactId>glassfish-embedded-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-        </dependency>
+        <!-- Java EE -->
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+      </dependency>
 
         <!-- Web -->
         <dependency>
@@ -63,10 +59,10 @@
     <build>
         <finalName>sampleJavaEEJavaOne</finalName>
         <plugins>
-            <plugin>
+      <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-            </plugin>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -78,7 +74,7 @@
             <!-- Run mvn clean package embedded-glassfish:run -->
             <!--     mvn clean package org.glassfish:maven-embedded-glassfish-plugin:3.1.1:run-->
             <!--     mvn -Dmaven.test.skip=true clean package org.glassfish:maven-embedded-glassfish-plugin:3.1.1:run-->
-            <!-- and go to http://localhost:8080/sampleArquilianWytiwyr/ -->
+            <!-- and go to http://localhost:8080/sampleJavaEEJavaOne/ -->
             <plugin>
                 <groupId>org.glassfish</groupId>
                 <artifactId>maven-embedded-glassfish-plugin</artifactId>
@@ -93,32 +89,4 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>wsdl</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jvnet.jax-ws-commons</groupId>
-                        <artifactId>jaxws-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>wsgen</goal>
-                                </goals>
-                                <configuration>
-                                    <sei>org.agoncal.sample.javaee.monster.Dummy</sei>
-                                    <!--Optional-->
-                                    <!--Reads a JAX-WS service endpoint implementation class and generates all of the portable artifacts for a JAX-WS web service-->
-                                    <genWsdl>true</genWsdl>
-                                    <verbose>true</verbose>
-                                    <keep>true</keep>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

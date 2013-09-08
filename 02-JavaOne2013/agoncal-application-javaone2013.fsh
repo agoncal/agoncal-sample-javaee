@@ -11,6 +11,7 @@
 clear ;
 set ACCEPT_DEFAULTS true ;
 
+
 @/* ========================== */;
 @/* == Creating the project == */;
 @/* ========================== */;
@@ -18,9 +19,9 @@ set ACCEPT_DEFAULTS true ;
 new-project --named agoncal-application-javaone2013140 --topLevelPackage org.agoncal.application.javaone2013 --type war ;
 
 
-@/* =========================== */;
+@/* ============================ */;
 @/* == Setting up the project == */;
-@/* =========================== */;
+@/* ============================ */;
 
 @/* Setup JPA */;
 persistence setup --provider ECLIPSELINK --container GLASSFISH_3 --named javaone2013PU ;
@@ -63,7 +64,7 @@ field number --type java.lang.Float --named price ;
 field number --type java.lang.Integer --named nbOfPage ;
 field temporal --type DATE --named publicationDate ;
 field string --named publisher ;
-field custom --named Language --type org.agoncal.application.javaone2013.model.Language.java
+field custom --named language --type org.agoncal.application.javaone2013.model.Language.java ;
 
 constraint NotNull --onProperty isbn ;
 constraint NotNull --onProperty title ;
@@ -94,6 +95,7 @@ constraint NotNull --onProperty room ;
 
 @/* Tweets */;
 
+
 @/* ================= */ ;
 @/* == Arquillian  == */ ;
 @/* ================= */ ;
@@ -117,29 +119,6 @@ scaffold from-entity ~.model.* ;
 rest endpoint-from-entity ~.model.* ;
 
 
-@/* ========================== */;
-@/* == Building the project == */;
-@/* ========================== */;
-
-build --notest ;
-
-@/* =================================== */;
-@/* == Returning to the project root == */;
-@/* =================================== */;
-
-set ACCEPT_DEFAULTS false;
-cd ~~;
-
-@/* ============================= */;
-@/* == Running the application == */;
-@/* ============================= */;
-
-@/* You need to manually add the following to the web.xml */;
-@/* <servlet> */;
-@/*   <servlet-name>javax.ws.rs.core.Application</servlet-name> */;
-@/*   <load-on-startup>1</load-on-startup> */;
-@/* </servlet> */;
-
 @/* ====================================== */;
 @/* == From Java EE 6 to 7 Dependencies == */;
 @/* ====================================== */;
@@ -154,3 +133,28 @@ project remove-dependency org.jboss.spec.javax.transaction:jboss-transaction-api
 project remove-dependency org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec ;
 project remove-dependency org.jboss.spec.javax.faces:jboss-jsf-api_2.1_spec ;
 project add-dependency javax:javaee-api:7.0:provided ;
+
+
+@/* ========================== */;
+@/* == Building the project == */;
+@/* ========================== */;
+
+build --notest ;
+
+
+@/* ============================= */;
+@/* == Running the application == */;
+@/* ============================= */;
+
+@/* You need to manually add the following to the web.xml */;
+@/* <servlet> */;
+@/*   <servlet-name>javax.ws.rs.core.Application</servlet-name> */;
+@/*   <load-on-startup>1</load-on-startup> */;
+@/* </servlet> */;
+
+@/* =================================== */;
+@/* == Returning to the project root == */;
+@/* =================================== */;
+
+set ACCEPT_DEFAULTS false ;
+cd ~~ ;
