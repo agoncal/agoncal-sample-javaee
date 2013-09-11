@@ -35,6 +35,8 @@
         <version.maven.failsafe.plugin>2.14.1</version.maven.failsafe.plugin>
         <version.maven.exec.plugin>1.2.1</version.maven.exec.plugin>
         <version.maven.jaxws.plugin>2.2</version.maven.jaxws.plugin>
+        <version.jrebel.plugin>1.1.5</version.jrebel.plugin>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -170,6 +172,20 @@
                     <groupId>org.jvnet.jax-ws-commons</groupId>
                     <artifactId>jaxws-maven-plugin</artifactId>
                     <version>${version.maven.jaxws.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.zeroturnaround</groupId>
+                    <artifactId>jrebel-maven-plugin</artifactId>
+                    <version>${version.jrebel.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>generate-rebel-xml</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
