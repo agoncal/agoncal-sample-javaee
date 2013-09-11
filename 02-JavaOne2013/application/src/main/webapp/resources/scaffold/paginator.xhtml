@@ -9,7 +9,7 @@
 
     <h:panelGroup styleClass="paginator" rendered="#{paginatorBean.count gt paginatorBean.pageSize}">
         <!-- Use commandLink, not outputLink, so that search criteria is not lost -->
-        <h:commandLink styleClass="btn btn-primary" rendered="#{paginatorBean.page gt 0}">
+		<h:commandLink styleClass="btn btn-primary" rendered="#{paginatorBean.page gt 0}">
             <f:param name="page" value="#{paginatorBean.page - 1}"/>
             &lt; Previous
         </h:commandLink>

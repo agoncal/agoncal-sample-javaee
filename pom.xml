@@ -20,8 +20,8 @@
         <version.junit>4.11</version.junit>
         <version.glassfish>4.0</version.glassfish>
         <!--Web-->
-         <version.bootstrap>2.3.2</version.bootstrap>
-        <!--<version.bootstrap>3.0.0-rc1</version.bootstrap>-->
+        <version.bootstrap>2.3.2</version.bootstrap>
+        <!--<version.bootstrap>3.0.0</version.bootstrap>-->
         <version.jquery>2.0.3</version.jquery>
         <version.primefaces>3.5</version.primefaces>
         <version.primefaces.themes>1.0.10</version.primefaces.themes>
@@ -202,6 +202,12 @@
             <id>java.net-snapshots-repository-group</id>
             <name>Java.Net Snapshots Maven Repository Group</name>
             <url>https://maven.java.net/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
         </repository>
     </repositories>
 </project>

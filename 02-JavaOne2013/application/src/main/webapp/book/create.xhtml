@@ -39,10 +39,10 @@
             <h:panelGrid columnClasses="label,component,required" columns="3">
                 <h:outputLabel for="bookBeanBookIsbn" value="Isbn:"/>
                 <h:panelGroup>
-                    <h:inputText id="bookBeanBookIsbn" value="#{bookBean.book.isbn}"/>
+					<h:inputText id="bookBeanBookIsbn" required="true" value="#{bookBean.book.isbn}"/>
                     <h:message for="bookBeanBookIsbn" styleClass="error"/>
                 </h:panelGroup>
-                <h:outputText/>
+				<h:outputText value="*"/>
                 <h:outputLabel for="bookBeanBookTitle" value="Title:"/>
                 <h:panelGroup>
                     <h:inputText id="bookBeanBookTitle" required="true" value="#{bookBean.book.title}"/>
@@ -100,16 +100,16 @@
             </h:panelGrid>
 
             <div class="buttons">
-                <h:commandLink value="Save" action="#{bookBean.update}" styleClass="btn btn-primary"/>
+				<h:commandLink value="Save" action="#{bookBean.update}" styleClass="btn btn-primary"/>
                 <c:choose>
                     <c:when test="#{!empty bookBean.id}">
-                        <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
                             <f:param name="id" value="#{bookBean.id}"/>
                         </h:link>
-                        <h:commandLink value="Delete" action="#{bookBean.delete}" styleClass="btn btn-primary"/>
+						<h:commandLink value="Delete" action="#{bookBean.delete}" styleClass="btn btn-primary"/>
                     </c:when>
                     <c:otherwise>
-                        <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
                     </c:otherwise>
                 </c:choose>
             </div>

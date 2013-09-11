@@ -63,8 +63,8 @@
                         <h:outputText/>
                     </h:panelGrid>
                     <h:panelGroup styleClass="buttons">
-                        <h:commandLink value="Search" action="#{bookBean.search}" styleClass="btn btn-primary"/>
-                        <h:commandLink value="Create New" action="#{bookBean.create}" styleClass="btn btn-primary"/>
+						<h:commandLink value="Search" action="#{bookBean.search}" styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action="#{bookBean.create}" styleClass="btn btn-primary"/>
                     </h:panelGroup>
                 </h:panelGroup>
             </f:validateBean>
@@ -72,6 +72,15 @@
             <h:dataTable id="bookBeanPageItems" styleClass="data-table" value="#{bookBean.pageItems}" var="_item">
                 <h:column>
                     <f:facet name="header">
+						<h:outputText value="Isbn"/>
+					</f:facet>
+					<h:link outcome="/book/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemIsbn" value="#{_item.isbn}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
                         <h:outputText value="Title"/>
                     </f:facet>
                     <h:link outcome="/book/view">
