@@ -21,7 +21,6 @@
         <version.glassfish>4.0</version.glassfish>
         <!--Web-->
         <version.bootstrap>2.3.2</version.bootstrap>
-        <!--<version.bootstrap>3.0.0</version.bootstrap>-->
         <version.jquery>2.0.3</version.jquery>
         <version.primefaces>3.5</version.primefaces>
         <version.primefaces.themes>1.0.10</version.primefaces.themes>
@@ -29,7 +28,7 @@
         <version.arquillian>1.0.4.Final</version.arquillian>
         <version.arquillian.glassfish.embedded>1.0.0.CR4</version.arquillian.glassfish.embedded>
         <!--Maven Plugins-->
-        <version.maven.embedded.glassfish.plugin>3.1.2.2</version.maven.embedded.glassfish.plugin>
+        <version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
         <version.maven.clean.plugin>2.4.1</version.maven.clean.plugin>
         <version.maven.war.plugin>2.4</version.maven.war.plugin>
         <version.maven.compiler.plugin>3.1</version.maven.compiler.plugin>
