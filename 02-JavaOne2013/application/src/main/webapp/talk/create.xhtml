@@ -11,7 +11,7 @@
 
     <f:metadata>
         <f:viewParam name="id" value="#{talkBean.id}"/>
-        <f:event type="preRenderView" listener="#{talkBean.retrieve}"/>
+        <f:viewAction action="#{talkBean.retrieve}"/>
     </f:metadata>
 
     <ui:param name="pageTitle" value="Create Talk"/>
