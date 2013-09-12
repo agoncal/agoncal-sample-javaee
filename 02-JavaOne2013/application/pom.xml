@@ -72,11 +72,11 @@
                 <artifactId>jrebel-maven-plugin</artifactId>
             </plugin>
             <!-- Run mvn clean package embedded-glassfish:run -->
-            <!--     mvn clean package org.glassfish:maven-embedded-glassfish-plugin:3.1.1:run-->
-            <!--     mvn -Dmaven.test.skip=true clean package org.glassfish:maven-embedded-glassfish-plugin:3.1.1:run-->
+            <!--     mvn clean package org.glassfish.embedded:maven-embedded-glassfish-plugin:4.0:run-->
+            <!--     mvn -Dmaven.test.skip=true clean package org.glassfish.embedded:maven-embedded-glassfish-plugin:4.0:run-->
             <!-- and go to http://localhost:8080/sampleJavaEEJavaOne/ -->
             <plugin>
-                <groupId>org.glassfish</groupId>
+                <groupId>org.glassfish.embedded</groupId>
                 <artifactId>maven-embedded-glassfish-plugin</artifactId>
                 <version>${version.maven.embedded.glassfish.plugin}</version>
                 <configuration>
