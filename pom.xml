@@ -174,6 +174,17 @@
                     <version>${version.maven.jaxws.plugin}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.glassfish.embedded</groupId>
+                    <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                    <version>${version.maven.embedded.glassfish.plugin}</version>
+                    <configuration>
+                        <app>${project.build.directory}/${project.build.finalName}.war</app>
+                        <port>8080</port>
+                        <contextRoot>${project.build.finalName}</contextRoot>
+                        <name>${project.build.finalName}</name>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.zeroturnaround</groupId>
                     <artifactId>jrebel-maven-plugin</artifactId>
                     <version>${version.jrebel.plugin}</version>
