@@ -8,4 +8,6 @@ INSERT INTO speaker(id, version, firstname, surname, bio, twitter) VALUES (1001,
 INSERT INTO talk(id, version, title, description, room) VALUES (1000, 0, 'Come and Play! with Java EE 7', 'Great Java EE 7 talk', 'Moscone')
 INSERT INTO talk(id, version, title, description, room) VALUES (1001, 0, 'HOL Java EE 7', 'Great Java EE 7 HOL', 'Moscone')
 
-
+INSERT INTO talk_speaker(talk_id, speakers_id) VALUES (1000, 1000)
+INSERT INTO talk_speaker(talk_id, speakers_id) VALUES (1000, 1001)
+INSERT INTO talk_speaker(talk_id, speakers_id) VALUES (1001, 1001)
