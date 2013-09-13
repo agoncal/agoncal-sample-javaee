@@ -34,14 +34,17 @@ public class Book implements Serializable {
     private String title;
     @NotNull
     private String author;
+    @Column(length = 2000)
     @Size(min = 10, max = 2000)
     private String description;
     private Float price;
-    private Integer nbOfPage;
+    private Integer nbOfPages;
+    private String publisher;
     @Temporal(TemporalType.DATE)
     private Date publicationDate;
-    private String publisher;
     private Language language;
+    private String imageURL;
+    private String pageURL;
 
     // ======================================
     // =            Constructors            =
@@ -50,12 +53,12 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(String title, String description, Float price, String isbn, Integer nbOfPage) {
+    public Book(String title, String description, Float price, String isbn, Integer nbOfPages) {
         this.title = title;
         this.price = price;
         this.description = description;
         this.isbn = isbn;
-        this.nbOfPage = nbOfPage;
+        this.nbOfPages = nbOfPages;
     }
 
     // ======================================
@@ -102,12 +105,12 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
-    public Integer getNbOfPage() {
-        return nbOfPage;
+    public Integer getNbOfPages() {
+        return nbOfPages;
     }
 
-    public void setNbOfPage(Integer nbOfPage) {
-        this.nbOfPage = nbOfPage;
+    public void setNbOfPages(Integer nbOfPage) {
+        this.nbOfPages = nbOfPage;
     }
 
     public String getAuthor() {
@@ -140,5 +143,21 @@ public class Book implements Serializable {
 
     public void setLanguage(Language language) {
         this.language = language;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getPageURL() {
+        return pageURL;
+    }
+
+    public void setPageURL(String pageURL) {
+        this.pageURL = pageURL;
     }
 }

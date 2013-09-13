@@ -40,20 +40,26 @@
             <h:outputLabel for="bookBeanBookPrice" value="Price:"/>
             <h:outputText id="bookBeanBookPrice" value="#{bookBean.book.price}"/>
             <h:outputText/>
-            <h:outputLabel for="bookBeanBookNbOfPage" value="Nb Of Page:"/>
-            <h:outputText id="bookBeanBookNbOfPage" value="#{bookBean.book.nbOfPage}"/>
+			<h:outputLabel for="bookBeanBookNbOfPages" value="Nb Of Pages:"/>
+            <h:outputText id="bookBeanBookNbOfPages" value="#{bookBean.book.nbOfPages}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookPublisher" value="Publisher:"/>
+            <h:outputText id="bookBeanBookPublisher" value="#{bookBean.book.publisher}"/>
             <h:outputText/>
             <h:outputLabel for="bookBeanBookPublicationDate" value="Publication Date:"/>
             <h:outputText id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
                 <f:convertDateTime type="date"/>
             </h:outputText>
             <h:outputText/>
-            <h:outputLabel for="bookBeanBookPublisher" value="Publisher:"/>
-            <h:outputText id="bookBeanBookPublisher" value="#{bookBean.book.publisher}"/>
-            <h:outputText/>
             <h:outputLabel for="bookBeanBookLanguage" value="Language:"/>
             <h:outputText id="bookBeanBookLanguage" value="#{bookBean.book.language}"/>
             <h:outputText/>
+			<h:outputLabel for="bookBeanBookImageURL" value="Image URL:"/>
+			<h:outputText id="bookBeanBookImageURL" value="#{bookBean.book.imageURL}"/>
+			<h:outputText/>
+			<h:outputLabel for="bookBeanBookPageURL" value="Page URL:"/>
+			<h:outputText id="bookBeanBookPageURL" value="#{bookBean.book.pageURL}"/>
+			<h:outputText/>
         </h:panelGrid>
 
         <div class="buttons">

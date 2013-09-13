@@ -1,3 +1,9 @@
+# Getting ready
+
+* Intellij IDEA (Cardea)
+* Command line
+* Saved searched
+
 # Generate project
 
 # Generate entities

@@ -67,22 +67,22 @@
                     <h:message for="bookBeanBookPrice" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
-                <h:outputLabel for="bookBeanBookNbOfPage" value="Nb Of Page:"/>
+				<h:outputLabel for="bookBeanBookNbOfPages" value="Nb Of Pages:"/>
                 <h:panelGroup>
-                    <h:inputText id="bookBeanBookNbOfPage" value="#{bookBean.book.nbOfPage}"/>
-                    <h:message for="bookBeanBookNbOfPage" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText/>
-                <h:outputLabel for="bookBeanBookPublicationDate" value="Publication Date:"/>
-                <h:panelGroup>
-                    <p:calendar id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}"/>
-                    <h:message for="bookBeanBookPublicationDate" styleClass="error"/>
+                    <h:inputText id="bookBeanBookNbOfPages" value="#{bookBean.book.nbOfPages}"/>
+                    <h:message for="bookBeanBookNbOfPages" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
                 <h:outputLabel for="bookBeanBookPublisher" value="Publisher:"/>
                 <h:panelGroup>
                     <h:inputText id="bookBeanBookPublisher" value="#{bookBean.book.publisher}"/>
                     <h:message for="bookBeanBookPublisher" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookPublicationDate" value="Publication Date:"/>
+                <h:panelGroup>
+                    <p:calendar id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}"/>
+                    <h:message for="bookBeanBookPublicationDate" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
                 <h:outputLabel for="bookBeanBookLanguage" value="Language:"/>
@@ -95,6 +95,18 @@
                     <h:message for="bookBeanBookLanguage" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
+				<h:outputLabel for="bookBeanBookImageURL" value="Image URL:"/>
+				<h:panelGroup>
+					<h:inputText id="bookBeanBookImageURL" value="#{bookBean.book.imageURL}"/>
+					<h:message for="bookBeanBookImageURL" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="bookBeanBookPageURL" value="Page URL:"/>
+				<h:panelGroup>
+					<h:inputText id="bookBeanBookPageURL" value="#{bookBean.book.pageURL}"/>
+					<h:message for="bookBeanBookPageURL" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
             </h:panelGrid>
 
             <div class="buttons">

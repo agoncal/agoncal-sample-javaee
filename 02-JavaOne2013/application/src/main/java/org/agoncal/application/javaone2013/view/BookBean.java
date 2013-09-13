@@ -170,7 +170,7 @@ public class BookBean implements Serializable {
         if (description != null && !"".equals(description)) {
             predicatesList.add(builder.like(root.<String>get("description"), '%' + description + '%'));
         }
-        Integer nbOfPage = this.example.getNbOfPage();
+        Integer nbOfPage = this.example.getNbOfPages();
         if (nbOfPage != null && nbOfPage.intValue() != 0) {
             predicatesList.add(builder.equal(root.get("nbOfPage"), nbOfPage));
         }

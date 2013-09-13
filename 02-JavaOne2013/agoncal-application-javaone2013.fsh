@@ -16,7 +16,7 @@ set ACCEPT_DEFAULTS true ;
 @/* == Creating the project == */;
 @/* ========================== */;
 
-new-project --named agoncal-application-javaone2013140 --topLevelPackage org.agoncal.application.javaone2013 --type war ;
+new-project --named agoncal-application-javaone2013140 --topLevelPackage org.agoncal.application.javaone2013 --type war --createMain ;
 
 
 @/* ============================ */;
@@ -61,10 +61,12 @@ field string --named title ;
 field string --named author ;
 field string --named description ;
 field number --type java.lang.Float --named price ;
-field number --type java.lang.Integer --named nbOfPage ;
-field temporal --type DATE --named publicationDate ;
+field number --type java.lang.Integer --named nbOfPages ;
 field string --named publisher ;
+field temporal --type DATE --named publicationDate ;
 field custom --named language --type org.agoncal.application.javaone2013.model.Language.java ;
+field string --named imageURL ;
+field string --named pageURL ;
 
 constraint NotNull --onProperty isbn ;
 constraint NotNull --onProperty title ;
@@ -133,7 +135,6 @@ project remove-dependency org.jboss.spec.javax.transaction:jboss-transaction-api
 project remove-dependency org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec ;
 project remove-dependency org.jboss.spec.javax.faces:jboss-jsf-api_2.1_spec ;
 project add-dependency javax:javaee-api:7.0:provided ;
-
 
 @/* ========================== */;
 @/* == Building the project == */;
