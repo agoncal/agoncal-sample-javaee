@@ -21,6 +21,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +88,7 @@ public class TalkBean implements Serializable {
         }
     }
 
-    public Talk findById(Long id) {
+    public Talk findById(@NotNull Long id) {
 
         return this.entityManager.find(Talk.class, id);
     }

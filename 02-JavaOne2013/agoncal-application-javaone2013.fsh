@@ -134,7 +134,10 @@ project remove-dependency org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_1.1_spec ;
 project remove-dependency org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec ;
 project remove-dependency org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec ;
 project remove-dependency org.jboss.spec.javax.faces:jboss-jsf-api_2.1_spec ;
-project add-dependency javax:javaee-api:7.0:provided ;
+project add-dependency org.webjars:bootstrap:2.3.2 ;
+@/* project add-dependency org.webjars:jquery:1.8.3 */;
+project add-dependency org.primefaces:primefaces:3.5 ;
+
 
 @/* ========================== */;
 @/* == Building the project == */;

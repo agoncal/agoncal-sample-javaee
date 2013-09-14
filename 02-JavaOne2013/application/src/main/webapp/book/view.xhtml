@@ -54,13 +54,12 @@
             <h:outputLabel for="bookBeanBookLanguage" value="Language:"/>
             <h:outputText id="bookBeanBookLanguage" value="#{bookBean.book.language}"/>
             <h:outputText/>
-			<h:outputLabel for="bookBeanBookImageURL" value="Image URL:"/>
-			<h:outputText id="bookBeanBookImageURL" value="#{bookBean.book.imageURL}"/>
-			<h:outputText/>
-			<h:outputLabel for="bookBeanBookPageURL" value="Page URL:"/>
-			<h:outputText id="bookBeanBookPageURL" value="#{bookBean.book.pageURL}"/>
-			<h:outputText/>
+
         </h:panelGrid>
+
+        <h:outputLink id="bookBeanBookImage" value="#{bookBean.book.pageURL}" target="_blank">
+            <h:graphicImage value="#{bookBean.book.imageURL}"/>
+        </h:outputLink>
 
         <div class="buttons">
 			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 

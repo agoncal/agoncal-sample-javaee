@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -41,7 +42,7 @@ public class TalkEndpoint {
 
     @DELETE
     @Path("/{id:[0-9][0-9]*}")
-    public Response deleteById(@PathParam("id") Long id) {
+    public Response deleteById(@PathParam("id") @NotNull Long id) {
         Talk entity = em.find(Talk.class, id);
         if (entity == null) {
             return Response.status(Status.NOT_FOUND).build();
@@ -53,7 +54,7 @@ public class TalkEndpoint {
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces("application/xml")
-    public Response findById(@PathParam("id") Long id) {
+    public Response findById(@PathParam("id") @NotNull Long id) {
         TypedQuery<Talk> findByIdQuery = em.createQuery("SELECT DISTINCT t FROM Talk t LEFT JOIN FETCH t.speakers WHERE t.id = :entityId ORDER BY t.id", Talk.class);
         findByIdQuery.setParameter("entityId", id);
         Talk entity = findByIdQuery.getSingleResult();
