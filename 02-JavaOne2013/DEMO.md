@@ -18,6 +18,10 @@
 * Change property to `<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>`
 * 
 
+# Tweeter
+
+* https://twitter.com/settings/widgets
+
 # References
 
 * https://oracleus.activeevents.com/2013/connect/focusOnDoc.do?focusID=23084
