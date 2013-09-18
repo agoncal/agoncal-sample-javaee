@@ -3,6 +3,7 @@
 * Intellij IDEA (Cardea)
 * Command line
 * Saved searched
+* Start Derby database (derbyStart.sh)
 
 # Generate project
 

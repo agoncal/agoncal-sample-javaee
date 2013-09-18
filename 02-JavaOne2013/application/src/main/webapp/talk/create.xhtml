@@ -120,6 +120,12 @@
                 </c:choose>
             </div>
         </h:form>
+
+        <h:form enctype="multipart/form-data">
+            <h:inputFile value="#{talkBean.uploadedVideo}"/>
+            <h:commandButton value="Upload video" action="#{talkBean.uploadVideo}"/>
+        </h:form>
+
     </ui:define>
 
 </ui:composition>

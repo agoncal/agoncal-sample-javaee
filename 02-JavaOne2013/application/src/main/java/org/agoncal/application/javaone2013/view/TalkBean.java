@@ -21,8 +21,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.Part;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +57,9 @@ public class TalkBean implements Serializable {
     // Support adding children to bidirectional, one-to-many tables
     private Talk add = new Talk();
 
+    // Support to upload a video
+    private Part uploadedVideo;
+
     @Inject
     private Conversation conversation;
 
@@ -64,6 +72,14 @@ public class TalkBean implements Serializable {
     // ======================================
     // =          Business Methods          =
     // ======================================
+
+    public String uploadVideo() throws IOException {
+
+        InputStream is = uploadedVideo.getInputStream();
+        Files.copy(is, Paths.get("/Users/antoniombp/Documents/Code/github/agoncal-sample-javaee/02-JavaOne2013/application/target/sampleJavaEEJavaOne/resources/" + talk.getId() + ".mp4"));
+
+        return "create?faces-redirect=true";
+    }
 
     public String create() {
 
@@ -257,5 +273,13 @@ public class TalkBean implements Serializable {
         Talk added = this.add;
         this.add = new Talk();
         return added;
+    }
+
+    public Part getUploadedVideo() {
+        return uploadedVideo;
+    }
+
+    public void setUploadedVideo(Part uploadedVideo) {
+        this.uploadedVideo = uploadedVideo;
     }
 }
