@@ -65,7 +65,9 @@
             </h:dataTable>
             <h:outputText/>
 
-            <video src="#{request.contextPath}/resources/#{talkBean.talk.id}.mp4" width="500px" controls="controls"/>
+            <h:outputLabel for="talkBeanTalkVideo" value="Video:"/>
+            <video id="talkBeanTalkVideo" src="#{request.contextPath}/resources/#{talkBean.talk.id}.mp4" width="500px" controls="controls"/>
+            <h:outputText/>
 
         </h:panelGrid>
 

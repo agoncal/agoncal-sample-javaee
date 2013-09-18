@@ -173,15 +173,15 @@ public class TalkBean implements Serializable {
 
         String title = this.example.getTitle();
         if (title != null && !"".equals(title)) {
-            predicatesList.add(builder.like(root.<String>get("title"), '%' + title + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("title")), '%' + title.toLowerCase() + '%'));
         }
         String description = this.example.getDescription();
         if (description != null && !"".equals(description)) {
-            predicatesList.add(builder.like(root.<String>get("description"), '%' + description + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("description")), '%' + description.toLowerCase() + '%'));
         }
         String room = this.example.getRoom();
         if (room != null && !"".equals(room)) {
-            predicatesList.add(builder.like(root.<String>get("room"), '%' + room + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("room")), '%' + room.toLowerCase() + '%'));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);

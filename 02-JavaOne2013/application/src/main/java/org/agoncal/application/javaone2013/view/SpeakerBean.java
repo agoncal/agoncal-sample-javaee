@@ -157,19 +157,19 @@ public class SpeakerBean implements Serializable {
 
         String firstname = this.example.getFirstname();
         if (firstname != null && !"".equals(firstname)) {
-            predicatesList.add(builder.like(root.<String>get("firstname"), '%' + firstname + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("firstname")), '%' + firstname.toLowerCase() + '%'));
         }
         String surname = this.example.getSurname();
         if (surname != null && !"".equals(surname)) {
-            predicatesList.add(builder.like(root.<String>get("surname"), '%' + surname + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("surname")), '%' + surname.toLowerCase() + '%'));
         }
         String bio = this.example.getBio();
         if (bio != null && !"".equals(bio)) {
-            predicatesList.add(builder.like(root.<String>get("bio"), '%' + bio + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("bio")), '%' + bio.toLowerCase() + '%'));
         }
         String twitter = this.example.getTwitter();
         if (twitter != null && !"".equals(twitter)) {
-            predicatesList.add(builder.like(root.<String>get("twitter"), '%' + twitter + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("twitter")), '%' + twitter.toLowerCase() + '%'));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);

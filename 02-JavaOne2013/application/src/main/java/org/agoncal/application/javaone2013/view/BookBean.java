@@ -157,19 +157,19 @@ public class BookBean implements Serializable {
 
         String isbn = this.example.getIsbn();
         if (isbn != null && !"".equals(isbn)) {
-            predicatesList.add(builder.like(root.<String>get("isbn"), '%' + isbn + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("isbn")), '%' + isbn.toLowerCase() + '%'));
         }
         String title = this.example.getTitle();
         if (title != null && !"".equals(title)) {
-            predicatesList.add(builder.like(root.<String>get("title"), '%' + title + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("title")), '%' + title.toLowerCase() + '%'));
         }
         String author = this.example.getAuthor();
         if (author != null && !"".equals(author)) {
-            predicatesList.add(builder.like(root.<String>get("author"), '%' + author + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("author")), '%' + author.toLowerCase() + '%'));
         }
         String description = this.example.getDescription();
         if (description != null && !"".equals(description)) {
-            predicatesList.add(builder.like(root.<String>get("description"), '%' + description + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String>get("description")), '%' + description.toLowerCase() + '%'));
         }
         Integer nbOfPage = this.example.getNbOfPages();
         if (nbOfPage != null && nbOfPage.intValue() != 0) {
