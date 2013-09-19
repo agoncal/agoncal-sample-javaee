@@ -204,10 +204,6 @@ With
 
 # Use WildFly
 
-# References
-
-* https://oracleus.activeevents.com/2013/connect/focusOnDoc.do?focusID=23084
-
 
 
 
