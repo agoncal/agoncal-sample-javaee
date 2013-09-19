@@ -78,7 +78,7 @@ public class TalkBean implements Serializable {
         InputStream is = uploadedVideo.getInputStream();
         Files.copy(is, Paths.get("/Users/antoniombp/Documents/Code/github/agoncal-sample-javaee/02-JavaOne2013/application/target/sampleJavaEEJavaOne/resources/" + talk.getId() + ".mp4"));
 
-        return "create?faces-redirect=true";
+        return "view?faces-redirect=true";
     }
 
     public String create() {

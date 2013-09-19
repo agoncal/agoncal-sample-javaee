@@ -1,0 +1,57 @@
+{"version": 1, "collections": [
+    {
+        "id": "322cfbed-7dcc-6e68-3742-156a5d0c973a",
+        "name": "JavaOne",
+        "order": ["c765009c-6f56-e1c6-c339-b7cc4e2149b0", "f58434f1-0714-5b32-69a3-50e6e38a333d", "3241c8ba-e0a7-0044-c956-2e205cbb8557"],
+        "folders": [],
+        "timestamp": 1379512393033,
+        "synced": false,
+        "requests": [
+            {
+                "id": "3241c8ba-e0a7-0044-c956-2e205cbb8557",
+                "headers": "",
+                "url": "http://localhost:8080/javaone2013/rest/books/1",
+                "method": "GET",
+                "data": [],
+                "dataMode": "params",
+                "name": "Get one book",
+                "description": "",
+                "descriptionFormat": "html",
+                "time": 1379514068980,
+                "version": 2,
+                "responses": [],
+                "collectionId": "322cfbed-7dcc-6e68-3742-156a5d0c973a"
+            },
+            {
+                "id": "c765009c-6f56-e1c6-c339-b7cc4e2149b0",
+                "headers": "",
+                "url": "http://localhost:8080/javaone2013/rest/books",
+                "method": "GET",
+                "data": [],
+                "dataMode": "params",
+                "name": "Get all books",
+                "description": "",
+                "descriptionFormat": "html",
+                "time": 1379512415012,
+                "version": 2,
+                "responses": [],
+                "collectionId": "322cfbed-7dcc-6e68-3742-156a5d0c973a"
+            },
+            {
+                "id": "f58434f1-0714-5b32-69a3-50e6e38a333d",
+                "headers": "",
+                "url": "http://localhost:8080/javaone2013/rest/books",
+                "method": "POST",
+                "data": "<book>\n    <isbn>123456789</isbn>\n    <title>REST Calls</title>\n    <author>POSTMAN</author>\n</book>",
+                "dataMode": "raw",
+                "name": "Create a book",
+                "description": "",
+                "descriptionFormat": "html",
+                "time": 1379513474573,
+                "version": 2,
+                "responses": [],
+                "collectionId": "322cfbed-7dcc-6e68-3742-156a5d0c973a"
+            }
+        ]
+    }
+], "environments": [], "headerPresets": [], "globals": []}
