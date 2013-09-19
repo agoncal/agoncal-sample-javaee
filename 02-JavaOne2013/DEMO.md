@@ -187,12 +187,22 @@ With
          </p:carousel>
          <p:dialog/>
 
+> SNAPSHOT-3
 
-# Use WildFly
+
+# Adding video upload
+
+> SNAPSHOT-4
 
 # Tweeter
 
 * https://twitter.com/settings/widgets
+
+# Beautifying home page
+
+> SNAPSHOT-5
+
+# Use WildFly
 
 # References
 

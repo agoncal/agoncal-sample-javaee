@@ -59,7 +59,9 @@
                 <h:outputText value="*"/>
                 <h:outputLabel for="talkBeanTalkDate" value="Date:"/>
                 <h:panelGroup>
-                    <p:calendar id="talkBeanTalkDate" value="#{talkBean.talk.date}"/>
+                    <p:calendar id="talkBeanTalkDate" value="#{talkBean.talk.date}">
+                        <f:convertDateTime type="date"/>
+                    </p:calendar>
                     <h:message for="talkBeanTalkDate" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
