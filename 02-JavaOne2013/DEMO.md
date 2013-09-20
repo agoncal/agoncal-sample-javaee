@@ -221,6 +221,7 @@ Speaker
 
 * In the `TalkBean` JSF backing bean
     * Add the attribute `private javax.servlet.http.Part uploadedVideo;`
+    * Create the getters and setters of the `uploadedVideo` attribute
     * Add an the following method using the shortcut `j1upload`
 
         public String uploadVideo() throws IOException {
@@ -246,17 +247,22 @@ Speaker
 
 * Start GlassFish
 * Choose one talk, upload a video from the `Movies` folder, and upload it
-* Show the video, it doesn't show it
-* Restart GlassFish and show the video again
+* Show the video
 
 > SNAPSHOT-4
 
 # Beautifying home page
 
+## Little improvements
+
+* Go to the `pageTemplate.xhtml` page
+* Get rid of the `'forge-logo.png'`
+* Change the name of the `brand` from `Javaone-javaee 7` `Java EE 7 at JavaOne`
+* Get rid of the `Customize` by deleting the `<div class="nav-collapse collapse">`
+
 ## Tweeter
 
 * Show Twitter widget https://twitter.com/settings/widgets
-* Go to the `pageTemplate.xhtml` page
 * At the bottom of `<div id="navigation">` before the `</div>` copy the Twitter URL :
 
             <a class="twitter-timeline" href="https://twitter.com/search?q=%23JavaEE7" data-widget-id="379317091746078720">Tweets about "#JavaEE7"</a>
@@ -266,6 +272,7 @@ Speaker
 ## Duke Java EE 7
 
 * Go to the `index.xhtml` page
+* Chand the header text from `Welcome to Forge` to `Welcome to JavaOne 2013`
 * In the `<h2 class="success">` change the text `Your application is running.` with `Come and Play! with Java EE 7`
 * In the `<p>` block, change the content with :
 
@@ -277,6 +284,11 @@ Speaker
 > SNAPSHOT-5
 
 # Use WildFly
+
+* In the `persistence.xml` use the JBoss datasource
+
+        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+
 
 # It is possible to develop quickly nice and portable Java EE 7 apps
 
