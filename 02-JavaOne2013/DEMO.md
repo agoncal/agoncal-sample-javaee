@@ -6,28 +6,34 @@
 * Export variable export `J1` which points to the code directory (eg. `J1=$CODE_HOME/JavaOne`)
 * Intellij IDEA (Cardea)
 * Swtich off sound
-* Command line (increase font)
+* Command line (increase font with )
 * Open Mou with the `DEMO.md`
 * Saved searched
+* Make sure Derby is not up and running
+* Clean up TextWrangler (close all tabs)
 * /!\ DO NOT REFORMAT CODE /!\ or you might get WildcardImportResolver
 
 # Before the demo
 
 * Command line
-    * Start Derby database (`derbyStart.sh`)
     * cd `$J1` (to run commands)
-        * `/Users/antoniombp/Documents/Code/github/agoncal-sample-javaee/02-JavaOne2013/script/src/main/shell/setup.sh`
-        * `./setup.sh`
+        * `cp /Users/antoniombp/Documents/Code/github/agoncal-sample-javaee/02-JavaOne2013/script/src/main/shell/setup.sh .`
+        * `cp /Users/antoniombp/Documents/Code/github/agoncal-sample-javaee/02-JavaOne2013/script/src/main/shell/clean.sh .`
         * `./clean.sh`
+        * `./setup.sh`
     * cd `$J1` (to run Forge) Set tab colour to Orange
+    * Start Derby database (`derbyStart.sh`) after the `clean.sh` or it breaks after
+    * `clear` all terminals
 
 # Start
 
 * Start Forge and show some commands
     * TAB, `version`, `list-commands`, `list-commands --all`
 * Create project
-    * `new-project --named javaone-javaee7 --topLevelPackage org.javaone.javaee7 --type war --createMain --finalName javaone2013`
-* Start Cardea (Intellij Idea 13) and create a project
+    * `new-project --named javaone-javaee7 --topLevelPackage org.javaone.javaee7 --type war --finalName javaone2013`
+* Set the Forge defaults
+    * `set ACCEPT_DEFAULTS true`
+* Start Cardea (Intellij Idea 13) and create a project from `/Users/antoniombp/Documents/Code/JavaOne/javaone-javaee7`
     * Make sure to use Java SE 7
     * Increase Intellij Font ( Editor / Colors & Fonts / Font / Presentation)
 * Show project
@@ -62,7 +68,7 @@ Talk
 
 * Show code in IntelliJ
 
-# Add Bean Validation constraints
+# Add Bean Validation constraints to Talk & Speaker
 
 * Setup Bean Validation
     * `validation setup`
@@ -83,9 +89,14 @@ Speaker
 
 
 * Show Bean Validation code in IntelliJ
-* Build the code with Forge `build`
-* Say we are using a script to generate the Book and Language entity `run 01-entities.fsh`
+
+# Create Book and Languages entities
+
+* In the terminal with `vi` show the script `entities.fsh`
+* HOW TO RETURN TO THE HOME OF THE PROJECT !!!!!
+* In Forge run the script `run ../entities.fsh`
 * Show code in IntelliJ
+* Build the code with Forge `build`
 
 # Generate REST endpoints
 
@@ -93,9 +104,10 @@ Speaker
     * `rest setup`
 * Show `web.xml` in Intellij
 * Generate REST endpoints
-    * `rest endpoint-from-entity ~.model.*`
+    * `rest endpoint-from-entity ~.model.*` (`~` is alt+n)
+* Show the REST endpoints in Intellij
 
-# Use REST endpoints
+# Use REST the Book endpoint
 
 * Setup GlassFish (in exploded mode)
 * Run GlassFish
@@ -112,13 +124,20 @@ Speaker
 * Run GlassFish
 * Stop GlassFish
 
-> SNAPSHOT-1
-
 # Turn Java EE 6 project into Java EE 7
 
-* Run Forge script to update `pom.xml`: `run 02-pom.fsh`
+## Changing dependencies in pom
+
+* In `vi` show the `pom.fsh` script
+* Run Forge script to update `pom.xml`: `run pom.fsh`
 * Remove JBoss Java EE 6 dependencies in `pom.xml` by hand
-* Replace `http://java.sun.com/xml/ns/` into `http://xmlns.jcp.org/xml/ns/` in all `*.xml` files (`./namespaces.sh`)
+
+## Changing namespaces and version of XML deployment descriptors
+
+* Show `persistence.xml`, `web.xml` and a JSF page
+* Run the `./namespaces.sh` shell script
+
+> SNAPSHOT-1
 
 # Adding data to the database
 
@@ -150,10 +169,10 @@ Speaker
 
 * Execute the `Main` and say that with a bit of XML parsing you can obtain the following SQL file
 * Exit Forge and close terminal
-* Execute the shell `sql.sh`
 
 # Adding Data to the DB with JPA 2.1
 
+* Execute the shell `sql.sh`
 * Open the `persistence.xml` file
 * Get read of `<provider>` so it's portable
 * Change to default DS to `<jta-data-source>java:comp/DefaultDataSource</jta-data-source>`
@@ -174,18 +193,14 @@ Speaker
 
 # Beaufity the Book pages with RichFaces components
 
-* Add PrimeFaces to the project with Forge
-* Add a Calendar to the book creation page `create.xhtml`. Replace the following code
+* Talk about PrimeFaces
+* Show the PrimeFaces website (ADD THE WEB SITE TO CHROME FAVORITES)
+* Add a Calendar to the book creation page `create.xhtml`
+    * Just replace the `<h:inputText>` with `<p:calendar>`
 
 		<h:inputText id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
 			<f:convertDateTime type="date"/>
 		</h:inputText>
-
-With
-
-        <p:calendar id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
-		    <f:convertDateTime type="date"/>
-		</p:calendar>
 
 * In the Search page (`search.xhtml`) change the Datatable with a PrimeFaces caroussel.
     * Get rid of the `<h:dataTable>` and the `<ui:include>`and replace it with shortcut `j1prime`
@@ -262,6 +277,8 @@ With
 > SNAPSHOT-5
 
 # Use WildFly
+
+# It is possible to develop quickly nice and portable Java EE 7 apps
 
 
 

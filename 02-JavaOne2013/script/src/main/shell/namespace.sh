@@ -39,5 +39,5 @@ cp $SNAP1_JAVA/view/BookBean.java $APP_JAVA/view/BookBean.java
 cp $SNAP1_JAVA/view/SpeakerBean.java  $APP_JAVA/view/SpeakerBean.java
 cp $SNAP1_JAVA/view/TalkBean.java  $APP_JAVA/view/TalkBean.java
 
-cp $DUKE_IMG_HOME/duke-javaee7* APP_WEBAPP/resources/
+cp $DUKE_IMG_HOME/duke-javaee7* $APP_WEBAPP/resources/
 cp $DUKE_IMG_HOME/duke-javaee7* $SNAP1_WEBAPP/resources/
