@@ -1,4 +1,4 @@
-# Pensez à commiter les shell dans scripts
+# Télécharger la dernière version de Jersey
 # Créer des script qui remplace tout par un snapshot
 
 # Getting ready
@@ -14,11 +14,12 @@
 # Before the demo
 
 * Command line
-    * cd `$J1` (to run commands)
-        * `./clean.sh`
-        * `./setup.sh`
-    * cd `$J1` (to run Forge)
     * Start Derby database (`derbyStart.sh`)
+    * cd `$J1` (to run commands)
+        * `/Users/antoniombp/Documents/Code/github/agoncal-sample-javaee/02-JavaOne2013/script/src/main/shell/setup.sh`
+        * `./setup.sh`
+        * `./clean.sh`
+    * cd `$J1` (to run Forge) Set tab colour to Orange
 
 # Start
 
@@ -124,6 +125,17 @@ Speaker
 ## Accessing Amazon Web Service with JAX-RS 2.0
 
 * Show Chrome and Amazon WS
+* Open a new terminal with Forge
+* Create project
+    * `new-project --named javaone-javaee7-main --topLevelPackage org.javaone.javaee7.main --createMain`
+* Import project in Intellij Idea
+    * Make sure to use Java SE 7
+    * Increase Intellij Font ( Editor / Colors & Fonts / Font / Presentation)
+* Show project
+    * Show `Main` class
+    * Show `pom.xml`
+* Add Jersey dependency
+    * `project add-dependency org.glassfish.jersey.core:jersey-client:2.0-rc1`
 * Go to `Main` class
 * In the `Main`, add the first lines of code with the Intellij IDEA shortcut `j1aws`
 * Add the following LoC explaining the JAX-RS 2.0 APIs and what it does :
@@ -137,6 +149,7 @@ Speaker
         System.out.println(javaee7books);
 
 * Execute the `Main` and say that with a bit of XML parsing you can obtain the following SQL file
+* Exit Forge and close terminal
 * Execute the shell `sql.sh`
 
 # Adding Data to the DB with JPA 2.1
@@ -175,7 +188,7 @@ With
 		</p:calendar>
 
 * In the Search page (`search.xhtml`) change the Datatable with a PrimeFaces caroussel.
-    * Get rid of the `<h:dataTable>` and the `<ui:include>`and replace it with
+    * Get rid of the `<h:dataTable>` and the `<ui:include>`and replace it with shortcut `j1prime`
 
          <p:carousel id="carousel" value="#{bookBean.pageItems}" var="_item" style="width:100%" headerText="Java EE 7 Books">
            <h:panelGrid columns="1" style="width:100%" cellpadding="5">
@@ -189,16 +202,62 @@ With
 
 > SNAPSHOT-3
 
-
 # Adding video upload
+
+* In the `TalkBean` JSF backing bean
+    * Add the attribute `private javax.servlet.http.Part uploadedVideo;`
+    * Add an the following method using the shortcut `j1upload`
+
+        public String uploadVideo() throws IOException {
+            InputStream is = uploadedVideo.getInputStream();
+            Files.copy(is, Paths.get("/Users/antoniombp/Documents/Code/JavaOne/javaone-javaee7/target/javaone2013/resources" + talk.getId() + ".mp4"));
+            return "view?faces-redirect=true";
+        }
+
+* In the `create.xhtml` file of the Talk
+* At the very end, between the `</h:form>` and the `</ui:define>` add the form with `j1form`
+
+        <h:form enctype="multipart/form-data">
+            <h:inputFile value="#{talkBean.uploadedVideo}"/>
+            <h:commandLink value="Upload video" action="#{talkBean.uploadVideo}" styleClass="btn btn-primary"/>
+        </h:form>
+
+* In the `view.xhtml` page of the Talk
+    * Add the following, between `<h:outputText/>` and `</h:panelGrid>` before the buttons with `j1video`
+
+            <h:outputLabel value="Video:"/>
+            <video src="#{request.contextPath}/resources/#{talkBean.talk.id}.mp4" width="500px" controls="controls"/>
+            <h:outputText/>
+
+* Start GlassFish
+* Choose one talk, upload a video from the `Movies` folder, and upload it
+* Show the video, it doesn't show it
+* Restart GlassFish and show the video again
 
 > SNAPSHOT-4
 
-# Tweeter
-
-* https://twitter.com/settings/widgets
-
 # Beautifying home page
+
+## Tweeter
+
+* Show Twitter widget https://twitter.com/settings/widgets
+* Go to the `pageTemplate.xhtml` page
+* At the bottom of `<div id="navigation">` before the `</div>` copy the Twitter URL :
+
+            <a class="twitter-timeline" href="https://twitter.com/search?q=%23JavaEE7" data-widget-id="379317091746078720">Tweets about "#JavaEE7"</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+## Duke Java EE 7
+
+* Go to the `index.xhtml` page
+* In the `<h2 class="success">` change the text `Your application is running.` with `Come and Play! with Java EE 7`
+* In the `<p>` block, change the content with :
+
+        <p align="center">
+            <h:graphicImage value="#{resource['duke-javaee7.png']}" width="300px"/>
+        </p>
+
 
 > SNAPSHOT-5
 
