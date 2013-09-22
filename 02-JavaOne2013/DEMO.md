@@ -1,16 +1,16 @@
-# Télécharger la dernière version de Jersey
-# Créer des script qui remplace tout par un snapshot
-
 # Getting ready
 
 * Export variable export `J1` which points to the code directory (eg. `J1=$CODE_HOME/JavaOne`)
 * Intellij IDEA (Cardea)
-* Swtich off sound
+    * Clear list of Open Recent
+* Switch off sound
 * Command line (increase font with )
-* Open Mou with the `DEMO.md`
+* TextWrangler `DEMO.md`
+    * Clean up all the other tabs
 * Saved searched
 * Make sure Derby is not up and running
-* Clean up TextWrangler (close all tabs)
+* Reboot
+* /!\ FOR JBOSS TO WORK /!\ get rid of the duplicates in the insert.sql file
 * /!\ DO NOT REFORMAT CODE /!\ or you might get WildcardImportResolver
 
 # Before the demo
@@ -154,7 +154,7 @@ Speaker
     * Show `Main` class
     * Show `pom.xml`
 * Add Jersey dependency
-    * `project add-dependency org.glassfish.jersey.core:jersey-client:2.0-rc1`
+    * `project add-dependency org.glassfish.jersey.core:jersey-client:2.0`
 * Go to `Main` class
 * In the `Main`, add the first lines of code with the Intellij IDEA shortcut `j1aws`
 * Add the following LoC explaining the JAX-RS 2.0 APIs and what it does :
@@ -181,6 +181,10 @@ Speaker
 * Search for the file `createJavaOne2013.ddl` (in the finder click on `DDL.search`) and show it
 
 > SNAPSHOT-2
+
+# Change @Stateless to @Transactional in REST endpoints
+
+* Change `@Stateless` with `@Transactional`
 
 # Adding Bean Validation method validation
 
