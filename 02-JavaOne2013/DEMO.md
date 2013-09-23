@@ -1,19 +1,41 @@
 # Getting ready
 
+* Setup the timer on Android phone
 * Export variable export `J1` which points to the code directory (eg. `J1=$CODE_HOME/JavaOne`)
-* Intellij IDEA (Cardea)
+* Start Intellij IDEA (Cardea)
     * Clear list of Open Recent
+    * Close all the Intellij Idea projects
 * Switch off sound
 * Command line (increase font with )
-* TextWrangler `DEMO.md`
+* TextWrangler
     * Clean up all the other tabs
-* Saved searched
+    * Open `DEMO.md`
+    * Open `entities.fsh`
+    * Open `pom.fsh`
+* Finder
+	* Saved searched (DDL)
+	* Leave one tab open
+* Chrome close all tabs
 * Make sure Derby is not up and running
 * Reboot
 * /!\ FOR JBOSS TO WORK /!\ get rid of the duplicates in the insert.sql file
 * /!\ DO NOT REFORMAT CODE /!\ or you might get WildcardImportResolver
 
-# Before the demo
+## Create the Main script project
+
+* Open a NEW terminal (ALT+T)
+	* `cd $J1`
+	* Forge
+* Create project
+    * `new-project --named javaone-javaee7-main --topLevelPackage org.javaone.javaee7.main`
+      `--createMain`
+* Import project in Intellij Idea
+    * Make sure to use Java SE 7
+    * Increase Intellij Font ( Editor / Colors & Fonts / Font / Presentation)
+* Add Jersey dependency
+    * `project add-dependency org.glassfish.jersey.core:jersey-client:2.0`
+
+## Before the demo
 
 * Command line
     * cd `$J1` (to run commands)
@@ -30,73 +52,20 @@
 * Start Forge and show some commands
     * TAB, `version`, `list-commands`, `list-commands --all`
 * Create project
-    * `new-project --named javaone-javaee7 --topLevelPackage org.javaone.javaee7 --type war --finalName javaone2013`
-* Set the Forge defaults
-    * `set ACCEPT_DEFAULTS true`
+	* `new-project --named javaone-javaee7 --topLevelPackage org.javaone.javaee7 --type war `
+       `--finalName javaone2013`
+
 * Start Cardea (Intellij Idea 13) and create a project from `/Users/antoniombp/Documents/Code/JavaOne/javaone-javaee7`
     * Make sure to use Java SE 7
     * Increase Intellij Font ( Editor / Colors & Fonts / Font / Presentation)
 * Show project
     * Show `pom.xml` and empty project structure
 
-# Create Speaker and Talk entities
+# Create all the entities with bean valivation
 
-* Setup persistence
-    * `persistence setup --provider ECLIPSELINK --container GLASSFISH_3 --named javaone2013PU`
-* Create Speaker entity
-
-Speaker
-
-    entity --named Speaker ;
-    field string --named firstname ;
-    field string --named surname ;
-    field string --named bio --length 2000 ;
-    field string --named twitter ;
-
-* Do a `ls` on Forge
-* Show code in IntelliJ
-* Create Talk entity
-
-Talk
-
-    entity --named Talk ;
-    field string --named title ;
-    field string --named description  --length 2000 ;
-    field string --named room ;
-    field temporal --type DATE --named date ;
-    field oneToMany --named speakers --fieldType org.javaone.javaee7.model.Speaker.java ;
-
-* Show code in IntelliJ
-
-# Add Bean Validation constraints to Talk & Speaker
-
-* Setup Bean Validation
-    * `validation setup`
-* Adding constraints to Talk
-
-Talk
-
-    constraint NotNull --onProperty title ;
-    constraint NotNull --onProperty room ;
-
-* Adding constraints to Speaker
-
-Speaker
-
-    cd ../Speaker.java ;
-    constraint NotNull --onProperty firstname ;
-    constraint NotNull --onProperty surname ;
-
-
-* Show Bean Validation code in IntelliJ
-
-# Create Book and Languages entities
-
-* In the terminal with `vi` show the script `entities.fsh`
-* HOW TO RETURN TO THE HOME OF THE PROJECT !!!!!
+* In TextWrangler show the script `entities.fsh`
 * In Forge run the script `run ../entities.fsh`
 * Show code in IntelliJ
-* Build the code with Forge `build`
 
 # Generate REST endpoints
 
@@ -112,8 +81,9 @@ Speaker
 * Setup GlassFish (in exploded mode)
 * Run GlassFish
 * In browser go to `http://localhost:8080/javaone2013/rest/books`
-* In PostMan launch `Get all books`, `Create one book`
-* Stop GlassFish
+* In PostMan 
+	* Zoom in with CTRL+2 fingers pad
+	* Launch `Get all books`, `Create one book`
 
 # Generate JSF backing beans and pages
 
@@ -121,40 +91,31 @@ Speaker
     * `scaffold setup --scaffoldType faces`
     * `scaffold from-entity ~.model.*`
 * Show code in IntelliJ
-* Run GlassFish
-* Stop GlassFish
+* Redeploy app in GlassFish
 
 # Turn Java EE 6 project into Java EE 7
 
 ## Changing dependencies in pom
 
-* In `vi` show the `pom.fsh` script
-* Run Forge script to update `pom.xml`: `run pom.fsh`
+* In TextWrangler show the `pom.fsh` script
+* Go to the root of the project `cd ~~` (alt+n)
+* In Forge run the script `run ../pom.fsh`
 * Remove JBoss Java EE 6 dependencies in `pom.xml` by hand
 
 ## Changing namespaces and version of XML deployment descriptors
 
+* In Intellij Idea Show all the XML file (CMD+SHIFT+O)
 * Show `persistence.xml`, `web.xml` and a JSF page
 * Run the `./namespaces.sh` shell script
 
-> SNAPSHOT-1
+> SNAPSHOT-1 (15 min)
 
 # Adding data to the database
 
 ## Accessing Amazon Web Service with JAX-RS 2.0
 
 * Show Chrome and Amazon WS
-* Open a new terminal with Forge
-* Create project
-    * `new-project --named javaone-javaee7-main --topLevelPackage org.javaone.javaee7.main --createMain`
-* Import project in Intellij Idea
-    * Make sure to use Java SE 7
-    * Increase Intellij Font ( Editor / Colors & Fonts / Font / Presentation)
-* Show project
-    * Show `Main` class
-    * Show `pom.xml`
-* Add Jersey dependency
-    * `project add-dependency org.glassfish.jersey.core:jersey-client:2.0`
+* Show JavaEE7-Main project
 * Go to `Main` class
 * In the `Main`, add the first lines of code with the Intellij IDEA shortcut `j1aws`
 * Add the following LoC explaining the JAX-RS 2.0 APIs and what it does :
@@ -163,24 +124,24 @@ Speaker
         Response response = client.target(uriAmazon).request().get();
         String javaee7books = response.readEntity(String.class);
 
-        System.out.println(uriAmazon.toString());
         System.out.println(response.getStatus());
         System.out.println(javaee7books);
 
-* Execute the `Main` and say that with a bit of XML parsing you can obtain the following SQL file
-* Exit Forge and close terminal
+* Execute the `Main` (CTRL+SHIFT+R)
+* Say that with a bit of XML parsing you can obtain the following SQL file
+* Exit Intellij IDEA, Forge and close terminal
 
 # Adding Data to the DB with JPA 2.1
 
 * Execute the shell `sql.sh`
 * Open the `persistence.xml` file
 * Get read of `<provider>` so it's portable
-* Change to default DS to `<jta-data-source>java:comp/DefaultDataSource</jta-data-source>`
+* Get read of `<jta-data-source>` because it falls into default DS `java:comp/DefaultDataSource`
 * Add the properties with the shortcut `j1per`
-* Start GlassFish
+* Redeploy app into GlassFish
 * Search for the file `createJavaOne2013.ddl` (in the finder click on `DDL.search`) and show it
 
-> SNAPSHOT-2
+> SNAPSHOT-2 (25 min)
 
 # Change @Stateless to @Transactional in REST endpoints
 
@@ -193,14 +154,16 @@ Speaker
 
 # Add the new JSF 2.2 `viewAction`
 
-* In all the `.xhtml` file, replace `<f:event type="preRenderView" listener=` with `<f:viewAction action=`
+* In all the `.xhtml` file, replace
+	*  `<f:event type="preRenderView" listener=` 
+	* with `<f:viewAction action=`
 
 # Beaufity the Book pages with RichFaces components
 
 * Talk about PrimeFaces
 * Show the PrimeFaces website (ADD THE WEB SITE TO CHROME FAVORITES)
-* Add a Calendar to the book creation page `create.xhtml`
-    * Just replace the `<h:inputText>` with `<p:calendar>`
+* Add a Calendar to the Book creation page `create.xhtml`
+    * Ine the `PublicationDate` just replace the `<h:inputText>` with `<p:calendar>`
 
 		<h:inputText id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
 			<f:convertDateTime type="date"/>
@@ -219,13 +182,13 @@ Speaker
          </p:carousel>
          <p:dialog/>
 
-> SNAPSHOT-3
+> SNAPSHOT-3 (35 min)
 
 # Adding video upload
 
 * In the `TalkBean` JSF backing bean
     * Add the attribute `private javax.servlet.http.Part uploadedVideo;`
-    * Create the getters and setters of the `uploadedVideo` attribute
+    * Create the getters and setters (CMD+N) of the `uploadedVideo` attribute
     * Add an the following method using the shortcut `j1upload`
 
         public String uploadVideo() throws IOException {
@@ -249,11 +212,11 @@ Speaker
             <video src="#{request.contextPath}/resources/#{talkBean.talk.id}.mp4" width="500px" controls="controls"/>
             <h:outputText/>
 
-* Start GlassFish
+* Redeploy app on GlassFish
 * Choose one talk, upload a video from the `Movies` folder, and upload it
 * Show the video
 
-> SNAPSHOT-4
+> SNAPSHOT-4 (45 min)
 
 # Beautifying home page
 
@@ -278,7 +241,7 @@ Speaker
 * Go to the `index.xhtml` page
 * Chand the header text from `Welcome to Forge` to `Welcome to JavaOne 2013`
 * In the `<h2 class="success">` change the text `Your application is running.` with `Come and Play! with Java EE 7`
-* In the `<p>` block, change the content with :
+* In the `<p>` block, change the content with `j1duke` shortcut :
 
         <p align="center">
             <h:graphicImage value="#{resource['duke-javaee7.png']}" width="300px"/>
