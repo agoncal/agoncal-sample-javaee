@@ -7,7 +7,7 @@
     * Close all the Intellij Idea projects
 * Switch off sound
 * Command line (increase font with )
-* TextWrangler
+* TextWrangler (increase fonts in Preferences)
     * Clean up all the other tabs
     * Open `DEMO.md`
     * Open `entities.fsh`
@@ -135,8 +135,9 @@
 
 * Execute the shell `sql.sh`
 * Open the `persistence.xml` file
-* Get read of `<provider>` so it's portable
-* Get read of `<jta-data-source>` because it falls into default DS `java:comp/DefaultDataSource`
+* Get rid of `<provider>` so it's portable
+* Get rid of `<jta-data-source>` because it falls into default DS `java:comp/DefaultDataSource`
+* Get rid of `eclipselink.ddl-generation` property
 * Add the properties with the shortcut `j1per`
 * Redeploy app into GlassFish
 * Search for the file `createJavaOne2013.ddl` (in the finder click on `DDL.search`) and show it
@@ -163,7 +164,7 @@
 * Talk about PrimeFaces
 * Show the PrimeFaces website (ADD THE WEB SITE TO CHROME FAVORITES)
 * Add a Calendar to the Book creation page `create.xhtml`
-    * Ine the `PublicationDate` just replace the `<h:inputText>` with `<p:calendar>`
+    * In the `PublicationDate` just replace the `<h:inputText>` with `<p:calendar>`
 
 		<h:inputText id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
 			<f:convertDateTime type="date"/>

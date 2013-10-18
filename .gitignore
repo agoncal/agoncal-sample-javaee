@@ -28,3 +28,5 @@ vpproject
 .lock
 teamworkUser.xml
 projectFilesBackup*
+*.pdf
+.forge_settings

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:forgeview="http://jboss.org/forge/view"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{bookBean.id}"/>
+        <f:viewAction action="#{bookBean.retrieve}"/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Create Book"/>
+
+    <ui:define name="header">
+        Book
+    </ui:define>
+
+    <ui:define name="subheader">
+        <c:choose>
+            <c:when test="#{!empty bookBean.id}">
+                Edit existing Book
+            </c:when>
+            <c:otherwise>
+                Create a new Book
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="create">
+            <h:messages globalOnly="true" styleClass="error"/>
+
+            <h:panelGrid columnClasses="label,component,required" columns="3">
+                <h:outputLabel for="bookBeanBookIsbn" value="Isbn:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookIsbn" required="true" value="#{bookBean.book.isbn}"/>
+                    <h:message for="bookBeanBookIsbn" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="bookBeanBookTitle" value="Title:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookTitle" required="true" value="#{bookBean.book.title}"/>
+                    <h:message for="bookBeanBookTitle" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="bookBeanBookDescription" value="Description:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookDescription" maxLength="2000" value="#{bookBean.book.description}"/>
+                    <h:message for="bookBeanBookDescription" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookPublicationDate" value="Publication Date:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
+                        <f:convertDateTime type="date"/>
+                    </h:inputText>
+                    <h:message for="bookBeanBookPublicationDate" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookPrice" value="Price:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookPrice" value="#{bookBean.book.price}"/>
+                    <h:message for="bookBeanBookPrice" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookNbOfPages" value="Nb Of Pages:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookNbOfPages" value="#{bookBean.book.nbOfPages}"/>
+                    <h:message for="bookBeanBookNbOfPages" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookPublisher" value="Publisher:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookPublisher" value="#{bookBean.book.publisher}"/>
+                    <h:message for="bookBeanBookPublisher" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookLanguage" value="Language:"/>
+                <h:panelGroup>
+                    <h:selectOneMenu id="bookBeanBookLanguage" value="#{bookBean.book.language}">
+                        <f:selectItem/>
+                        <f:selectItem itemValue="ENGLISH"/>
+                        <f:selectItem itemValue="FRENCH"/>
+                    </h:selectOneMenu>
+                    <h:message for="bookBeanBookLanguage" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookImageURL" value="Image URL:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookImageURL" value="#{bookBean.book.imageURL}"/>
+                    <h:message for="bookBeanBookImageURL" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookPageURL" value="Page URL:"/>
+                <h:panelGroup>
+                    <h:inputText id="bookBeanBookPageURL" value="#{bookBean.book.pageURL}"/>
+                    <h:message for="bookBeanBookPageURL" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="bookBeanBookAuthors" value="Authors:"/>
+                <h:panelGroup>
+                    <ui:param name="_collection" value="#{bookBean.book.authors}"/>
+                    <h:dataTable id="bookBeanBookAuthors" styleClass="data-table"
+                                 value="#{forgeview:asList(_collection)}" var="_item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Firstname"/>
+                            </f:facet>
+                            <h:link outcome="/author/view">
+                                <f:param name="id" value="#{_item.id}"/>
+                                <h:outputText id="itemFirstname" value="#{_item.firstname}"/>
+                            </h:link>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Surname"/>
+                            </f:facet>
+                            <h:link outcome="/author/view">
+                                <f:param name="id" value="#{_item.id}"/>
+                                <h:outputText id="itemSurname" value="#{_item.surname}"/>
+                            </h:link>
+                        </h:column>
+                        <h:column footerClass="remove-column" headerClass="remove-column">
+                            <h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:panelGrid columnClasses=",remove-column" columns="2" styleClass="data-table-footer">
+                        <h:selectOneMenu converter="#{authorBean.converter}" id="bookBeanBookAuthorsSelect"
+                                         value="#{requestScope['bookBeanBookAuthorsSelect']}">
+                            <f:selectItem/>
+                            <f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}"
+                                           value="#{authorBean.all}" var="_item"/>
+                        </h:selectOneMenu>
+                        <h:commandLink action="#{_collection.add(requestScope['bookBeanBookAuthorsSelect'])}"
+                                       id="bookBeanBookAuthorsAdd"
+                                       onclick="if (document.getElementById(document.forms[0].id+':bookBeanBookAuthorsSelect').selectedIndex &lt; 1) { alert('Must select a Author'); return false; }"
+                                       styleClass="add-button"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+                <h:outputText/>
+            </h:panelGrid>
+
+            <div class="buttons">
+                <h:commandLink value="Save" action="#{bookBean.update}" styleClass="btn btn-primary"/>
+                <c:choose>
+                    <c:when test="#{!empty bookBean.id}">
+                        <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+                            <f:param name="id" value="#{bookBean.id}"/>
+                        </h:link>
+                        <h:commandLink value="Delete" action="#{bookBean.delete}" styleClass="btn btn-primary"/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
