@@ -1,6 +1,7 @@
 package org.agoncal.sample.javaee.tierarchitecture.ejbcentric.view;
 
 import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.model.Book;
+import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.service.BookService;
 
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -32,7 +33,6 @@ import java.util.List;
  */
 
 @Named
-@Stateful
 @ConversationScoped
 public class BookBean implements Serializable {
 
@@ -55,11 +55,8 @@ public class BookBean implements Serializable {
     @Inject
     private Conversation conversation;
 
-    @PersistenceContext(unitName = "sampleJavaEEEJBCentricPU", type = PersistenceContextType.EXTENDED)
-    private EntityManager em;
-
-    @Resource
-    private SessionContext sessionContext;
+    @Inject
+    private BookService bookService;
 
     // ======================================
     // =          Business Methods          =
@@ -90,7 +87,7 @@ public class BookBean implements Serializable {
 
     public Book findById(Long id) {
 
-        return em.find(Book.class, id);
+        return bookService.findById(id);
     }
 
     // Support updating and deleting Book entities
@@ -99,10 +96,10 @@ public class BookBean implements Serializable {
 
         try {
             if (id == null) {
-                em.persist(book);
+                bookService.persist(book);
                 return "search?faces-redirect=true";
             } else {
-                em.merge(book);
+                bookService.update(book);
                 return "view?faces-redirect=true&id=" + book.getId();
             }
         } catch (Exception e) {
@@ -117,8 +114,7 @@ public class BookBean implements Serializable {
         try {
             Book deletableEntity = findById(getId());
 
-            em.remove(deletableEntity);
-            em.flush();
+            bookService.remove(deletableEntity);
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
@@ -132,69 +128,24 @@ public class BookBean implements Serializable {
 
     public void paginate() {
 
-        CriteriaBuilder builder = em.getCriteriaBuilder();
+        count = bookService.count(example);
+        pageItems = bookService.page(example, page, getPageSize());
 
-        // Populate count
-
-        CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
-        Root<Book> root = countCriteria.from(Book.class);
-        countCriteria = countCriteria.select(builder.count(root)).where(getSearchPredicates(root));
-        count = em.createQuery(countCriteria).getSingleResult();
-
-        // Populate pageItems
-
-        CriteriaQuery<Book> criteria = builder.createQuery(Book.class);
-        root = criteria.from(Book.class);
-        TypedQuery<Book> query = em.createQuery(criteria.select(root).where(getSearchPredicates(root)));
-        query.setFirstResult(page * getPageSize()).setMaxResults(getPageSize());
-        pageItems = query.getResultList();
-    }
-
-    private Predicate[] getSearchPredicates(Root<Book> root) {
-
-        CriteriaBuilder builder = em.getCriteriaBuilder();
-        List<Predicate> predicatesList = new ArrayList<>();
-
-        String isbn = example.getIsbn();
-        if (isbn != null && !"".equals(isbn)) {
-            predicatesList.add(builder.like(builder.lower(root.<String>get("isbn")), '%' + isbn.toLowerCase() + '%'));
-        }
-        String title = example.getTitle();
-        if (title != null && !"".equals(title)) {
-            predicatesList.add(builder.like(builder.lower(root.<String>get("title")), '%' + title.toLowerCase() + '%'));
-        }
-        String description = example.getDescription();
-        if (description != null && !"".equals(description)) {
-            predicatesList.add(builder.like(builder.lower(root.<String>get("description")), '%' + description.toLowerCase() + '%'));
-        }
-        String publisher = example.getPublisher();
-        if (publisher != null && !"".equals(publisher)) {
-            predicatesList.add(builder.like(builder.lower(root.<String>get("publisher")), '%' + publisher.toLowerCase() + '%'));
-        }
-        Integer nbOfPages = example.getNbOfPages();
-        if (nbOfPages != null && nbOfPages != 0) {
-            predicatesList.add(builder.equal(root.get("nbOfPages"), nbOfPages));
-        }
-
-        return predicatesList.toArray(new Predicate[predicatesList.size()]);
     }
 
     public List<Book> getAll() {
 
-        CriteriaQuery<Book> criteria = em.getCriteriaBuilder().createQuery(Book.class);
-        return em.createQuery(criteria.select(criteria.from(Book.class))).getResultList();
+        return bookService.findAll();
     }
 
     public Converter getConverter() {
-
-        final BookBean ejbProxy = sessionContext.getBusinessObject(BookBean.class);
 
         return new Converter() {
 
             @Override
             public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
-                return ejbProxy.findById(Long.valueOf(value));
+                return bookService.findById(Long.valueOf(value));
             }
 
             @Override
