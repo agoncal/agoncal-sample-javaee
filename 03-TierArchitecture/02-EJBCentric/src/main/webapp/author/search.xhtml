@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="page" value="#{authorBean.page}"/>
+        <f:viewAction action="#{authorBean.paginate}"/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Search Author entities"/>
+
+    <ui:define name="header">
+        Author
+    </ui:define>
+
+    <ui:define name="subheader">
+        Search Author entities
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="search">
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="search">
+
+                    <h:panelGrid columnClasses="label,component,required" columns="3">
+                        <h:outputLabel for="authorBeanExampleFirstname" value="Firstname:"/>
+                        <h:panelGroup>
+                            <h:inputText id="authorBeanExampleFirstname" value="#{authorBean.example.firstname}"/>
+                            <h:message for="authorBeanExampleFirstname" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="authorBeanExampleSurname" value="Surname:"/>
+                        <h:panelGroup>
+                            <h:inputText id="authorBeanExampleSurname" value="#{authorBean.example.surname}"/>
+                            <h:message for="authorBeanExampleSurname" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="authorBeanExampleBio" value="Bio:"/>
+                        <h:panelGroup>
+                            <h:inputText id="authorBeanExampleBio" maxLength="2000" value="#{authorBean.example.bio}"/>
+                            <h:message for="authorBeanExampleBio" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="authorBeanExampleTwitter" value="Twitter:"/>
+                        <h:panelGroup>
+                            <h:inputText id="authorBeanExampleTwitter" value="#{authorBean.example.twitter}"/>
+                            <h:message for="authorBeanExampleTwitter" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                    </h:panelGrid>
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Search" action="#{authorBean.paginate}" styleClass="btn btn-primary"/>
+                        <h:commandLink value="Create New" action="#{authorBean.create}" styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
+            <h:dataTable id="authorBeanPageItems" styleClass="data-table" value="#{authorBean.pageItems}" var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Firstname"/>
+                    </f:facet>
+                    <h:link outcome="/author/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemFirstname" value="#{_item.firstname}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Surname"/>
+                    </f:facet>
+                    <h:link outcome="/author/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemSurname" value="#{_item.surname}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+            <ui:include src="/resources/scaffold/paginator.xhtml">
+                <ui:param name="paginatorBean" value="#{authorBean}"/>
+            </ui:include>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
