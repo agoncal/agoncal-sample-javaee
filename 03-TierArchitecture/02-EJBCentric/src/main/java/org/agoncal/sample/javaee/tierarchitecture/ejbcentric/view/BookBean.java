@@ -84,7 +84,7 @@ public class BookBean implements Serializable {
 
         try {
             if (id == null) {
-                bookService.persist(book);
+                bookService.create(book);
                 return "search?faces-redirect=true";
             } else {
                 bookService.update(book);

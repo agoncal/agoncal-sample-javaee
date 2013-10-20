@@ -39,7 +39,7 @@ public class BookEndpoint {
     @POST
     @Consumes("application/xml")
     public Response create(Book entity) {
-        bookService.persist(entity);
+        bookService.create(entity);
         return Response.created(UriBuilder.fromResource(BookEndpoint.class).path(String.valueOf(entity.getId())).build()).build();
     }
 

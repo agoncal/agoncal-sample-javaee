@@ -84,7 +84,7 @@ public class AuthorBean implements Serializable {
 
         try {
             if (id == null) {
-                authorService.persist(author);
+                authorService.create(author);
                 return "search?faces-redirect=true";
             } else {
                 authorService.update(author);

@@ -32,7 +32,7 @@ public class BookService {
     // =          Business Methods          =
     // ======================================
 
-    public void persist(Book entity) {
+    public void create(Book entity) {
         em.persist(entity);
     }
 

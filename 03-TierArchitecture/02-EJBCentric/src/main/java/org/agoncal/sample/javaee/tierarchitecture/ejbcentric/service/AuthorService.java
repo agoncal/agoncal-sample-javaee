@@ -32,7 +32,7 @@ public class AuthorService {
     // =          Business Methods          =
     // ======================================
 
-    public void persist(Author entity) {
+    public void create(Author entity) {
         em.persist(entity);
     }
 
