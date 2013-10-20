@@ -40,7 +40,7 @@ public class AuthorService {
         return em.find(Author.class, id);
     }
 
-    public void remove(Author deletableEntity) {
+    public void delete(Author deletableEntity) {
         em.remove(em.merge(deletableEntity));
     }
 

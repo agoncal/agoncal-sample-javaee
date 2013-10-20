@@ -72,7 +72,7 @@ public class AuthorEndpoint {
 
     @GET
     @Produces("application/xml")
-    public List<Author> listAll() {
+    public List<Author> findAll() {
         final List<Author> results = em.createQuery("SELECT DISTINCT a FROM Author a ORDER BY a.id", Author.class).getResultList();
         return results;
     }

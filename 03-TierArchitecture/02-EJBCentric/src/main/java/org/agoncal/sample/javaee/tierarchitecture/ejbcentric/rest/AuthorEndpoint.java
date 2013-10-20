@@ -50,7 +50,7 @@ public class AuthorEndpoint {
         if (deletableEntity == null) {
             return Response.status(Status.NOT_FOUND).build();
         }
-        authorService.remove(deletableEntity);
+        authorService.delete(deletableEntity);
         return Response.noContent().build();
     }
 
@@ -67,7 +67,7 @@ public class AuthorEndpoint {
 
     @GET
     @Produces("application/xml")
-    public List<Author> listAll() {
+    public List<Author> findAll() {
         final List<Author> results = authorService.findAll();
         return results;
     }

@@ -102,7 +102,7 @@ public class AuthorBean implements Serializable {
         try {
             Author deletableEntity = authorService.findById(getId());
 
-            authorService.remove(deletableEntity);
+            authorService.delete(deletableEntity);
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));

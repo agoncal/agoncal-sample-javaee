@@ -72,7 +72,7 @@ public class BookEndpoint {
 
     @GET
     @Produces("application/xml")
-    public List<Book> listAll() {
+    public List<Book> findAll() {
         final List<Book> results = em.createQuery("SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.authors ORDER BY b.id", Book.class).getResultList();
         return results;
     }

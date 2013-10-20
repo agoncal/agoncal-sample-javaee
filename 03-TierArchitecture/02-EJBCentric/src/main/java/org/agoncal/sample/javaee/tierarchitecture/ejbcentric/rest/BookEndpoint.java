@@ -50,7 +50,7 @@ public class BookEndpoint {
         if (deletableEntity == null) {
             return Response.status(Status.NOT_FOUND).build();
         }
-        bookService.remove(deletableEntity);
+        bookService.delete(deletableEntity);
         return Response.noContent().build();
     }
 
@@ -67,7 +67,7 @@ public class BookEndpoint {
 
     @GET
     @Produces("application/xml")
-    public List<Book> listAll() {
+    public List<Book> findAll() {
         final List<Book> results = bookService.findAll();
         return results;
     }
