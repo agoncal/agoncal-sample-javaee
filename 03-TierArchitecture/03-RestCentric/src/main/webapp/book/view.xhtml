@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:forgeview="http://jboss.org/forge/view"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{bookBean.id}"/>
+        <f:viewAction action="#{bookBean.retrieve}"/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="View Book"/>
+
+    <ui:define name="header">
+        Book
+    </ui:define>
+
+    <ui:define name="subheader">
+        View existing Book
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:panelGrid columnClasses="label,component,required" columns="3">
+            <h:outputLabel for="bookBeanBookIsbn" value="Isbn:"/>
+            <h:outputText id="bookBeanBookIsbn" value="#{bookBean.book.isbn}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookTitle" value="Title:"/>
+            <h:outputText id="bookBeanBookTitle" value="#{bookBean.book.title}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookDescription" value="Description:"/>
+            <h:outputText id="bookBeanBookDescription" value="#{bookBean.book.description}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookPublicationDate" value="Publication Date:"/>
+            <h:outputText id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
+                <f:convertDateTime type="date"/>
+            </h:outputText>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookPrice" value="Price:"/>
+            <h:outputText id="bookBeanBookPrice" value="#{bookBean.book.price}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookNbOfPages" value="Nb Of Pages:"/>
+            <h:outputText id="bookBeanBookNbOfPages" value="#{bookBean.book.nbOfPages}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookPublisher" value="Publisher:"/>
+            <h:outputText id="bookBeanBookPublisher" value="#{bookBean.book.publisher}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookLanguage" value="Language:"/>
+            <h:outputText id="bookBeanBookLanguage" value="#{bookBean.book.language}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookImageURL" value="Image:"/>
+            <h:graphicImage id="bookBeanBookImageURL" value="#{bookBean.book.imageURL}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookPageURL" value="Page URL:"/>
+            <h:outputLink id="bookBeanBookPageURL" value="#{bookBean.book.pageURL}"
+                          target="_blank">Click here to go to Amazon's page</h:outputLink>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookAuthors" value="Authors:"/>
+            <h:dataTable id="bookBeanBookAuthors" styleClass="data-table"
+                         value="#{forgeview:asList(bookBean.book.authors)}" var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Firstname"/>
+                    </f:facet>
+                    <h:link outcome="/author/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemFirstname" value="#{_item.firstname}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Surname"/>
+                    </f:facet>
+                    <h:link outcome="/author/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemSurname" value="#{_item.surname}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+            <h:outputText/>
+        </h:panelGrid>
+
+        <div class="buttons">
+            <h:link value="View All" outcome="search" styleClass="btn btn-primary"/>
+            <h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+            <h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+        </div>
+    </ui:define>
+
+</ui:composition>
