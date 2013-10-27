@@ -18,6 +18,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
@@ -91,8 +93,9 @@ public class BookEndpoint {
     }
 
     @GET
-    @Path("/count/{example}")
-    public long count(@PathParam("example") Book example) {
+    @Path("/count")
+    @Consumes(MediaType.APPLICATION_XML)
+    public long count(@QueryParam("example") Book example) {
 
         CriteriaBuilder builder = em.getCriteriaBuilder();
 
@@ -100,6 +103,7 @@ public class BookEndpoint {
 
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<Book> root = countCriteria.from(Book.class);
+
         if (example == null)
             countCriteria = countCriteria.select(builder.count(root));
         else
@@ -109,7 +113,10 @@ public class BookEndpoint {
         return count;
     }
 
-    public List<Book> page(Book example, int page, int pageSize) {
+    @GET
+    @Path("/query")
+    @Consumes(MediaType.APPLICATION_XML)
+    public List<Book> page(@QueryParam("example") Book example, @QueryParam("page") int page, @QueryParam("pageSize") int pageSize) {
 
         CriteriaBuilder builder = em.getCriteriaBuilder();
 
@@ -117,7 +124,13 @@ public class BookEndpoint {
 
         CriteriaQuery<Book> criteria = builder.createQuery(Book.class);
         Root<Book> root = criteria.from(Book.class);
-        TypedQuery<Book> query = em.createQuery(criteria.select(root).where(getSearchPredicates(root, example)));
+        TypedQuery<Book> query;
+
+        if (example == null)
+            query = em.createQuery(criteria.select(root));
+        else
+            query = em.createQuery(criteria.select(root).where(getSearchPredicates(root, example)));
+
         query.setFirstResult(page * pageSize).setMaxResults(pageSize);
         List<Book> pageItems = query.getResultList();
         return pageItems;

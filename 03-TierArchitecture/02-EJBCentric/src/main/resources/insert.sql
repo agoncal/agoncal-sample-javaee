@@ -1,37 +1,6 @@
-DELETE FROM book_author WHERE book_id=1000 AND authors_id=1000
-DELETE FROM book_author WHERE book_id=1001 AND authors_id=1001
-DELETE FROM book_author WHERE book_id=1002 AND authors_id=1002
-DELETE FROM book_author WHERE book_id=1003 AND authors_id=1003
-DELETE FROM book_author WHERE book_id=1003 AND authors_id=1004
-DELETE FROM book_author WHERE book_id=1004 AND authors_id=1005
-DELETE FROM book_author WHERE book_id=1004 AND authors_id=1006
-DELETE FROM book_author WHERE book_id=1006 AND authors_id=1007
-DELETE FROM book_author WHERE book_id=1007 AND authors_id=1008
-DELETE FROM book_author WHERE book_id=1008 AND authors_id=1009
-DELETE FROM book_author WHERE book_id=1011 AND authors_id=1011
-DELETE FROM book_author WHERE book_id=1012 AND authors_id=1012
-DELETE FROM book_author WHERE book_id=1012 AND authors_id=1013
-
-DELETE FROM book WHERE id=1000
-DELETE FROM book WHERE id=1001
-DELETE FROM book WHERE id=1002
-DELETE FROM book WHERE id=1003
-DELETE FROM book WHERE id=1004
-
-DELETE FROM author WHERE id=1000
-DELETE FROM author WHERE id=1001
-DELETE FROM author WHERE id=1002
-DELETE FROM author WHERE id=1003
-DELETE FROM author WHERE id=1004
-DELETE FROM author WHERE id=1005
-DELETE FROM author WHERE id=1006
-DELETE FROM author WHERE id=1007
-DELETE FROM author WHERE id=1008
-DELETE FROM author WHERE id=1009
-DELETE FROM author WHERE id=1010
-DELETE FROM author WHERE id=1011
-DELETE FROM author WHERE id=1012
-DELETE FROM author WHERE id=1013
+DELETE FROM book_author
+DELETE FROM book
+DELETE FROM author
 
 
 INSERT INTO book(id, version, isbn, title, language, description, price, nbOfPages, publisher, publicationDate, imageURL, pageURL) VALUES (1000, 0, '143024626X', 'Beginning Java EE 7',                                                              0, 'Java Enterprise Edition (Java EE) continues to be one of the leading Java technologies and platforms. Beginning Java EE 7 is the first tutorial book on Java EE 7. Step by step and easy to follow, this book describes many of the Java EE 7 specifications...', 49.99, 608, 'APress',    '2013-06-26', 'http://ecx.images-amazon.com/images/I/518rDqWwjhL._SL160_.jpg', 'http://www.amazon.com/Beginning-Java-EE-Antonio-Goncalves/dp/143024626X%3FSubscriptionId%3DAKIAIYNLC7WME6YSY66A%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D143024626X')
