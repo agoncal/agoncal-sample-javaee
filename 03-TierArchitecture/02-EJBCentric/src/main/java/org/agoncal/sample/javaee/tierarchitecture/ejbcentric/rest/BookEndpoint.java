@@ -1,7 +1,7 @@
 package org.agoncal.sample.javaee.tierarchitecture.ejbcentric.rest;
 
+import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.ejb.BookEJB;
 import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.model.Book;
-import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.service.BookService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -30,7 +30,7 @@ public class BookEndpoint {
     // ======================================
 
     @Inject
-    private BookService bookService;
+    private BookEJB bookService;
 
     // ======================================
     // =          Business Methods          =

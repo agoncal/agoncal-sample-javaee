@@ -1,7 +1,7 @@
 package org.agoncal.sample.javaee.tierarchitecture.ejbcentric.view;
 
+import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.ejb.BookEJB;
 import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.model.Book;
-import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.service.BookService;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -44,7 +44,7 @@ public class BookBean implements Serializable {
     private Conversation conversation;
 
     @Inject
-    private BookService bookService;
+    private BookEJB bookService;
 
     // ======================================
     // =          Business Methods          =

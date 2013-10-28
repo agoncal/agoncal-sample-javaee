@@ -1,7 +1,7 @@
 package org.agoncal.sample.javaee.tierarchitecture.ejbcentric.rest;
 
+import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.ejb.AuthorEJB;
 import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.model.Author;
-import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.service.AuthorService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -30,7 +30,7 @@ public class AuthorEndpoint {
     // ======================================
 
     @Inject
-    private AuthorService authorService;
+    private AuthorEJB authorService;
 
     // ======================================
     // =          Business Methods          =

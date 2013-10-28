@@ -1,7 +1,7 @@
 package org.agoncal.sample.javaee.tierarchitecture.ejbcentric.view;
 
+import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.ejb.AuthorEJB;
 import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.model.Author;
-import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.service.AuthorService;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -44,7 +44,7 @@ public class AuthorBean implements Serializable {
     private Conversation conversation;
 
     @Inject
-    private AuthorService authorService;
+    private AuthorEJB authorService;
 
     // ======================================
     // =          Business Methods          =

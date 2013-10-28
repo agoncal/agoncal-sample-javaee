@@ -1,4 +1,4 @@
-package org.agoncal.sample.javaee.tierarchitecture.ejbcentric.service;
+package org.agoncal.sample.javaee.tierarchitecture.ejbcentric.ejb;
 
 import org.agoncal.sample.javaee.tierarchitecture.ejbcentric.model.Book;
 
@@ -19,7 +19,7 @@ import java.util.List;
  *         --
  */
 @Stateless
-public class BookService {
+public class BookEJB {
 
     // ======================================
     // =             Attributes             =
