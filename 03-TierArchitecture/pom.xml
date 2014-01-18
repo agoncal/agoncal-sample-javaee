@@ -17,6 +17,6 @@
   <modules>
     <module>01-Horizontal</module>
     <module>02-EJBCentric</module>
-    <module>03-RESTCentric</module>
+    <module>03-RestCentric</module>
   </modules>
 </project>
