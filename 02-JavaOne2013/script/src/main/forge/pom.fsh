@@ -14,7 +14,6 @@ project remove-dependency org.jboss.spec.javax.faces:jboss-jsf-api_2.1_spec ;
 project remove-dependency org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec ;
 
 project add-dependency javax:javaee-api:7.0:provided ;
-project add-dependency org.primefaces:primefaces:3.5 ;
-project add-dependency commons-fileupload:commons-fileupload:1.3 ;
+project add-dependency org.primefaces:primefaces:4.0 ;
 
 project add-repository primefaces-repo http://repository.primefaces.org ;

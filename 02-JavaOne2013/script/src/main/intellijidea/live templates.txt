@@ -1,0 +1,77 @@
+j1aws
+
+        URI uriAmazon = UriBuilder.fromUri("http://free.apisigning.com/onca/xml")
+                .queryParam("Service", "AWSECommerceService")
+                .queryParam("AWSAccessKeyId", "AKIAIYNLC7WME6YSY66A")
+                .queryParam("Operation","ItemSearch")
+                .queryParam("SearchIndex","Books")
+                .queryParam("Keywords","Java EE 7")
+                .queryParam("Condition","New")
+                .queryParam("ResponseGroup","Large").build();
+
+        System.out.println(uriAmazon.toString());
+        
+j1duke
+
+        <p align="center">
+            <h:graphicImage value="#{resource['duke-javaee7.png']}" width="300px"/>
+        </p>
+
+
+j1form
+
+        <h:form enctype="multipart/form-data">
+            <h:inputFile value="#{talkBean.uploadedVideo}"/>
+            <h:commandLink value="Upload video" action="#{talkBean.uploadVideo}" styleClass="btn btn-primary"/>
+        </h:form>
+
+j1per
+
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="createJavaOne2013.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="dropJavaOne2013.ddl"/>
+            <property name="javax.persistence.sql-load-script-source" value="insert.sql"/>
+            <property name="eclipselink.logging.level" value="INFO"/>
+
+
+j1prime
+
+            <p:carousel id="carousel" value="#{bookBean.pageItems}" var="_item" style="width:100%" headerText="Java EE 7 Books">
+                <h:panelGrid columns="1" style="width:100%" cellpadding="5">
+                    <h:link outcome="/book/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <p:graphicImage id="image" value="#{_item.imageURL}" title="#{_item.title}"/>
+                    </h:link>
+                </h:panelGrid>
+            </p:carousel>
+            <p:dialog/>
+
+j1upload
+
+private Part uploadedVideo;
+
+public String uploadVideo() throws IOException {
+
+    InputStream is = uploadedVideo.getInputStream();
+    Files.copy(is, Paths.get("/Users/antoniombp/Documents/Code/JavaOne/javaone-javaee7/target/javaone2013/resources/" + talk.getId() + ".mp4"));
+
+    return "view?faces-redirect=true";
+}
+
+
+public Part getUploadedVideo() {
+    return uploadedVideo;
+}
+
+public void setUploadedVideo(Part uploadedVideo) {
+    this.uploadedVideo = uploadedVideo;
+}
+
+
+j1video
+
+            <h:outputLabel value="Video:"/>
+            <video src="#{request.contextPath}/resources/#{talkBean.talk.id}.mp4" width="500px" controls="controls"/>
+            <h:outputText/>
+        

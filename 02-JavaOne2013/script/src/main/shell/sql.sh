@@ -6,3 +6,5 @@ SNAP1_RESOURCES=$SNAP1_HOME/src/main/resources
 
 cp $SNAP1_RESOURCES/insert.sql $APP_RESOURCES/insert.sql
 
+cp /Users/antoniombp/Movies/JavaOne/*.mp4 $APP_HOME/target/javaone2013/resources/
+
