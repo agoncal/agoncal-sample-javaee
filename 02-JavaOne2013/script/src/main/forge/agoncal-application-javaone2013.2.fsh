@@ -1,5 +1,5 @@
 @/* =================== */ ;
-@/* ==   Forge 1.x   == */ ;
+@/* ==   Forge 2.x   == */ ;
 @/* =================== */ ;
 @/* Generates the draft of the application */ ;
 
