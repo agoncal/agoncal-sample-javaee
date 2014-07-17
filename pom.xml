@@ -14,6 +14,7 @@
         <module>01-Monster</module>
         <module>02-JavaOne2013</module>
         <module>03-TierArchitecture</module>
+        <module>04-JBossUtil</module>
     </modules>
 
     <properties>
