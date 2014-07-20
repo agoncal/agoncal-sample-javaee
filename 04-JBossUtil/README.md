@@ -1,8 +1,8 @@
-# Sample - Java EE - Monster Component
+# Sample - Java EE - JBoss Util
 
 ## Purpose of this sample
 
-The purpose of this sample is to show that you can add as many Java EE annotations as you want ;o)
+The purpose of this sample is to show how you can use the JBoss administration API via REST. This helps in enabling or disabiling integration tests depending if JBoss is up and running or not. 
 
 [Read more on my blog](http://antoniogoncalves.org/2013/07/03/monster-component-in-java-ee-7/)
 
@@ -12,23 +12,19 @@ Being Maven centric, you can compile and package it with `mvn clean compile`, `m
 
 ## Deploy the sample
 
-This sample has been tested with GlassFish 4.0 in several modes :
-
-* GlassFish runtime : [download GlassFish](http://glassfish.java.net/public/downloadsindex.html), install it, start GlassFish (typing `asadmin start-`domain) and once the application is packaged deploy it (using the admin console or the command line `asadmin deploy target/sampleJavaEEMonster.war`)
-* GlassFish embedded : use the [GlassFish Maven Plugin](http://maven-glassfish-plugin.java.net/) by running `mvn clean package embedded-glassfish:run`
+This sample has been tested with WildFly 8.1.0 as well as JBoss 6.2.0 EAP.
 
 ## Execute the sample
 
 Once deployed go to [http://localhost:8080/sampleJavaEEMonster](http://localhost:8080/sampleJavaEEMonster) and you'll see a wab page where you can:
 
-* Invoke the Monster component as an EJB
-* Invoke the Monster component as a RESTful Web Service at `http://localhost:8080/sampleJavaEEMonster/rest/MonsterRest/TitleFromRest`
-* Invoke the Monster component as a Servlet at `http://localhost:8080/sampleJavaEEMonster/MonsterServlet?title=TitleFromServlet`
+* Invoke the REST endpoint at `http://localhost:8080/sampleJavaEEMonster/rest/MonsterRest/TitleFromRest`
+* Invoke the Servlet at `http://localhost:8080/sampleJavaEEMonster/MonsterServlet?title=TitleFromServlet`
 
-The purpose of this sample is to execute unit and integration tests. So to execute it you can run :
+The purpose of this sample is to execute the integration test with and without JBoss up and running. So to execute it you can run `mvn test` :
 
-* `mvn test` : this will execute the unit test `BookTest` with JAXB
-* `mvn integration-test` : this will execute both integration tests `BookIT`
+* with JBoss running, the tests will be executed
+* with JBoss down or the web application not deployed, the tests will be ignored
 
 <div class="footer">
     <span class="footerTitle"><span class="uc">a</span>ntonio <span class="uc">g</span>oncalves</span>

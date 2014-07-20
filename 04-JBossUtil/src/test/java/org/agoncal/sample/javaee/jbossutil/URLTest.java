@@ -27,11 +27,20 @@ public class URLTest {
 		Assume.assumeTrue(JBossUtil.isJBossUpAndRunning());
 
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:9990");
-		assertEquals(Response.Status.MOVED_PERMANENTLY.getStatusCode(), target.request(MediaType.TEXT_PLAIN).get().getStatus());
+        WebTarget target = client.target("http://localhost:9990/console/App.html");
+		assertEquals(Response.Status.OK.getStatusCode(), target.request(MediaType.TEXT_PLAIN).get().getStatus());
 	}
 
-	@Test
+    @Test
+    public void checksTheJBossAdminConsoleIsNotOnTheRoot() throws Exception {
+        Assume.assumeTrue(JBossUtil.isJBossUpAndRunning());
+
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target("http://localhost:9990");
+        assertEquals(Response.Status.MOVED_PERMANENTLY.getStatusCode(), target.request(MediaType.TEXT_PLAIN).get().getStatus());
+    }
+
+    @Test
 	public void checksTheURLDoesNotExist() throws Exception {
 		Assume.assumeTrue(JBossUtil.isJBossUpAndRunning());
 

@@ -20,11 +20,8 @@ import javax.ws.rs.core.Response;
  * JBoss (running) we can :
  * <ul>
  * <li>Cli : :read-attribute(name=server-state)</li>
- * <li>Browser :
- * http://user:password@localhost:9990/management?operation=attribute&name=server-state</li>
- * <li>cUrl : curl --digest
- * 'http://user:password@localhost:9990/management' --header "Content-Type: application/json" -d
- * '{"operation":"read-attribute","name":"server-state","json.pretty":1}'</li>
+ * <li>Browser : http://localhost:9990/management?operation=attribute&name=server-state</li>
+ * <li>cUrl : curl --digest 'http://user:password@localhost:9990/management' --header "Content-Type: application/json" -d  '{"operation":"read-attribute","name":"server-state","json.pretty":1}'</li>
  * </ul>
  * <p/>
  * This utility class sends HTTP requests to the JBoss administration REST APIs and to know if JBoss is up and running, if the web application (war/ear) is
@@ -93,7 +90,7 @@ public class JBossUtil {
 	 * <p/>
 	 * <ul>
 	 * <li>CLI :   :read-attribute(name=product-version)</li>
-	 * <li>Browser : http://user:password@localhost:9990/management/?operation=attribute&name=product-version</li>
+	 * <li>Browser : http://localhost:9990/management/?operation=attribute&name=product-version</li>
 	 * <li>Curl    : curl --digest 'http://user:password@localhost:9990/management' --header "Content-Type:application/json" -d '{"operation":"read-attribute","name":"product-version","json.pretty":1}'</li>
 	 * </ul>
 	 */
@@ -115,9 +112,9 @@ public class JBossUtil {
 	 * This method checks that the war/ear is deployed. This method is equivalent to the following command :
 	 * <p/>
 	 * <ul>
-	 * <li>CLI     : /deployment=dsn-ihm-ear-1.0.0-m2-a4-SNAPSHOT.ear:read-attribute(name=status)</li>
-	 * <li>Browser : http://user:password@localhost:9990/management/deployment/dsn-ihm-ear-1.0.0-m2-a4-SNAPSHOT.ear?operation=attribute&name=status</li>
-	 * <li>Curl    : curl --digest 'http://user:password@localhost:9990/management' --header "Content-Type:application/json" -d '{"address":[{"deployment":"dsn-ihm-ear-1.0.0-m2-a4-SNAPSHOT.ear"}],"operation":"read-attribute","name": "enabled","json.pretty":1}'</li>
+	 * <li>CLI     : /deployment=sampleJavaEEJBossUtil.war:read-attribute(name=status)</li>
+	 * <li>Browser : http://localhost:9990/management/deployment/sampleJavaEEJBossUtil.war?operation=attribute&name=status</li>
+	 * <li>Curl    : curl --digest 'http://user:password@localhost:9990/management' --header "Content-Type:application/json" -d '{"address":[{"deployment":"sampleJavaEEJBossUtil.war"}],"operation":"read-attribute","name": "enabled","json.pretty":1}'</li>
 	 * </ul>
 	 */
 	public static boolean isWebappDeployed(String warName) {
@@ -137,9 +134,9 @@ public class JBossUtil {
 	 * This method checks that the datasource is enabled. This method is equivalent to the following command :
 	 * <p/>
 	 * <ul>
-	 * <li>CLI     : /subsystem=datasources/data-source=dsnDS:read-attribute(name=enabled)</li>
-	 * <li>Browser : http://user:password@localhost:9990/management/subsystem/datasources/data-source/dsnDS?operation=attribute&name=enabled</li>
-	 * <li>Curl    : curl --digest 'http://user:password@localhost:9990/management' --header "Content-Type:application/json" -d '{"address":["subsystem","datasources","data-source","dsnDS"], "operation":"read-attribute","name": "enabled","json.pretty":1}'</li>
+	 * <li>CLI     : /subsystem=datasources/data-source=ExampleDS:read-attribute(name=enabled)</li>
+	 * <li>Browser : http://localhost:9990/management/subsystem/datasources/data-source/ExampleDS?operation=attribute&name=enabled</li>
+	 * <li>Curl    : curl --digest 'http://user:password@localhost:9990/management' --header "Content-Type:application/json" -d '{"address":["subsystem","datasources","data-source","ExampleDS"], "operation":"read-attribute","name": "enabled","json.pretty":1}'</li>
 	 * </ul>
 	 */
 	public static boolean isDatasourceDeployed(String datasourceName) {
@@ -161,7 +158,7 @@ public class JBossUtil {
 	 * <p/>
 	 * <ul>
 	 * <li>CLI     : /subsystem=web/connector=http:read-attribute(name=enabled)</li>
-	 * <li>Browser : http://user:password@localhost:9990/management/subsystem/web/connector/http?operation=attribute&name=enabled</li>
+	 * <li>Browser : http://localhost:9990/management/subsystem/web/connector/http?operation=attribute&name=enabled</li>
 	 * <li>Curl    : curl --digest 'http://user:password@localhost:9990/management' --header "Content-Type:application/json" -d '{"address":["subsystem","web","connector","http"], "operation":"read-attribute", "name":"enabled","json.pretty":1}'</li>
 	 * </ul>
 	 */

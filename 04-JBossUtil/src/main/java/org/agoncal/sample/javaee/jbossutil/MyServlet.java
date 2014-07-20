@@ -16,16 +16,16 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/myservlet")
 public class MyServlet extends HttpServlet {
 
-	// ======================================
-	// =        Servlet Entry Point         =
-	// ======================================
+    // ======================================
+    // =        Servlet Entry Point         =
+    // ======================================
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			response.getWriter().println("Hello from the REST endpoint");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            response.getWriter().println("Hello from the REST endpoint");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
