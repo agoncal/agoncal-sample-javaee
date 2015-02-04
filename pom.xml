@@ -15,6 +15,7 @@
         <module>02-JavaOne2013</module>
         <module>03-TierArchitecture</module>
         <module>04-JBossUtil</module>
+        <module>05-JSFViewAction</module>
     </modules>
 
     <properties>

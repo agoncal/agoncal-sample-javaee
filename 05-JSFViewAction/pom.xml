@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.agoncal.sample.javaee</groupId>
+    <artifactId>jsfviewaction</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+    <name>05 - JSF View Action : A CDI @ViewScoped backing bean with a View Action</name>
+
+    <parent>
+        <groupId>org.agoncal.sample.javaee</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <dependencies>
+        <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6...-->
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>sampleJavaEEJSFViewAction</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <!-- Run mvn clean package embedded-glassfish:run -->
+            <!--     mvn clean package org.glassfish.embedded:maven-embedded-glassfish-plugin:4.0:run-->
+            <!--     mvn -Dmaven.test.skip=true clean package org.glassfish.embedded:maven-embedded-glassfish-plugin:4.0:run-->
+            <!-- and go to http://localhost:8080/sampleJavaEEJSFViewAction/ -->
+            <plugin>
+                <groupId>org.glassfish.embedded</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
