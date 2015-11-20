@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<f:view contentType="text/html" encoding="UTF-8">
+
+    <!--HEAD-->
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" href="./resources/favicon.ico"/>
+        <link rel="shortcut icon" href="./resources/favicon.ico"/>
+
+
+        <title><ui:insert name="title"/></title>
+
+        <!-- Bootstrap core CSS -->
+        <h:outputStylesheet library="webjars" name="bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="forge-style.css"/>
+
+
+        <!-- Custom styles for this template -->
+        <h:outputStylesheet name="jumbotron.css"/>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+        <h:outputScript library="webjars" name="bootstrap/3.3.5/js/bootstrap.min.js" target="head"/>
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </h:head>
+
+    <!--BODY-->
+    <h:body>
+        <ui:debug rendered="#{facesContext.application.projectStage == 'Development'}"/>
+
+        <f:facet name="last">
+            <h:outputStylesheet name="style.css"/>
+        </f:facet>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h:link class="navbar-brand" outcome="/main.xhtml" value="CD Book Store"/>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <h:form>
+                        <ul class="nav navbar-nav">
+                            <li><h:link outcome="/shopping/showShoppingCart.xhtml" value="Shopping cart"
+                                        rendered="#{!shoppingCartBean.shoppingCartIsEmpty()}"/></li>
+                            <!--<li><h:link outcome="/admin/main.xhtml" value="Admin"/></li>-->
+                            <li><h:link outcome="/admin/main.xhtml" value="Admin" rendered="#{accountBean.admin}"/></li>
+                        </ul>
+                    </h:form>
+                    <h:form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <h:inputText pt:placeholder="Search" class="form-control" value="#{catalogBean.keyword}"/>
+                        </div>
+                        <h:commandButton type="submit" class="btn btn-success"
+                                         action="/shopping/searchItems.xhtml?faces-redirect=true&amp;includeViewParams=true"
+                                         value="Search"/>
+                        <h:panelGroup layout="block" class="form-group" rendered="#{!accountBean.loggedIn}">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown active">
+                                    <h:link outcome="/account/signin.xhtml" value="Connexion"/>
+                                </li>
+                            </ul>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="form-group" rendered="#{accountBean.loggedIn}">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown active">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">#{accountBean.user.fullName} <span
+                                            class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link outcome="/account/profile.xhtml" value="Profile"/></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><h:commandLink action="#{accountBean.doLogout}" value="Logout"/></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
+        </nav>
+
+        <div class="container forgecontainer">
+            <div id="navigation">
+                <h:link id="homeLink" outcome="/main.xhtml">
+                    <img src='#{resource["forge-logo.png"]}' alt="Forge... get hammered" border="0"/>
+                </h:link>
+                <ul>
+                    <li>
+                        <h:link outcome="/admin/CD/search" value="CD"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/author/search" value="Author"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/book/search" value="Book"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/category/search" value="Category"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/country/search" value="Country"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/genre/search" value="Genre"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/item/search" value="Item"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/label/search" value="Label"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/musician/search" value="Musician"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/orderLine/search" value="Order Line"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/publisher/search" value="Publisher"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/purchaseOrder/search" value="Purchase Order"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/admin/user/search" value="User"/>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content">
+                <h1>
+                    <ui:insert name="header"/>
+                </h1>
+
+                <h2>
+                    <ui:insert name="subheader"/>
+                </h2>
+
+                <ui:insert name="main"/>
+            </div>
+        </div>
+
+        <footer>
+            <div id="footer-wrapper">
+                <p><a href="http://www.antoniogoncalves.org">Antonio Goncalves</a></p>
+            </div>
+        </footer>
+
+    </h:body>
+</f:view>
+</html>

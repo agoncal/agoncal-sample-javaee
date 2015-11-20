@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.agoncal.sample.javaee.howsmallissmall.webapp</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>00 - Parent of How Small is Small Web Application Samples</name>
+
+    <modules>
+        <module>cdbookstore</module>
+        <module>topbooks</module>
+        <module>topcds</module>
+    </modules>
+
+    <properties>
+        <version.java>1.8</version.java>
+        <version.junit>4.12</version.junit>
+        <!--Java EE-->
+        <version.javaee7>7.0</version.javaee7>
+        <!--Web-->
+        <version.bootstrap>3.3.5</version.bootstrap>
+        <version.primefaces>5.2</version.primefaces>
+        <version.primefaces.themes>1.0.10</version.primefaces.themes>
+        <!--Maven Plugins-->
+        <version.maven.war.plugin>2.6</version.maven.war.plugin>
+        <version.maven.compiler.plugin>3.3</version.maven.compiler.plugin>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Java EE -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${version.javaee7}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- Web -->
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>bootstrap</artifactId>
+                <version>${version.bootstrap}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${version.primefaces}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces.themes</groupId>
+                <artifactId>all-themes</artifactId>
+                <version>${version.primefaces.themes}</version>
+            </dependency>
+
+            <!-- Other -->
+            <dependency>
+                <groupId>com.thedeanda</groupId>
+                <artifactId>lorem</artifactId>
+                <version>1.2</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.maven.compiler.plugin}</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <source>${version.java}</source>
+                        <target>${version.java}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.maven.war.plugin}</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>java.net-public-repository-group</id>
+            <name>Java.Net Public Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>java.net-staging-repository-group</id>
+            <name>Java.Net Staging Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/staging</url>
+        </repository>
+        <repository>
+            <id>java.net-releases-repository-group</id>
+            <name>Java.Net Releases Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>java.net-snapshots-repository-group</id>
+            <name>Java.Net Snapshots Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>

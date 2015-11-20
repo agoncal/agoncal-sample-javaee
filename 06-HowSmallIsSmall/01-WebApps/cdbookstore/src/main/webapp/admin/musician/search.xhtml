@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/templateAdmin.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="page" value='#{musicianBean.page}'/>
+        <f:event type="preRenderView" listener='#{musicianBean.paginate}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Search Musician entities"/>
+
+    <ui:define name="header">
+        Musician
+    </ui:define>
+
+    <ui:define name="subheader">
+        Search Musician entities
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="search">
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="search">
+
+                    <h:panelGrid columnClasses="label,component,required" columns="3">
+                        <h:outputLabel for="musicianBeanExampleFirstName" value="First Name:"/>
+                        <h:panelGroup>
+                            <h:inputText id="musicianBeanExampleFirstName" maxLength="50"
+                                         value="#{musicianBean.example.firstName}"/>
+                            <h:message for="musicianBeanExampleFirstName" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="musicianBeanExampleLastName" value="Last Name:"/>
+                        <h:panelGroup>
+                            <h:inputText id="musicianBeanExampleLastName" maxLength="50"
+                                         value="#{musicianBean.example.lastName}"/>
+                            <h:message for="musicianBeanExampleLastName" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="musicianBeanExampleBio" value="Bio:"/>
+                        <h:panelGroup>
+                            <h:inputTextarea id="musicianBeanExampleBio" value="#{musicianBean.example.bio}"/>
+                            <h:message for="musicianBeanExampleBio" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="musicianBeanExampleAge" value="Age:"/>
+                        <h:panelGroup>
+                            <h:inputText id="musicianBeanExampleAge" value="#{musicianBean.example.age}"/>
+                            <h:message for="musicianBeanExampleAge" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="musicianBeanExamplePreferredInstrument" value="Preferred Instrument:"/>
+                        <h:panelGroup>
+                            <h:inputText id="musicianBeanExamplePreferredInstrument"
+                                         value="#{musicianBean.example.preferredInstrument}"/>
+                            <h:message for="musicianBeanExamplePreferredInstrument" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                    </h:panelGrid>
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Search" action='#{musicianBean.search}' styleClass="btn btn-primary"/>
+                        <h:commandLink value="Create New" action='#{musicianBean.create}' styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
+            <h:dataTable id="musicianBeanPageItems" styleClass="data-table" value="#{musicianBean.pageItems}"
+                         var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="First Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/musician/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemFirstName" value="#{_item.firstName}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/musician/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemLastName" value="#{_item.lastName}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+            <ui:include src="/resources/scaffold/paginator.xhtml">
+                <ui:param name="paginatorBean" value='#{musicianBean}'/>
+            </ui:include>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

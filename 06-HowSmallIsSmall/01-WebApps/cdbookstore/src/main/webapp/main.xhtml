@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="/resources/scaffold/template.xhtml">
+
+    <ui:define name="title">CD Book Store</ui:define>
+
+    <ui:define name="message">Welcome to the CD Book Store eCommerce site</ui:define>
+
+    <ui:define name="body">
+
+        <div class="row">
+            <ui:repeat value="#{ratedItemsBean.randomItems}" var="_item">
+                <div class="col-md-4">
+                    <h3>#{fn:substring(_item.title, 0, 22)}</h3>
+
+                    <p>
+                        <h:link outcome="/shopping/viewItem.xhtml">
+                            <f:param name="id" value="#{_item.id}"/>
+                            <p:graphicImage url="#{_item.smallImageURL}"/>
+                        </h:link>
+                    </p>
+
+                    <p>#{fn:substring(_item.description, 0, 150)}...</p>
+
+                    <p>
+                        <h:button outcome="/shopping/viewItem.xhtml" styleClass="btn btn-default" value="View details ">
+                            <f:param name="id" value="#{_item.id}"/>
+                        </h:button>
+                    </p>
+                    <p/>
+                </div>
+            </ui:repeat>
+        </div>
+
+        <p:carousel value="#{ratedItemsBean.topRatedItems}" headerText="Top rated items" var="_item" responsive="true">
+            <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
+
+                <h:link outcome="/shopping/viewItem.xhtml">
+                    <f:param name="id" value="#{_item.id}"/>
+                    <p:graphicImage url="#{_item.smallImageURL}"/>
+                </h:link>
+
+                <h:outputText value="#{fn:substring(_item.title, 0, 35)}..."/>
+            </p:panelGrid>
+
+            <f:facet name="footer">
+                In total there are #{fn:length(ratedItemsBean.topRatedItems)} top rated items.
+            </f:facet>
+        </p:carousel>
+
+    </ui:define>
+
+</ui:composition>

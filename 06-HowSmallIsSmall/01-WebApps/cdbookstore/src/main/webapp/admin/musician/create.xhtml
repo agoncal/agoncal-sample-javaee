@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:forgeview="http://jboss.org/forge/view"
+                template="/resources/scaffold/templateAdmin.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{musicianBean.id}'/>
+        <f:event type="preRenderView" listener='#{musicianBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Create Musician"/>
+
+    <ui:define name="header">
+        Musician
+    </ui:define>
+
+    <ui:define name="subheader">
+        <c:choose>
+            <c:when test='#{!empty musicianBean.id}'>
+                Edit existing Musician
+            </c:when>
+            <c:otherwise>
+                Create a new Musician
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="create">
+            <h:messages globalOnly="true" styleClass="error"/>
+
+            <h:panelGrid columnClasses="label,component,required" columns="3">
+                <h:outputLabel for="musicianBeanMusicianFirstName" value="First Name:"/>
+                <h:panelGroup>
+                    <h:inputText id="musicianBeanMusicianFirstName" maxLength="50" required="true"
+                                 value="#{musicianBean.musician.firstName}"/>
+                    <h:message for="musicianBeanMusicianFirstName" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="musicianBeanMusicianLastName" value="Last Name:"/>
+                <h:panelGroup>
+                    <h:inputText id="musicianBeanMusicianLastName" maxLength="50" required="true"
+                                 value="#{musicianBean.musician.lastName}"/>
+                    <h:message for="musicianBeanMusicianLastName" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="musicianBeanMusicianBio" value="Bio:"/>
+                <h:panelGroup>
+                    <h:inputTextarea id="musicianBeanMusicianBio" value="#{musicianBean.musician.bio}"/>
+                    <h:message for="musicianBeanMusicianBio" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="musicianBeanMusicianDateOfBirth" value="Date Of Birth:"/>
+                <h:panelGroup>
+                    <h:inputText id="musicianBeanMusicianDateOfBirth" value="#{musicianBean.musician.dateOfBirth}">
+                        <f:convertDateTime type="date"/>
+                    </h:inputText>
+                    <h:message for="musicianBeanMusicianDateOfBirth" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="musicianBeanMusicianAge" value="Age:"/>
+                <h:panelGroup>
+                    <h:inputText id="musicianBeanMusicianAge" value="#{musicianBean.musician.age}"/>
+                    <h:message for="musicianBeanMusicianAge" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="musicianBeanMusicianPreferredInstrument" value="Preferred Instrument:"/>
+                <h:panelGroup>
+                    <h:inputText id="musicianBeanMusicianPreferredInstrument"
+                                 value="#{musicianBean.musician.preferredInstrument}"/>
+                    <h:message for="musicianBeanMusicianPreferredInstrument" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="musicianBeanMusicianCds" value="Cds:"/>
+                <h:panelGroup>
+                    <ui:param name="_collection" value="#{musicianBean.musician.cds}"/>
+                    <h:dataTable id="musicianBeanMusicianCds" styleClass="data-table"
+                                 value="#{forgeview:asList(_collection)}" var="_item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Title"/>
+                            </f:facet>
+                            <h:link outcome="/admin/CD/view">
+                                <f:param name="id" value="#{_item.id}"/>
+                                <h:outputText id="itemTitle" value="#{_item.title}"/>
+                            </h:link>
+                        </h:column>
+                        <h:column footerClass="remove-column" headerClass="remove-column">
+                            <h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:panelGrid columnClasses=",remove-column" columns="2" styleClass="data-table-footer">
+                        <h:selectOneMenu converter="#{CDBean.converter}" id="musicianBeanMusicianCdsSelect"
+                                         value="#{requestScope['musicianBeanMusicianCdsSelect']}">
+                            <f:selectItem/>
+                            <f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}"
+                                           value="#{CDBean.all}" var="_item"/>
+                        </h:selectOneMenu>
+                        <h:commandLink action="#{_collection.add(requestScope['musicianBeanMusicianCdsSelect'])}"
+                                       id="musicianBeanMusicianCdsAdd"
+                                       onclick="if (document.getElementById(document.forms[0].id+':musicianBeanMusicianCdsSelect').selectedIndex &lt; 1) { alert('Must select a CD'); return false; }"
+                                       styleClass="add-button"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+                <h:outputText/>
+            </h:panelGrid>
+
+            <div class="buttons">
+                <h:commandLink value="Save" action='#{musicianBean.update}' styleClass="btn btn-primary"/>
+                <c:choose>
+                    <c:when test='#{!empty musicianBean.id}'>
+                        <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+                            <f:param name="id" value='#{musicianBean.id}'/>
+                        </h:link>
+                        <h:commandLink value="Delete" action='#{musicianBean.delete}' styleClass="btn btn-primary"/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
