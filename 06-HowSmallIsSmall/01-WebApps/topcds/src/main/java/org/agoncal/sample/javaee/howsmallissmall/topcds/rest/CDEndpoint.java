@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/topcds", displayName = "Top CDs")
-class CDEndpoint extends HttpServlet
+public class CDEndpoint extends HttpServlet
 {
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
    {
