@@ -16,21 +16,29 @@ public class ServiceRegistry {
             "http://localhost:7002/hsisTopCDs/topcds"};
 
     public static String getTopBooksServiceURL() {
-        for (String topBooksServiceURL : topBooksServiceURLs) {
-            Response response = ClientBuilder.newClient().target(topBooksServiceURL).request().get();
-            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-                return topBooksServiceURL;
+        try {
+            for (String topBooksServiceURL : topBooksServiceURLs) {
+                Response response = ClientBuilder.newClient().target(topBooksServiceURL).request().get();
+                if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                    return topBooksServiceURL;
+                }
             }
+        } catch (Exception e){
+            return null;
         }
         return null;
     }
 
     public static String getTopCDsServiceURL() {
-        for (String topBooksServiceURL : topCDsServiceURLs) {
-            Response response = ClientBuilder.newClient().target(topBooksServiceURL).request().get();
-            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-                return topBooksServiceURL;
+        try {
+            for (String topCDsServiceURL : topCDsServiceURLs) {
+                Response response = ClientBuilder.newClient().target(topCDsServiceURL).request().get();
+                if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                    return topCDsServiceURL;
+                }
             }
+        } catch (Exception e){
+            return null;
         }
         return null;
     }

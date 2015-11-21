@@ -64,8 +64,12 @@ public class RatedItemsBean
    {
       List<Long> topTopRatedIds = new ArrayList<>();
 
-      topTopRatedIds.addAll(getTopBooks());
-      topTopRatedIds.addAll(getTopCDs());
+      List<Long> topRatedBookIds = getTopBooks();
+      if (topRatedBookIds != null)
+         topTopRatedIds.addAll(getTopBooks());
+      List<Long> topRatedCDIds = getTopCDs();
+      if (topRatedCDIds != null)
+         topTopRatedIds.addAll(getTopCDs());
 
       TypedQuery<Item> query = em.createQuery("SELECT i FROM Item i WHERE i.id in :ids", Item.class);
       query.setParameter("ids", topTopRatedIds);
