@@ -3,6 +3,7 @@ package org.agoncal.sample.javaee.howsmallissmall.topbooks.rest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -20,6 +21,9 @@ public class BookEndpoint
    @Inject
    private EntityManager em;
 
+   @Inject
+   private Logger logger;
+
    @GET
    @Produces(MediaType.APPLICATION_JSON)
    public List<Book> getTopBooks()
@@ -36,6 +40,8 @@ public class BookEndpoint
          if (item != null)
             results.add(item);
       }
+
+      logger.info("Top Books are " + results);
 
       return results;
    }

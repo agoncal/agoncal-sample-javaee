@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.StringJoiner;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/topcds", displayName = "Top CDs")
 public class CDEndpoint extends HttpServlet
 {
+
+   private Logger logger = Logger.getLogger(CDEndpoint.class.getName());
+
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
    {
       resp.setContentType("application/json");
@@ -43,6 +47,9 @@ public class CDEndpoint extends HttpServlet
       randomCDs.add(r.nextInt(100) + 1101);
       randomCDs.add(r.nextInt(100) + 1101);
       randomCDs.add(r.nextInt(100) + 1101);
+
+      logger.info("Top CDs are " + randomCDs);
+
       return randomCDs;
    }
 }
