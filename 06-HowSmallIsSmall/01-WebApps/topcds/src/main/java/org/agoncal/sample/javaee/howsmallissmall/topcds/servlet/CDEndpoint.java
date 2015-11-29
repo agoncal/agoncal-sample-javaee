@@ -1,4 +1,4 @@
-package org.agoncal.sample.javaee.howsmallissmall.topcds.rest;
+package org.agoncal.sample.javaee.howsmallissmall.topcds.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
