@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/topcds", displayName = "Top CDs")
-public class CDEndpoint extends HttpServlet
+public class CDServlet extends HttpServlet
 {
 
-   private Logger logger = Logger.getLogger(CDEndpoint.class.getName());
+   private Logger logger = Logger.getLogger(CDServlet.class.getName());
 
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
    {
