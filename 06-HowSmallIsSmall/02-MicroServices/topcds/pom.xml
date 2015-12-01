@@ -49,6 +49,11 @@
             <id>kumuluz</id>
             <dependencies>
                 <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
                     <groupId>com.kumuluz.ee</groupId>
                     <artifactId>kumuluzee-core</artifactId>
                 </dependency>
@@ -67,6 +72,20 @@
                         <executions>
                             <execution>
                                 <id>copy-dependencies</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>de.bischinger</groupId>
+                        <artifactId>kumuluzee-maven-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>copy-dependencies</goal>

@@ -23,3 +23,12 @@ http://localhost:8080/hsisTopBooks/topbooks
 A web interface that returns the Top 3 selling CDs. It doesn't use any Java EE specification except servlet, everything is made by end (eg. JSon manually created with no external framework)
 
 http://localhost:8080/hsisTopCDs/topcds
+
+## 02 Microservices
+
+### Wildfly Swarm 
+
+### KumuluzEE
+
+mvn clean install -Pkumuluz
+mvn kumuluzee:run -Pkumuluz
