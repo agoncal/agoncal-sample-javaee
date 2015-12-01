@@ -16,6 +16,7 @@
         <module>03-TierArchitecture</module>
         <module>04-JBossUtil</module>
         <module>05-JSFViewAction</module>
+        <module>06-HowSmallIsSmall</module>
     </modules>
 
     <properties>

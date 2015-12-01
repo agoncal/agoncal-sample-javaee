@@ -24,6 +24,8 @@
         <version.primefaces>5.2</version.primefaces>
         <!--WildFly Swarm-->
         <version.wildfly-swarm>1.0.0.Alpha5</version.wildfly-swarm>
+        <!--WildFly Swarm-->
+        <version.kumuluzee>1.0.0</version.kumuluzee>
         <!--Maven Plugins-->
         <version.maven.war.plugin>2.6</version.maven.war.plugin>
         <version.maven.compiler.plugin>3.3</version.maven.compiler.plugin>
@@ -78,6 +80,18 @@
                 <groupId>org.wildfly.swarm</groupId>
                 <artifactId>wildfly-swarm-undertow</artifactId>
                 <version>${version.wildfly-swarm}</version>
+            </dependency>
+
+            <!-- Kumuluzee -->
+            <dependency>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-core</artifactId>
+                <version>${version.kumuluzee}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-servlet-jetty</artifactId>
+                <version>${version.kumuluzee}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
