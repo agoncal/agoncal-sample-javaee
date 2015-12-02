@@ -28,6 +28,11 @@ http://localhost:8080/hsisTopCDs/topcds
 
 ### Wildfly Swarm 
 
+mvn clean install -Pswarm
+mvn wildfly-swarm:run -Pswarm
+
+http://localhost:8080/topcds
+
 ### KumuluzEE
 
 mvn clean install -Pkumuluz
