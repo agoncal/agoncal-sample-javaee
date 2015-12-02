@@ -23,9 +23,11 @@
         <version.bootstrap>3.3.5</version.bootstrap>
         <version.primefaces>5.2</version.primefaces>
         <!--WildFly Swarm-->
-        <version.wildfly-swarm>1.0.0.Alpha5</version.wildfly-swarm>
-        <!--WildFly Swarm-->
+        <version.wildfly-swarm>1.0.0.Alpha6-SNAPSHOT</version.wildfly-swarm>
+        <!-- Kumuluzee -->
         <version.kumuluzee>1.0.0</version.kumuluzee>
+        <!-- Dropwizard -->
+        <version.dropwizard>0.9.1</version.dropwizard>
         <!--Maven Plugins-->
         <version.maven.war.plugin>2.6</version.maven.war.plugin>
         <version.maven.compiler.plugin>3.3</version.maven.compiler.plugin>
@@ -81,6 +83,11 @@
                 <artifactId>wildfly-swarm-undertow</artifactId>
                 <version>${version.wildfly-swarm}</version>
             </dependency>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>wildfly-swarm-management</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
 
             <!-- Kumuluzee -->
             <dependency>
@@ -92,6 +99,13 @@
                 <groupId>com.kumuluz.ee</groupId>
                 <artifactId>kumuluzee-servlet-jetty</artifactId>
                 <version>${version.kumuluzee}</version>
+            </dependency>
+
+            <!-- Dropwizard -->
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-core</artifactId>
+                <version>${version.dropwizard}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -137,9 +151,21 @@
 
     <repositories>
         <repository>
+            <id>sonatype-public-repository-group</id>
+            <name>Sonatype Public Maven Repository Group</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
             <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>cloudbees-public-repository-group</id>
+            <name>Cloudbees Public Maven Repository Group</name>
+            <url>http://repository-projectodd.forge.cloudbees.com/snapshot/</url>
             <layout>default</layout>
         </repository>
         <repository>
@@ -161,12 +187,6 @@
             <id>java.net-snapshots-repository-group</id>
             <name>Java.Net Snapshots Maven Repository Group</name>
             <url>https://maven.java.net/content/repositories/snapshots</url>
-        </repository>
-        <repository>
-            <id>prime-repo</id>
-            <name>PrimeFaces Maven Repository</name>
-            <url>http://repository.primefaces.org</url>
-            <layout>default</layout>
         </repository>
     </repositories>
 </project>
