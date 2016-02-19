@@ -22,6 +22,7 @@
         <version.maven.clean.plugin>2.4.1</version.maven.clean.plugin>
         <version.maven.war.plugin>2.4</version.maven.war.plugin>
         <version.maven.compiler.plugin>3.1</version.maven.compiler.plugin>
+        <version.maven.dependency.plugin>2.10</version.maven.dependency.plugin>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -58,6 +59,11 @@
                         <source>${version.java}</source>
                         <target>${version.java}</target>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${version.maven.dependency.plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

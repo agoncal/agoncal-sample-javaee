@@ -49,6 +49,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <properties>
+                        <swarm.http.port>8080</swarm.http.port>
+                        <swarm.context.path>/swarm</swarm.context.path>
+                    </properties>
+                </configuration>
             </plugin>
         </plugins>
     </build>

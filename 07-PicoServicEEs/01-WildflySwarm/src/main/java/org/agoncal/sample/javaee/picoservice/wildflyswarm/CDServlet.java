@@ -1,4 +1,4 @@
-package org.agoncal.sample.javaee.howsmallissmall.topcds.servlet;
+package org.agoncal.sample.javaee.picoservice.wildflyswarm;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,1 +1,0 @@
-Empty web app needed for KumuluzEE
