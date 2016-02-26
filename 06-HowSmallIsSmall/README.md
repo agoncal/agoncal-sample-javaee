@@ -10,30 +10,28 @@ In this module the 3 applications are packaged in war files and deployed in an a
 
 A full Java EE 7 web application that uses most of the Java EE 7 specifications (CDI, EJB, JTA, JPA, Bean Validation, REST, JSF, JAX-RS, JSON-P...) as well as BootStrap, PrimeFaces, JQuery. 
 
-http://localhost:8080/hsisCDBookStore/faces/main.xhtml
+http://localhost:8080/cdookstore
 
 ### Top Books
 
 A REST interface that returns the Top 3 selling books. It uses a small set of Java EE 7 specification (JAX-RS, JPA and CDI)
 
-http://localhost:8080/hsisTopBooks/topbooks
+http://localhost:8080/topbooks
 
 ### Top CDs
 
 A web interface that returns the Top 3 selling CDs. It doesn't use any Java EE specification except servlet, everything is made by end (eg. JSon manually created with no external framework)
 
-http://localhost:8080/hsisTopCDs/topcds
+http://localhost:8080/topcds
 
 ## 02 Microservices
 
 ### Wildfly Swarm 
 
-mvn clean install -Pswarm
-mvn wildfly-swarm:run -Pswarm
+In this module the 3 applications are packaged as fat executable jars using WildFly Swarm
+
+`mvn clean install`
+`mvn wildfly-swarm:run`
 
 http://localhost:8080/topcds
 
-### KumuluzEE
-
-mvn clean install -Pkumuluz
-mvn kumuluzee:run -Pkumuluz

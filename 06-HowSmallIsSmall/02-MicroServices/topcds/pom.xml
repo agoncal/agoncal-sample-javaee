@@ -26,7 +26,7 @@
     </dependencies>
 
     <build>
-        <finalName>hsisTopCDs</finalName>
+        <finalName>topcds</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.swarm</groupId>

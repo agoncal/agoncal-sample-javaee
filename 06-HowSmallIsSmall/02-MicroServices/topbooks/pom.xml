@@ -27,7 +27,7 @@
     </dependencies>
 
     <build>
-        <finalName>hsisTopBooks</finalName>
+        <finalName>topbooks</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.swarm</groupId>

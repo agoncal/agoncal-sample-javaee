@@ -38,6 +38,6 @@
     </dependencies>
 
     <build>
-        <finalName>hsisCDBookStore</finalName>
+        <finalName>cdbookstore</finalName>
     </build>
 </project>

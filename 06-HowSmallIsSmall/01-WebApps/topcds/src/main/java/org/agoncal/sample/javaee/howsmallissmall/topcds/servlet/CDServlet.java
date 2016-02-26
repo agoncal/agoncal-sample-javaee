@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/topcds", displayName = "Top CDs")
+@WebServlet(urlPatterns = "/*", displayName = "Top CDs")
 public class CDServlet extends HttpServlet
 {
 
@@ -44,6 +44,8 @@ public class CDServlet extends HttpServlet
    {
       List<Integer> randomCDs = new ArrayList<>();
       Random r = new Random();
+      randomCDs.add(r.nextInt(100) + 1101);
+      randomCDs.add(r.nextInt(100) + 1101);
       randomCDs.add(r.nextInt(100) + 1101);
       randomCDs.add(r.nextInt(100) + 1101);
       randomCDs.add(r.nextInt(100) + 1101);

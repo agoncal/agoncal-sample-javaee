@@ -4,7 +4,9 @@ import static org.agoncal.sample.javaee.howsmallissmall.cdbookstore.view.util.Se
 import static org.agoncal.sample.javaee.howsmallissmall.cdbookstore.view.util.ServiceRegistry.getTopCDsServiceURL;
 
 import java.io.StringReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -21,7 +23,8 @@ import javax.transaction.Transactional;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
-import org.agoncal.sample.javaee.howsmallissmall.cdbookstore.model.Item;
+import org.agoncal.sample.javaee.howsmallissmall.cdbookstore.model.Book;
+import org.agoncal.sample.javaee.howsmallissmall.cdbookstore.model.CD;
 
 @Named
 @RequestScoped
@@ -32,48 +35,37 @@ public class RatedItemsBean
    @Inject
    private FacesContext facesContext;
 
+   @Inject
+   private Logger logger;
+
    @PersistenceContext(unitName = "hsisCDBookStorePU")
    private EntityManager em;
 
-   List<Item> topRatedItems = new ArrayList<>();
-   Set<Item> randomItems = new HashSet<>();
+   List<Book> topRatedBooks = new ArrayList<>();
+   List<CD> topRatedCDs = new ArrayList<>();
 
    @PostConstruct
    private void init()
    {
-      doFindTopRated();
-      doFindRandomThree();
-
-   }
-
-   private void doFindRandomThree()
-   {
-      int min = em.createQuery("select min (i.id) from Item i", Long.class).getSingleResult().intValue();
-      int max = em.createQuery("select max (i.id) from Item i", Long.class).getSingleResult().intValue();
-
-      while (randomItems.size() < 3)
-      {
-         long id = new Random().nextInt((max - min) + 1) + min;
-         Item item = em.find(Item.class, id);
-         if (item != null)
-            randomItems.add(item);
-      }
-   }
-
-   private void doFindTopRated()
-   {
-      List<Long> topTopRatedIds = new ArrayList<>();
-
+      // Top Rated Books
       List<Long> topRatedBookIds = getTopBooks();
       if (topRatedBookIds != null)
-         topTopRatedIds.addAll(getTopBooks());
+      {
+         logger.info("*************** " + topRatedBookIds);
+         TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b WHERE b.id in :ids", Book.class);
+         query.setParameter("ids", topRatedBookIds);
+         topRatedBooks = query.getResultList();
+      }
+
+      // Top CRated Ds
       List<Long> topRatedCDIds = getTopCDs();
       if (topRatedCDIds != null)
-         topTopRatedIds.addAll(getTopCDs());
-
-      TypedQuery<Item> query = em.createQuery("SELECT i FROM Item i WHERE i.id in :ids", Item.class);
-      query.setParameter("ids", topTopRatedIds);
-      topRatedItems = query.getResultList();
+      {
+         logger.info("%%%%%%%%%%%%%%% " + topRatedCDIds);
+         TypedQuery<CD> query = em.createQuery("SELECT c FROM CD c WHERE c.id in :ids", CD.class);
+         query.setParameter("ids", topRatedCDIds);
+         topRatedCDs = query.getResultList();
+      }
    }
 
    private List<Long> getTopBooks()
@@ -122,19 +114,23 @@ public class RatedItemsBean
       return topCDIds;
    }
 
-   public List<Item> getTopRatedItems()
+   public List<CD> getTopRatedCDs()
    {
-      return topRatedItems;
+      return topRatedCDs;
    }
 
-   public void setTopRatedItems(List<Item> topRatedItems)
+   public void setTopRatedCDs(List<CD> topRatedCDs)
    {
-      this.topRatedItems = topRatedItems;
+      this.topRatedCDs = topRatedCDs;
    }
 
-   public List<Item> getRandomItems()
+   public List<Book> getTopRatedBooks()
    {
-      return new ArrayList<>(randomItems);
+      return topRatedBooks;
    }
 
+   public void setTopRatedBooks(List<Book> topRatedBooks)
+   {
+      this.topRatedBooks = topRatedBooks;
+   }
 }

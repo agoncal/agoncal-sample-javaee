@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.agoncal.sample.javaee.howsmallissmall.topbooks.model.Book;
 
-@Path("/topbooks")
+@Path("/")
 public class BookEndpoint
 {
    @Inject
@@ -33,7 +33,7 @@ public class BookEndpoint
       int min = em.createQuery("select min (b.id) from Book b", Long.class).getSingleResult().intValue();
       int max = em.createQuery("select max (b.id) from Book b", Long.class).getSingleResult().intValue();
 
-      while (results.size() < 3)
+      while (results.size() < 5)
       {
          long id = new Random().nextInt((max - min) + 1) + min;
          Book item = em.find(Book.class, id);

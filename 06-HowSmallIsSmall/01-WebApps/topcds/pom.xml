@@ -22,6 +22,6 @@
     </dependencies>
 
     <build>
-        <finalName>hsisTopCDs</finalName>
+        <finalName>topcds</finalName>
     </build>
 </project>

@@ -22,6 +22,6 @@
     </dependencies>
 
     <build>
-        <finalName>hsisTopBooks</finalName>
+        <finalName>topbooks</finalName>
     </build>
 </project>
