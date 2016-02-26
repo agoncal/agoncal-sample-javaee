@@ -65,7 +65,7 @@
             </dependency>
             <dependency>
                 <groupId>org.primefaces.themes</groupId>
-                <artifactId>bootstrap</artifactId>
+                <artifactId>all-themes</artifactId>
                 <version>${version.primefaces.themes}</version>
             </dependency>
 
@@ -73,7 +73,7 @@
             <dependency>
                 <groupId>com.thedeanda</groupId>
                 <artifactId>lorem</artifactId>
-                <version>${version.lorem}}</version>
+                <version>${version.lorem}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -18,24 +18,72 @@
 
     <modules>
         <module>topcds</module>
+        <module>topbooks</module>
     </modules>
+
+    <properties>
+        <version.wildfly-swarm>1.0.0.Alpha8</version.wildfly-swarm>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
-
             <!-- WildFly Swarm -->
             <dependency>
                 <groupId>org.wildfly.swarm</groupId>
-                <artifactId>wildfly-swarm-undertow</artifactId>
+                <artifactId>bean-validation</artifactId>
                 <version>${version.wildfly-swarm}</version>
             </dependency>
             <dependency>
                 <groupId>org.wildfly.swarm</groupId>
-                <artifactId>wildfly-swarm-management</artifactId>
+                <artifactId>weld</artifactId>
                 <version>${version.wildfly-swarm}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>ejb</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>jaxrs</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>jpa</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>jsf</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>management</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>transactions</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>undertow</artifactId>
+                <version>${version.wildfly-swarm}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>wildfly-swarm-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

@@ -19,32 +19,23 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>undertow</artifactId>
+        </dependency>
     </dependencies>
 
+    <build>
+        <finalName>hsisTopCDs</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>wildfly-swarm-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
-        <profile>
-            <id>swarm</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-undertow</artifactId>
-                </dependency>
-            </dependencies>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.wildfly.swarm</groupId>
-                        <artifactId>wildfly-swarm-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
         <profile>
             <id>swarm-management</id>
             <activation>
@@ -53,11 +44,11 @@
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-undertow</artifactId>
+                    <artifactId>undertow</artifactId>
                 </dependency>
                 <dependency>
                     <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-management</artifactId>
+                    <artifactId>management</artifactId>
                 </dependency>
             </dependencies>
 
@@ -70,74 +61,5 @@
                 </plugins>
             </build>
         </profile>
-
-        <profile>
-            <id>kumuluz</id>
-            <dependencies>
-                <dependency>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>javax.servlet-api</artifactId>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.kumuluz.ee</groupId>
-                    <artifactId>kumuluzee-core</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>com.kumuluz.ee</groupId>
-                    <artifactId>kumuluzee-servlet-jetty</artifactId>
-                </dependency>
-            </dependencies>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>2.10</version>
-                        <executions>
-                            <execution>
-                                <id>copy-dependencies</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>copy-dependencies</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>de.bischinger</groupId>
-                        <artifactId>kumuluzee-maven-plugin</artifactId>
-                        <version>1.1</version>
-                        <executions>
-                            <execution>
-                                <id>copy-resources</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>copy-dependencies</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>dropwizard</id>
-            <dependencies>
-                <dependency>
-                    <groupId>io.dropwizard</groupId>
-                    <artifactId>dropwizard-core</artifactId>
-                    <version>${version.dropwizard}</version>
-                </dependency>
-            </dependencies>
-
-        </profile>
-
     </profiles>
-
-    <build>
-        <finalName>hsisTopCDs</finalName>
-    </build>
 </project>
