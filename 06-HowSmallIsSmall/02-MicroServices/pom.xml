@@ -4,6 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.agoncal.sample.javaee.howsmallissmall</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
     <groupId>org.agoncal.sample.javaee.howsmallissmall.micro</groupId>
     <artifactId>parent</artifactId>
     <version>1.0</version>
@@ -14,68 +20,8 @@
         <module>topcds</module>
     </modules>
 
-    <properties>
-        <version.java>1.8</version.java>
-        <version.junit>4.12</version.junit>
-        <!--Java EE-->
-        <version.javaee7>7.0</version.javaee7>
-        <!--Web-->
-        <version.bootstrap>3.3.5</version.bootstrap>
-        <version.primefaces>5.2</version.primefaces>
-        <!--WildFly Swarm-->
-        <version.wildfly-swarm>1.0.0.Alpha6-SNAPSHOT</version.wildfly-swarm>
-        <!-- Kumuluzee -->
-        <version.kumuluzee>1.0.0</version.kumuluzee>
-        <!-- Dropwizard -->
-        <version.dropwizard>0.9.1</version.dropwizard>
-        <!--Maven Plugins-->
-        <version.maven.war.plugin>2.6</version.maven.war.plugin>
-        <version.maven.compiler.plugin>3.3</version.maven.compiler.plugin>
-
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
-
-            <!-- Java EE -->
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${version.javaee7}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- Web -->
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>bootstrap</artifactId>
-                <version>${version.bootstrap}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.primefaces</groupId>
-                <artifactId>primefaces</artifactId>
-                <version>${version.primefaces}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.primefaces.themes</groupId>
-                <artifactId>all-themes</artifactId>
-                <version>${version.primefaces.themes}</version>
-            </dependency>
-
-            <!-- Other -->
-            <dependency>
-                <groupId>com.thedeanda</groupId>
-                <artifactId>lorem</artifactId>
-                <version>1.2</version>
-            </dependency>
 
             <!-- WildFly Swarm -->
             <dependency>
@@ -89,104 +35,7 @@
                 <version>${version.wildfly-swarm}</version>
             </dependency>
 
-            <!-- Kumuluzee -->
-            <dependency>
-                <groupId>com.kumuluz.ee</groupId>
-                <artifactId>kumuluzee-core</artifactId>
-                <version>${version.kumuluzee}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kumuluz.ee</groupId>
-                <artifactId>kumuluzee-servlet-jetty</artifactId>
-                <version>${version.kumuluzee}</version>
-            </dependency>
-
-            <!-- Dropwizard -->
-            <dependency>
-                <groupId>io.dropwizard</groupId>
-                <artifactId>dropwizard-core</artifactId>
-                <version>${version.dropwizard}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${version.maven.compiler.plugin}</version>
-                    <inherited>true</inherited>
-                    <configuration>
-                        <source>${version.java}</source>
-                        <target>${version.java}</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${version.maven.war.plugin}</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-plugin</artifactId>
-                    <version>${version.wildfly-swarm}</version>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>package</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <repositories>
-        <repository>
-            <id>sonatype-public-repository-group</id>
-            <name>Sonatype Public Maven Repository Group</name>
-            <url>https://oss.sonatype.org/content/repositories/releases</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>jboss-public-repository-group</id>
-            <name>JBoss Public Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>cloudbees-public-repository-group</id>
-            <name>Cloudbees Public Maven Repository Group</name>
-            <url>http://repository-projectodd.forge.cloudbees.com/snapshot/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>java.net-public-repository-group</id>
-            <name>Java.Net Public Maven Repository Group</name>
-            <url>https://maven.java.net/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>java.net-staging-repository-group</id>
-            <name>Java.Net Staging Maven Repository Group</name>
-            <url>https://maven.java.net/content/groups/staging</url>
-        </repository>
-        <repository>
-            <id>java.net-releases-repository-group</id>
-            <name>Java.Net Releases Maven Repository Group</name>
-            <url>https://maven.java.net/content/repositories/releases</url>
-        </repository>
-        <repository>
-            <id>java.net-snapshots-repository-group</id>
-            <name>Java.Net Snapshots Maven Repository Group</name>
-            <url>https://maven.java.net/content/repositories/snapshots</url>
-        </repository>
-    </repositories>
 </project>
