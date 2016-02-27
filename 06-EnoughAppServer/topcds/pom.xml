@@ -5,24 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.agoncal.sample.javaee.howsmallissmall.micro</groupId>
+        <groupId>org.agoncal.sample.javaee.enoughappserver</groupId>
         <artifactId>parent</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>topbooks</artifactId>
+    <artifactId>topcds</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>topbooks</finalName>
+        <finalName>topcds</finalName>
     </build>
 
     <profiles>
@@ -33,14 +33,6 @@
                     <groupId>org.wildfly.swarm</groupId>
                     <artifactId>undertow</artifactId>
                 </dependency>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>jaxrs-weld</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>jpa</artifactId>
-                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -49,22 +41,9 @@
                         <artifactId>wildfly-swarm-plugin</artifactId>
                         <configuration>
                             <properties>
-                                <swarm.http.port>8082</swarm.http.port>
-                                <swarm.context.path>/topbooks</swarm.context.path>
+                                <swarm.http.port>8081</swarm.http.port>
+                                <swarm.context.path>/topcds</swarm.context.path>
                             </properties>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <overlays>
-                                <overlay>
-                                    <groupId>org.agoncal.sample.javaee.howsmallissmall.micro</groupId>
-                                    <artifactId>topbooks</artifactId>
-                                    <skip>true</skip>
-                                </overlay>
-                            </overlays>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -78,14 +57,6 @@
                     <groupId>org.wildfly.swarm</groupId>
                     <artifactId>undertow</artifactId>
                 </dependency>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>jaxrs-weld</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>jpa</artifactId>
-                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -95,8 +66,8 @@
                         <configuration>
                             <bundleDependencies>false</bundleDependencies>
                             <properties>
-                                <swarm.http.port>8082</swarm.http.port>
-                                <swarm.context.path>/topbooks</swarm.context.path>
+                                <swarm.http.port>8081</swarm.http.port>
+                                <swarm.context.path>/topcds</swarm.context.path>
                             </properties>
                         </configuration>
                     </plugin>

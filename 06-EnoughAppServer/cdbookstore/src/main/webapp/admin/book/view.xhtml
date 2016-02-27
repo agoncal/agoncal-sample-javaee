@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:forgeview="http://jboss.org/forge/view"
+                template="/resources/scaffold/templateAdmin.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{bookBean.id}'/>
+        <f:event type="preRenderView" listener='#{bookBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="View Book"/>
+
+    <ui:define name="header">
+        Book
+    </ui:define>
+
+    <ui:define name="subheader">
+        View existing Book
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:panelGrid columnClasses="label,component,required" columns="3">
+            <h:outputLabel for="bookBeanBookTitle" value="Title:"/>
+            <h:outputText id="bookBeanBookTitle" value="#{bookBean.book.title}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookDescription" value="Description:"/>
+            <h:inputTextarea id="bookBeanBookDescription" value="#{bookBean.book.description}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookUnitCost" value="Unit Cost:"/>
+            <h:outputText id="bookBeanBookUnitCost" value="#{bookBean.book.unitCost}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookIsbn" value="Isbn:"/>
+            <h:outputText id="bookBeanBookIsbn" value="#{bookBean.book.isbn}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookNbOfPage" value="Nb Of Page:"/>
+            <h:outputText id="bookBeanBookNbOfPage" value="#{bookBean.book.nbOfPage}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookPublicationDate" value="Publication Date:"/>
+            <h:outputText id="bookBeanBookPublicationDate" value="#{bookBean.book.publicationDate}">
+                <f:convertDateTime type="date"/>
+            </h:outputText>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookLanguage" value="Language:"/>
+            <h:outputText id="bookBeanBookLanguage" value="#{bookBean.book.language}"/>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookCategory" value="Category:"/>
+            <h:link id="bookBeanBookCategory" outcome="/admin/category/view" rendered="#{!empty bookBean.book.category}"
+                    value="#{bookBean.book.category}">
+                <f:param name="id" value="#{bookBean.book.category.id}"/>
+            </h:link>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookAuthors" value="Authors:"/>
+            <h:dataTable id="bookBeanBookAuthors" styleClass="data-table"
+                         value="#{forgeview:asList(bookBean.book.authors)}" var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="First Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/author/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemFirstName" value="#{_item.firstName}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/author/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemLastName" value="#{_item.lastName}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+            <h:outputText/>
+            <h:outputLabel for="bookBeanBookPublisher" value="Publisher:"/>
+            <h:link id="bookBeanBookPublisher" outcome="/admin/publisher/view"
+                    rendered="#{!empty bookBean.book.publisher}" value="#{bookBean.book.publisher}">
+                <f:param name="id" value="#{bookBean.book.publisher.id}"/>
+            </h:link>
+            <h:outputText/>
+        </h:panelGrid>
+
+        <div class="buttons">
+            <h:link value="View All" outcome="search" styleClass="btn btn-primary"/>
+            <h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+            <h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+        </div>
+    </ui:define>
+
+</ui:composition>

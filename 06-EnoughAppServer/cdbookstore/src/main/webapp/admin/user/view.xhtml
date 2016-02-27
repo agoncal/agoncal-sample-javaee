@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/templateAdmin.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{userBean.id}'/>
+        <f:event type="preRenderView" listener='#{userBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="View User"/>
+
+    <ui:define name="header">
+        User
+    </ui:define>
+
+    <ui:define name="subheader">
+        View existing User
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:panelGrid columnClasses="label,component,required" columns="3">
+            <h:outputLabel for="userBeanUserFirstName" value="First Name:"/>
+            <h:outputText id="userBeanUserFirstName" value="#{userBean.user.firstName}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserLastName" value="Last Name:"/>
+            <h:outputText id="userBeanUserLastName" value="#{userBean.user.lastName}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserTelephone" value="Telephone:"/>
+            <h:outputText id="userBeanUserTelephone" value="#{userBean.user.telephone}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserEmail" value="Email:"/>
+            <h:outputText id="userBeanUserEmail" value="#{userBean.user.email}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserLogin" value="Login:"/>
+            <h:outputText id="userBeanUserLogin" value="#{userBean.user.login}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserPassword" value="Password:"/>
+            <h:outputText id="userBeanUserPassword" value="#{userBean.user.password}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserUuid" value="Uuid:"/>
+            <h:outputText id="userBeanUserUuid" value="#{userBean.user.uuid}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserRole" value="Role:"/>
+            <h:outputText id="userBeanUserRole" value="#{userBean.user.role}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserDateOfBirth" value="Date Of Birth:"/>
+            <h:outputText id="userBeanUserDateOfBirth" value="#{userBean.user.dateOfBirth}">
+                <f:convertDateTime type="date"/>
+            </h:outputText>
+            <h:outputText/>
+        </h:panelGrid>
+
+        <div class="buttons">
+            <h:link value="View All" outcome="search" styleClass="btn btn-primary"/>
+            <h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+            <h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+        </div>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="/resources/scaffold/template.xhtml">
+
+    <ui:define name="title">CD Book Store</ui:define>
+
+    <ui:define name="message">Welcome to the CD Book Store eCommerce site</ui:define>
+
+    <ui:define name="body">
+
+        <p:carousel value="#{ratedItemsBean.topRatedBooks}" headerText="Top rated Books" var="_item" responsive="true">
+            <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
+
+                <h:link outcome="/shopping/viewItem.xhtml">
+                    <f:param name="id" value="#{_item.id}"/>
+                    <p:graphicImage url="#{_item.smallImageURL}"/>
+                </h:link>
+
+                <h:outputText value="#{fn:substring(_item.title, 0, 35)}..."/>
+            </p:panelGrid>
+
+            <f:facet name="footer">
+                In total there are #{fn:length(ratedItemsBean.topRatedBooks)} top rated items.
+            </f:facet>
+        </p:carousel>
+
+        <br/>
+
+        <p:carousel value="#{ratedItemsBean.topRatedCDs}" headerText="Top rated CDs" var="_item" responsive="true">
+            <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
+
+                <h:link outcome="/shopping/viewItem.xhtml">
+                    <f:param name="id" value="#{_item.id}"/>
+                    <p:graphicImage url="#{_item.smallImageURL}"/>
+                </h:link>
+
+                <h:outputText value="#{fn:substring(_item.title, 0, 35)}..."/>
+            </p:panelGrid>
+
+            <f:facet name="footer">
+                In total there are #{fn:length(ratedItemsBean.topRatedCDs)} top rated items.
+            </f:facet>
+        </p:carousel>
+
+    </ui:define>
+
+</ui:composition>
