@@ -51,7 +51,7 @@ public class RatedItemsBean
       List<Long> topRatedBookIds = getTopBooks();
       if (topRatedBookIds != null)
       {
-         logger.info("*************** " + topRatedBookIds);
+         logger.fine("Top rated books ids " + topRatedBookIds);
          TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b WHERE b.id in :ids", Book.class);
          query.setParameter("ids", topRatedBookIds);
          topRatedBooks = query.getResultList();
@@ -61,7 +61,7 @@ public class RatedItemsBean
       List<Long> topRatedCDIds = getTopCDs();
       if (topRatedCDIds != null)
       {
-         logger.info("%%%%%%%%%%%%%%% " + topRatedCDIds);
+         logger.fine("Top rated CD ids " + topRatedCDIds);
          TypedQuery<CD> query = em.createQuery("SELECT c FROM CD c WHERE c.id in :ids", CD.class);
          query.setParameter("ids", topRatedCDIds);
          topRatedCDs = query.getResultList();

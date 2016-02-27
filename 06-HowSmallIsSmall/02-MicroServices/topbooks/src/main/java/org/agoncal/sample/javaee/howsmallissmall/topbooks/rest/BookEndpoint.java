@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.agoncal.sample.javaee.howsmallissmall.topbooks.model.Book;
 
-@Path("/topbooks")
+@Path("/")
 public class BookEndpoint
 {
    @Inject
