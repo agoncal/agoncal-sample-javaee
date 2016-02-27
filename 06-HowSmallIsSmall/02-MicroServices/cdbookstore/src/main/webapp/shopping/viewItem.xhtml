@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+                template="/resources/scaffold/template.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{catalogBean.itemId}"/>
+        <f:viewAction action="#{catalogBean.doViewItemById}"/>
+    </f:metadata>
+
+    <ui:define name="title">View Item</ui:define>
+
+    <ui:define name="message">#{catalogBean.item.title}</ui:define>
+
+    <ui:define name="body">
+
+        <div class="row">
+            <div class="col-md-2"><h:graphicImage id="itemBeanBookImageURL" url="#{catalogBean.item.mediumImageURL}"/>
+            </div>
+            <div class="col-md-10"><h:outputText id="itemBeanItemDescription" value="#{catalogBean.item.description}"/>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row">
+            <div class="col-md-2"><h:outputLabel for="itemBeanItemUnitCost" value="Unit Cost:"/></div>
+            <div class="col-md-10"><h:outputText id="itemBeanItemUnitCost" value="#{catalogBean.item.unitCost}"/></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><h:outputLabel for="itemBeanItemRank" value="Rank:"/></div>
+            <div class="col-md-10"><p:rating id="itemBeanItemRank" value="#{catalogBean.item.rank}" readonly="true"/>
+            </div>
+        </div>
+
+        <h:panelGroup layout="block" rendered="#{catalogBean.item['class'].simpleName eq 'Book'}">
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemIsbn" value="Isbn:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemIsbn" value="#{catalogBean.item.isbn}"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemNbOfPages" value="Number of pages:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemNbOfPages" value="#{catalogBean.item.nbOfPage}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemPublicationDate" value="Publication date:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemPublicationDate"
+                                                     value="#{catalogBean.item.publicationDate}"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemLanguage" value="Language:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemLanguage" value="#{catalogBean.item.language}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemCategory" value="Category:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemCategory"
+                                                     value="#{catalogBean.item.category.name}"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemPublisher" value="Publisher:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemPublisher"
+                                                     value="#{catalogBean.item.publisher.name}"/></div>
+            </div>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" rendered="#{catalogBean.item['class'].simpleName eq 'CD'}">
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemGenre" value="Genre:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemGenre"
+                                                     value="#{catalogBean.item.genre.name}"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemNbOfDiscs" value="Nb of Discs:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemNbOfDiscs"
+                                                     value="#{catalogBean.item.nbOfDiscs}"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><h:outputLabel for="itemBeanItemLabel" value="Label:"/></div>
+                <div class="col-md-10"><h:outputText id="itemBeanItemLabel"
+                                                     value="#{catalogBean.item.label.name}"/></div>
+            </div>
+        </h:panelGroup>
+
+
+        <h:form>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="buttons, col-md-10">
+                    <h:commandLink action="#{shoppingCartBean.addItemToCart}" styleClass="btn btn-primary" value="Buy">
+                        <f:param name="itemId" value="#{catalogBean.itemId}"/>
+                    </h:commandLink>
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

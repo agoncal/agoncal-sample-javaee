@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:forgeview="http://jboss.org/forge/view"
+                template="/resources/scaffold/templateAdmin.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{CDBean.id}'/>
+        <f:event type="preRenderView" listener='#{CDBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="View CD"/>
+
+    <ui:define name="header">
+        CD
+    </ui:define>
+
+    <ui:define name="subheader">
+        View existing CD
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:panelGrid columnClasses="label,component,required" columns="3">
+            <h:outputLabel for="cDBeanCDTitle" value="Title:"/>
+            <h:outputText id="cDBeanCDTitle" value="#{CDBean.CD.title}"/>
+            <h:outputText/>
+            <h:outputLabel for="cDBeanCDDescription" value="Description:"/>
+            <h:inputTextarea id="cDBeanCDDescription" value="#{CDBean.CD.description}"/>
+            <h:outputText/>
+            <h:outputLabel for="cDBeanCDUnitCost" value="Unit Cost:"/>
+            <h:outputText id="cDBeanCDUnitCost" value="#{CDBean.CD.unitCost}"/>
+            <h:outputText/>
+            <h:outputLabel for="cDBeanCDNumberOfDiscs" value="Number of discs:"/>
+            <h:outputText id="cDBeanCDNumberOfDiscs" value="#{CDBean.CD.nbOfDiscs}"/>
+            <h:outputText/>
+            <h:outputLabel for="cDBeanCDLabel" value="Label:"/>
+            <h:link id="cDBeanCDLabel" outcome="/admin/label/view" rendered="#{!empty CDBean.CD.label}"
+                    value="#{CDBean.CD.label}">
+                <f:param name="id" value="#{CDBean.CD.label.id}"/>
+            </h:link>
+            <h:outputText/>
+            <h:outputLabel for="cDBeanCDMusicians" value="Musicians:"/>
+            <h:dataTable id="cDBeanCDMusicians" styleClass="data-table" value="#{forgeview:asList(CDBean.CD.musicians)}"
+                         var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="First Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/musician/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemFirstName" value="#{_item.firstName}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/musician/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemLastName" value="#{_item.lastName}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+            <h:outputText/>
+            <h:outputLabel for="cDBeanCDGenre" value="Genre:"/>
+            <h:link id="cDBeanCDGenre" outcome="/admin/genre/view" rendered="#{!empty CDBean.CD.genre}"
+                    value="#{CDBean.CD.genre}">
+                <f:param name="id" value="#{CDBean.CD.genre.id}"/>
+            </h:link>
+            <h:outputText/>
+        </h:panelGrid>
+
+        <div class="buttons">
+            <h:link value="View All" outcome="search" styleClass="btn btn-primary"/>
+            <h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+            <h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+        </div>
+    </ui:define>
+
+</ui:composition>

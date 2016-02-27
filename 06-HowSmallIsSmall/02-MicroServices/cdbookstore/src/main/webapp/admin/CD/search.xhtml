@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:forgeview="http://jboss.org/forge/view" xmlns:p="http://primefaces.org/ui"
+                template="/resources/scaffold/templateAdmin.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="page" value='#{CDBean.page}'/>
+        <f:event type="preRenderView" listener='#{CDBean.paginate}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Search CD entities"/>
+
+    <ui:define name="header">
+        CD
+    </ui:define>
+
+    <ui:define name="subheader">
+        Search CD entities
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="search">
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="search">
+
+                    <h:panelGrid columnClasses="label,component,required" columns="3">
+                        <h:outputLabel for="cDBeanExampleTitle" value="Title:"/>
+                        <h:panelGroup>
+                            <h:inputText id="cDBeanExampleTitle" maxLength="30" value="#{CDBean.example.title}"/>
+                            <h:message for="cDBeanExampleTitle" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="cDBeanExampleDescription" value="Description:"/>
+                        <h:panelGroup>
+                            <h:inputTextarea id="cDBeanExampleDescription" value="#{CDBean.example.description}"/>
+                            <h:message for="cDBeanExampleDescription" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="cDBeanExampleLabel" value="Label:"/>
+                        <h:panelGroup>
+                            <h:selectOneMenu converter="#{labelBean.converter}" id="cDBeanExampleLabel"
+                                             value="#{CDBean.example.label}">
+                                <f:selectItem/>
+                                <f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}"
+                                               value="#{labelBean.all}" var="_item"/>
+                            </h:selectOneMenu>
+                            <h:message for="cDBeanExampleLabel" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="cDBeanExampleGenre" value="Genre:"/>
+                        <h:panelGroup>
+                            <h:selectOneMenu converter="#{genreBean.converter}" id="cDBeanExampleGenre"
+                                             value="#{CDBean.example.genre}">
+                                <f:selectItem/>
+                                <f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}"
+                                               value="#{genreBean.all}" var="_item"/>
+                            </h:selectOneMenu>
+                            <h:message for="cDBeanExampleGenre" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                    </h:panelGrid>
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Search" action='#{CDBean.search}' styleClass="btn btn-primary"/>
+                        <h:commandLink value="Create New" action='#{CDBean.create}' styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
+            <h:dataTable id="cDBeanPageItems" styleClass="data-table" value="#{CDBean.pageItems}" var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Title"/>
+                    </f:facet>
+                    <h:link outcome="/admin/CD/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemTitle" value="#{_item.title}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Small Image URL"/>
+                    </f:facet>
+                    <p:graphicImage url="#{_item.smallImageURL}" id="smallImageURL"/>
+                </h:column>
+            </h:dataTable>
+            <ui:include src="/resources/scaffold/paginator.xhtml">
+                <ui:param name="paginatorBean" value='#{CDBean}'/>
+            </ui:include>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

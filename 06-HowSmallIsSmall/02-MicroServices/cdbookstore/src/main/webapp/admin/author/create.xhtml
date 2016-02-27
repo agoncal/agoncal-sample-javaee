@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/resources/scaffold/templateAdmin.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{authorBean.id}'/>
+        <f:event type="preRenderView" listener='#{authorBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Create Author"/>
+
+    <ui:define name="header">
+        Author
+    </ui:define>
+
+    <ui:define name="subheader">
+        <c:choose>
+            <c:when test='#{!empty authorBean.id}'>
+                Edit existing Author
+            </c:when>
+            <c:otherwise>
+                Create a new Author
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="create">
+            <h:messages globalOnly="true" styleClass="error"/>
+
+            <h:panelGrid columnClasses="label,component,required" columns="3">
+                <h:outputLabel for="authorBeanAuthorFirstName" value="First Name:"/>
+                <h:panelGroup>
+                    <h:inputText id="authorBeanAuthorFirstName" maxLength="50" required="true"
+                                 value="#{authorBean.author.firstName}"/>
+                    <h:message for="authorBeanAuthorFirstName" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="authorBeanAuthorLastName" value="Last Name:"/>
+                <h:panelGroup>
+                    <h:inputText id="authorBeanAuthorLastName" maxLength="50" required="true"
+                                 value="#{authorBean.author.lastName}"/>
+                    <h:message for="authorBeanAuthorLastName" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
+                <h:outputLabel for="authorBeanAuthorBio" value="Bio:"/>
+                <h:panelGroup>
+                    <h:inputTextarea id="authorBeanAuthorBio" value="#{authorBean.author.bio}"/>
+                    <h:message for="authorBeanAuthorBio" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="authorBeanAuthorDateOfBirth" value="Date Of Birth:"/>
+                <h:panelGroup>
+                    <h:inputText id="authorBeanAuthorDateOfBirth" value="#{authorBean.author.dateOfBirth}">
+                        <f:convertDateTime type="date"/>
+                    </h:inputText>
+                    <h:message for="authorBeanAuthorDateOfBirth" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="authorBeanAuthorAge" value="Age:"/>
+                <h:panelGroup>
+                    <h:inputText id="authorBeanAuthorAge" value="#{authorBean.author.age}"/>
+                    <h:message for="authorBeanAuthorAge" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+                <h:outputLabel for="authorBeanAuthorPreferredLanguage" value="Preferred Language:"/>
+                <h:panelGroup>
+                    <h:selectOneMenu id="authorBeanAuthorPreferredLanguage"
+                                     value="#{authorBean.author.preferredLanguage}">
+                        <f:selectItem/>
+                        <f:selectItem itemValue="ENGLISH"/>
+                        <f:selectItem itemValue="FRENCH"/>
+                        <f:selectItem itemValue="SPANISH"/>
+                        <f:selectItem itemValue="PORTUGUESE"/>
+                        <f:selectItem itemValue="ITALIAN"/>
+                        <f:selectItem itemValue="FINISH"/>
+                        <f:selectItem itemValue="GERMAN"/>
+                        <f:selectItem itemValue="DEUTSCH"/>
+                        <f:selectItem itemValue="RUSSIAN"/>
+                    </h:selectOneMenu>
+                    <h:message for="authorBeanAuthorPreferredLanguage" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+            </h:panelGrid>
+
+            <div class="buttons">
+                <h:commandLink value="Save" action='#{authorBean.update}' styleClass="btn btn-primary"/>
+                <c:choose>
+                    <c:when test='#{!empty authorBean.id}'>
+                        <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+                            <f:param name="id" value='#{authorBean.id}'/>
+                        </h:link>
+                        <h:commandLink value="Delete" action='#{authorBean.delete}' styleClass="btn btn-primary"/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

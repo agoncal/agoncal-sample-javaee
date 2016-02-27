@@ -17,6 +17,7 @@
     <name>00 - Parent of How Small is Small Microservices Samples</name>
 
     <modules>
+        <module>cdbookstore</module>
         <module>topcds</module>
         <module>topbooks</module>
     </modules>

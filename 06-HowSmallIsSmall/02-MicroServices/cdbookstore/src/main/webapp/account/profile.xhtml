@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/scaffold/template.xhtml">
+
+    <ui:define name="title">Profile</ui:define>
+
+    <ui:define name="message">Update your profile</ui:define>
+
+    <ui:define name="body">
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h:form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputLogin" class="col-sm-2 control-label">Login</label>
+
+                        <div class="col-sm-10">
+                            <h:inputText class="form-control" id="inputLogin" value="#{accountBean.user.login}"
+                                         pt:readonly="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="inputPassword1" class="col-sm-2 control-label" value="Password"/>
+
+                        <div class="col-sm-10">
+                            <p:password id="inputPassword1" value="#{accountBean.password1}" feedback="true"
+                                        match="inputPassword2" label="Password 1"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="inputPassword2" class="col-sm-2 control-label" value="Re-type Password"/>
+
+                        <div class="col-sm-10">
+                            <p:password id="inputPassword2" value="#{accountBean.password2}" feedback="false"
+                                        label="Password 2"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFirstName" class="col-sm-2 control-label">First name</label>
+
+                        <div class="col-sm-10">
+                            <h:inputText class="form-control" id="inputFirstName"
+                                         value="#{accountBean.user.firstName}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLastName" class="col-sm-2 control-label">First name</label>
+
+                        <div class="col-sm-10">
+                            <h:inputText class="form-control" id="inputLastName" value="#{accountBean.user.lastName}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                        <div class="col-sm-10">
+                            <h:inputText pt:type="email" class="form-control" id="inputEmail"
+                                         value="#{accountBean.user.email}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <h:commandButton class="btn btn-default" value="Update profile"
+                                             action="#{accountBean.doUpdateProfile}"/>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>
