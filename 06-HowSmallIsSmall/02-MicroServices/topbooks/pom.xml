@@ -17,12 +17,23 @@
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <artifactId>javaee-web-api</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>weld</artifactId>
         </dependency>
     </dependencies>
 
@@ -32,6 +43,12 @@
             <plugin>
                 <groupId>org.wildfly.swarm</groupId>
                 <artifactId>wildfly-swarm-plugin</artifactId>
+                <configuration>
+                    <properties>
+                        <swarm.http.port>8082</swarm.http.port>
+                        <swarm.context.path>/topbooks</swarm.context.path>
+                    </properties>
+                </configuration>
             </plugin>
         </plugins>
     </build>
