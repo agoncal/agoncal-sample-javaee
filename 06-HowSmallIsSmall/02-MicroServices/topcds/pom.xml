@@ -19,31 +19,45 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>undertow</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
         <finalName>topcds</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>wildfly-swarm-plugin</artifactId>
-                <configuration>
-                    <properties>
-                        <swarm.http.port>8081</swarm.http.port>
-                        <swarm.context.path>/topcds</swarm.context.path>
-                    </properties>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <profiles>
         <profile>
-            <id>swarm-maven</id>
+            <id>swarm</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>undertow</artifactId>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.swarm</groupId>
+                        <artifactId>wildfly-swarm-plugin</artifactId>
+                        <configuration>
+                            <properties>
+                                <swarm.http.port>8081</swarm.http.port>
+                                <swarm.context.path>/topcds</swarm.context.path>
+                            </properties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>swarm-m2repo</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>undertow</artifactId>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
