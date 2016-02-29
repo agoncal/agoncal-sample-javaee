@@ -60,7 +60,7 @@
                         <configuration>
                             <overlays>
                                 <overlay>
-                                    <groupId>org.agoncal.sample.javaee.howsmallissmall.micro</groupId>
+                                    <groupId>org.agoncal.sample.javaee.enoughappserver.micro</groupId>
                                     <artifactId>topbooks</artifactId>
                                     <skip>true</skip>
                                 </overlay>
