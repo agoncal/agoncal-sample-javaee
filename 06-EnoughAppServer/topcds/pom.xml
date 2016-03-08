@@ -49,7 +49,6 @@
                 </plugins>
             </build>
         </profile>
-
         <profile>
             <id>swarm-m2repo</id>
             <dependencies>
