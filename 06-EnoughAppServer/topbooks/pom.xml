@@ -54,19 +54,6 @@
                             </properties>
                         </configuration>
                     </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <overlays>
-                                <overlay>
-                                    <groupId>org.agoncal.sample.javaee.enoughappserver.micro</groupId>
-                                    <artifactId>topbooks</artifactId>
-                                    <skip>true</skip>
-                                </overlay>
-                            </overlays>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>

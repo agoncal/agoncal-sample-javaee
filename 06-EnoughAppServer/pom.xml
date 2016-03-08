@@ -28,7 +28,7 @@
         <!--Other-->
         <version.lorem>2.0</version.lorem>
         <!--Swarm-->
-        <version.wildfly-swarm>1.0.0.Alpha8</version.wildfly-swarm>
+        <version.wildfly-swarm>1.0.0.Beta2</version.wildfly-swarm>
         <!--Maven Plugins-->
         <version.maven.clean.plugin>2.4.1</version.maven.clean.plugin>
         <version.maven.compiler.plugin>3.5.1</version.maven.compiler.plugin>
