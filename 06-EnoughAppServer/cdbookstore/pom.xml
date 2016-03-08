@@ -81,6 +81,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>swarm-m2repo</id>
             <dependencies>
@@ -116,6 +117,50 @@
                         <artifactId>wildfly-swarm-plugin</artifactId>
                         <configuration>
                             <bundleDependencies>false</bundleDependencies>
+                            <properties>
+                                <swarm.http.port>8080</swarm.http.port>
+                                <swarm.context.path>/cdbookstore</swarm.context.path>
+                            </properties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>swarm-management</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>undertow</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jaxrs-weld</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jpa</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>ejb</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jsf</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>management</artifactId>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.swarm</groupId>
+                        <artifactId>wildfly-swarm-plugin</artifactId>
+                        <configuration>
                             <properties>
                                 <swarm.http.port>8080</swarm.http.port>
                                 <swarm.context.path>/cdbookstore</swarm.context.path>
