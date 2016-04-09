@@ -2,9 +2,9 @@
 
 An e-commerce web application that sells books and CDs and interacts with two external web services to get the top selling books and CDs. The idea is to deploy these 3 applications as web applications (WAR) but also as microservices (Fat JARs) and see how much footprint they have. 
 
-## 01 Web Apps
+## Web Apps
 
-In this module the 3 applications are packaged in war files and deployed in an application server
+In this configuration the 3 applications are packaged in war files and deployed in an application server. You can obtain these 3 war files with a `mvn install` command.
 
 ### CD Book Store
 
@@ -24,14 +24,11 @@ A web interface that returns the Top 3 selling CDs. It doesn't use any Java EE s
 
 http://localhost:8080/topcds
 
-## 02 Microservices
+## Microservices
 
-### Wildfly Swarm 
+In this configuration the 3 applications are packaged as fat executable jars (embedding the application server). You can obtain these 3 war files with a `mvn install -Pswarm` command.
 
-In this module the 3 applications are packaged as fat executable jars using WildFly Swarm
 
-`mvn clean install`
-`mvn wildfly-swarm:run`
+## Docker
 
-http://localhost:8080/topcds
-
+http://fabric8io.github.io/docker-maven-plugin/

@@ -102,5 +102,77 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>docker</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>undertow</artifactId>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>agoncal/enoughappserver-topcds:latest</name>
+                                    <build>
+                                        <from>jboss/base-jdk:8</from>
+                                        <ports>
+                                            <port>8081</port>
+                                        </ports>
+                                        <entryPoint>
+                                            <exec>
+                                                <arg>java</arg>
+                                                <arg>-jar</arg>
+                                                <arg>/opt/wildfly-swarm/topcds.jar</arg>
+                                            </exec>
+                                        </entryPoint>
+                                        <assembly>
+                                            <inline>
+                                                <dependencySets>
+                                                    <dependencySet>
+                                                        <useProjectAttachments>true</useProjectAttachments>
+                                                        <includes>
+                                                            <include>org.agoncal.sample.javaee.enoughappserver:topcds:jar:swarm</include>
+                                                        </includes>
+                                                        <outputFileNameMapping>topcds.jar</outputFileNameMapping>
+                                                    </dependencySet>
+                                                </dependencySets>
+                                            </inline>
+                                            <user>jboss:jboss:jboss</user>
+                                            <basedir>/opt/wildfly-swarm</basedir>
+                                        </assembly>
+                                    </build>
+                                    <run>
+                                        <ports>
+                                            <!-- Map container port 8080 to a dynamical port -->
+                                            <port>8080:8080</port>
+                                        </ports>
+                                        <wait>
+                                            <http>
+                                                <url>http://localhost:8080</url>
+                                                <!-- Change this to 200 when the URL above hits an endpoint -->
+                                                <status>200</status>
+                                            </http>
+                                            <time>30000</time>
+                                        </wait>
+                                        <log>
+                                            <color>yellow</color>
+                                            <prefix>SWARM</prefix>
+                                        </log>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

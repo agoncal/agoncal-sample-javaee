@@ -28,10 +28,12 @@
         <!--Other-->
         <version.lorem>2.0</version.lorem>
         <!--Swarm-->
-        <version.wildfly-swarm>1.0.0.Beta2</version.wildfly-swarm>
+        <version.wildfly-swarm>1.0.0.Beta6</version.wildfly-swarm>
         <!--Maven Plugins-->
-        <version.maven.clean.plugin>2.4.1</version.maven.clean.plugin>
+        <version.maven.clean.plugin>3.0.0</version.maven.clean.plugin>
         <version.maven.compiler.plugin>3.5.1</version.maven.compiler.plugin>
+        <version.docker.maven.plugin>0.14.2</version.docker.maven.plugin>
+        <version.maven.jar.plugin>2.6</version.maven.jar.plugin>
         <version.maven.war.plugin>2.6</version.maven.war.plugin>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -88,53 +90,10 @@
             <!-- WildFly Swarm -->
             <dependency>
                 <groupId>org.wildfly.swarm</groupId>
-                <artifactId>bean-validation</artifactId>
+                <artifactId>bom</artifactId>
                 <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>ejb</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>jaxrs</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>jaxrs-weld</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>jpa</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>jsf</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>management</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>transactions</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>undertow</artifactId>
-                <version>${version.wildfly-swarm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>weld</artifactId>
-                <version>${version.wildfly-swarm}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -158,6 +117,16 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${version.docker.maven.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${version.maven.jar.plugin}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${version.maven.war.plugin}</version>
@@ -171,6 +140,7 @@
                     <version>${version.wildfly-swarm}</version>
                     <executions>
                         <execution>
+                            <id>package</id>
                             <goals>
                                 <goal>package</goal>
                             </goals>
@@ -187,26 +157,6 @@
             <name>JBoss Public Maven Repository Group</name>
             <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
             <layout>default</layout>
-        </repository>
-        <repository>
-            <id>java.net-public-repository-group</id>
-            <name>Java.Net Public Maven Repository Group</name>
-            <url>https://maven.java.net/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>java.net-staging-repository-group</id>
-            <name>Java.Net Staging Maven Repository Group</name>
-            <url>https://maven.java.net/content/groups/staging</url>
-        </repository>
-        <repository>
-            <id>java.net-releases-repository-group</id>
-            <name>Java.Net Releases Maven Repository Group</name>
-            <url>https://maven.java.net/content/repositories/releases</url>
-        </repository>
-        <repository>
-            <id>java.net-snapshots-repository-group</id>
-            <name>Java.Net Snapshots Maven Repository Group</name>
-            <url>https://maven.java.net/content/repositories/snapshots</url>
         </repository>
         <repository>
             <id>prime-repo</id>
