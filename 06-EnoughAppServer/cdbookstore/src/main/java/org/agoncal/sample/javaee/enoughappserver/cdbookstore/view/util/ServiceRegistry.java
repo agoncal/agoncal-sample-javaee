@@ -1,10 +1,9 @@
 package org.agoncal.sample.javaee.enoughappserver.cdbookstore.view.util;
 
-import java.util.logging.Logger;
-
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.logging.Logger;
 
 public class ServiceRegistry
 {
@@ -13,17 +12,13 @@ public class ServiceRegistry
 
    private static String[] topBooksServiceURLs = {
             "http://localhost:8080/topbooks",
-            "http://localhost:8081/topbooks",
             "http://localhost:8082/topbooks",
-            "http://localhost:7001/topbooks",
-            "http://localhost:7002/topbooks" };
+            "http://docker.local:8082/topbooks"};
 
    private static String[] topCDsServiceURLs = {
             "http://localhost:8080/topcds",
             "http://localhost:8081/topcds",
-            "http://localhost:8082/topcds",
-            "http://localhost:7001/topcds",
-            "http://localhost:7002/topcds" };
+            "http://docker.local:8081/topcds"};
 
    public static String getTopBooksServiceURL()
    {
