@@ -11,6 +11,7 @@
 
 ### Deploy the 3 web apps to WildFly
 
+* Start WildFly `$Tools/JBoss/wildfly-10.0.0.Final/bin` and execute `./standalone.sh`
 * Package the three applications `$DEMO $ mvn clean install` 
 
 ### Terminal
