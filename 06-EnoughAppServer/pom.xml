@@ -23,7 +23,7 @@
         <version.javaee7>7.0</version.javaee7>
         <!--Web-->
         <version.bootstrap>3.3.6</version.bootstrap>
-        <version.primefaces>5.3</version.primefaces>
+        <version.primefaces>5.3.10</version.primefaces>
         <version.primefaces.themes>1.0.10</version.primefaces.themes>
         <!--Other-->
         <version.lorem>2.0</version.lorem>

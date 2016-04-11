@@ -10,7 +10,7 @@
 
     <ui:define name="body">
 
-        <p:carousel value="#{ratedItemsBean.topRatedBooks}" headerText="Top rated Books" var="_item" responsive="true">
+        <p:carousel value="#{ratedItemsBean.topRatedBooks}" headerText="Top rated Books" var="_item" responsive="true" rendered="#{fn:length(ratedItemsBean.topRatedBooks) != 0}">
             <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
 
                 <h:link outcome="/shopping/viewItem.xhtml">
@@ -28,7 +28,7 @@
 
         <br/>
 
-        <p:carousel value="#{ratedItemsBean.topRatedCDs}" headerText="Top rated CDs" var="_item" responsive="true">
+        <p:carousel value="#{ratedItemsBean.topRatedCDs}" headerText="Top rated CDs" var="_item" responsive="true" rendered="#{fn:length(ratedItemsBean.topRatedCDs) != 0}">
             <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
 
                 <h:link outcome="/shopping/viewItem.xhtml">
