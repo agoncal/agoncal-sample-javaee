@@ -4,11 +4,11 @@
 
 ### Setup environment 
 
-- Check JDK / Wildfly / Intellij / Chrome / Terminal
+- Check JDK / Wildfly / Intellij / Chrome / Terminal / Raspberry Pi
 - DEMO variable `set -x DEMO $CODE_HOME/Agoncal/agoncal-sample-javaee/06-EnoughAppServer`
 - Increase fonts on Intellij / Chrome / Terminal
 - In Intellij IDEA open the project `$DEMO`
-- Intellij in _Presentation_ mode _Editor / General / Colors and Fonts_ and _Console Font_ to 18
+- Intellij in _Presentation_ mode _Editor / General / Colors and Fonts_ and _Console Font_ to 22
 
 ### Deploy the 3 web apps to WildFly
 
@@ -89,6 +89,7 @@
     - Run JBoss CLI : `./jboss-cli.sh`
     - `connect`
     - `deployment-info`
+    - `/subsystem=undertow:read-resource`
     
 ## Demo 5 - Docker
 
