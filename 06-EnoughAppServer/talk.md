@@ -2,6 +2,13 @@
 
 ## Getting ready
 
+### Setup Raspberry Pi 
+
+- Take all the connectic out and boot the Raspberri
+- Then plug things in
+- Change keyboard layout : `Menu -> Preferences -> Clavier et Souris -> Clavier -> Keyboard Laout`
+- Open 3 terminal in the `~/Download` directory and `java -jar` the 3 services
+
 ### Setup environment 
 
 - Check JDK / Wildfly / Intellij / Chrome / Terminal / Raspberry Pi
@@ -104,3 +111,4 @@
 - Launch Kitematic App on Mac
 
 ## Demo 6 - Raspberry Pi
+
