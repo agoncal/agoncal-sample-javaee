@@ -1,10 +1,10 @@
-# How Small is Small
+# Enough App Server
 
-An e-commerce web application that sells books and CDs and interacts with two external web services to get the top selling books and CDs. The idea is to deploy these 3 applications as web applications (WAR) but also as microservices (Fat JARs) and see how much footprint they have. 
+An e-commerce web application that sells books and CDs and interacts with two external (micro) services to get the top selling books (topbooks) and CDs (topcds). The idea is to deploy these 3 applications as web applications (WAR) but also as microservices (Fat JARs) and see how much footprint they have. 
 
 ## Web Apps
 
-In this configuration the 3 applications are packaged in war files and deployed in an application server. You can obtain these 3 war files with a `mvn install` command.
+In this configuration the 3 applications are packaged in three seperate war files and deployed in an application server. You can obtain these 3 war files with a `mvn install` command.
 
 ### CD Book Store
 
@@ -26,7 +26,7 @@ A web interface that returns the Top 3 selling CDs. It doesn't use any Java EE s
 
 ## Microservices
 
-In this configuration the 3 applications are packaged as fat executable jars (embedding the application server). You can obtain these 3 war files with a `mvn install -Pswarm` command.
+In this configuration the 3 applications are packaged as three seperate fat executable jars (embedding the application server). You can obtain these 3 war files with a `mvn install -Pswarm` command.
 
 * [http://localhost:8080/cdookstore]()
 * [http://localhost:8082/topbooks]()
@@ -40,4 +40,3 @@ Each of the three applications have Dockerfiles. On each one you can build and s
 * [http://docker.local:8082/topbooks]()
 * [http://docker.local:8081/topcds]()
 
-TODO : Make the Maven plugin work : [http://fabric8io.github.io/docker-maven-plugin/]()

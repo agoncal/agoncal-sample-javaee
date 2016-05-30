@@ -28,13 +28,13 @@
         <!--Other-->
         <version.lorem>2.0</version.lorem>
         <!--Swarm-->
-        <version.wildfly-swarm>1.0.0.Beta7</version.wildfly-swarm>
+        <version.wildfly-swarm>1.0.0.CR1</version.wildfly-swarm>
         <!--Maven Plugins-->
         <version.maven.clean.plugin>3.0.0</version.maven.clean.plugin>
         <version.maven.compiler.plugin>3.5.1</version.maven.compiler.plugin>
-        <version.docker.maven.plugin>0.14.2</version.docker.maven.plugin>
-        <version.maven.jar.plugin>2.6</version.maven.jar.plugin>
+        <version.maven.jar.plugin>3.0.0</version.maven.jar.plugin>
         <version.maven.war.plugin>2.6</version.maven.war.plugin>
+        <version.docker.maven.plugin>0.14.2</version.docker.maven.plugin>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

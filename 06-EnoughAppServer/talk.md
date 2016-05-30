@@ -57,8 +57,8 @@
     - Show `pom.xml` with the `swarm` profile and the fractions
     - Build the 3 apps with Swarm `../$ mvn clean install -Pswarm`
     - Show the size of the Uber Jar : `ll target`
-    - Unzip the Swarm Uber Jar `unzip target//topcds-swarm.jar -d target/toto`
-    - Show the content `tree target/toto` : `_bootstrap`, `m2repo`, `344 directories, 375 files`
+    - Unzip the Swarm Uber Jar `unzip target/topcds-swarm.jar -d target/jar`
+    - Show the content `tree target/jar` : `_bootstrap`, `m2repo`, `344 directories, 375 files`
     - Execute `java -jar target/topcds-swarm.jar`
     - Show TopCDs at URL [http://localhost:8081/topcds]() (port 8081)
 - Terminal 3 on `$DEMO/topbooks`
@@ -106,8 +106,7 @@
 - Launch Docker App on Mac
 - Show Dockerfile in TopCDs
 - Run the machine `docker-compose up`
-- Show new url [http://docker.local:8081/topcds]() (docker.local)
-- Show TopBooks at URL [http://localhost:8080/cdbookstore]() (port 8080)
+- URL [http://localhost:8081/topcds]() (docker.local)
 - Launch Kitematic App on Mac
 
 ## Demo 6 - Raspberry Pi
