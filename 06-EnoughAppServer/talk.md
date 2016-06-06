@@ -1,4 +1,4 @@
-# Talk
+# Just Enough App Server
 
 ## Getting ready
 
