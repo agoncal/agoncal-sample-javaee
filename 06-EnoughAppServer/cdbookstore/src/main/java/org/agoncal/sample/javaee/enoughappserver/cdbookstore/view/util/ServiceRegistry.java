@@ -12,13 +12,11 @@ public class ServiceRegistry
 
    private static String[] topBooksServiceURLs = {
             "http://localhost:8080/topbooks",
-            "http://localhost:8082/topbooks",
-            "http://docker.local:8082/topbooks"};
+            "http://localhost:8082/topbooks"};
 
    private static String[] topCDsServiceURLs = {
             "http://localhost:8080/topcds",
-            "http://localhost:8081/topcds",
-            "http://docker.local:8081/topcds"};
+            "http://localhost:8081/topcds"};
 
    public static String getTopBooksServiceURL()
    {
