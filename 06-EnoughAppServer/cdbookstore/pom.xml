@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.agoncal.sample.javaee.enoughappserver</groupId>
+            <artifactId>registry</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>

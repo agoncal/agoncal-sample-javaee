@@ -1,8 +1,5 @@
 package org.agoncal.sample.javaee.enoughappserver.cdbookstore.view.shopping;
 
-import static org.agoncal.sample.javaee.enoughappserver.cdbookstore.view.util.ServiceRegistry.getTopBooksServiceURL;
-import static org.agoncal.sample.javaee.enoughappserver.cdbookstore.view.util.ServiceRegistry.getTopCDsServiceURL;
-
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +22,7 @@ import javax.ws.rs.core.Response;
 
 import org.agoncal.sample.javaee.enoughappserver.cdbookstore.model.Book;
 import org.agoncal.sample.javaee.enoughappserver.cdbookstore.model.CD;
+import org.agoncal.sample.javaee.enoughappserver.registry.Registry;
 
 @Named
 @RequestScoped
@@ -37,6 +35,9 @@ public class RatedItemsBean
 
    @Inject
    private Logger logger;
+
+   @Inject
+   private Registry registry;
 
    @PersistenceContext(unitName = "hsisCDBookStorePU")
    private EntityManager em;
@@ -70,7 +71,7 @@ public class RatedItemsBean
 
    private List<Long> getTopBooks()
    {
-      String topBooksServiceURL = getTopBooksServiceURL();
+      String topBooksServiceURL = registry.discoverTopBooksService();
       if (topBooksServiceURL == null)
          return null;
 
@@ -93,7 +94,7 @@ public class RatedItemsBean
 
    private List<Long> getTopCDs()
    {
-      String topCDsServiceURL = getTopCDsServiceURL();
+      String topCDsServiceURL = registry.discoverTopCDsService();
       if (topCDsServiceURL == null)
          return null;
 
