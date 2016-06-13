@@ -12,7 +12,6 @@
 
     <modules>
         <module>cdbookstore</module>
-        <module>registry</module>
         <module>topcds</module>
         <module>topbooks</module>
     </modules>

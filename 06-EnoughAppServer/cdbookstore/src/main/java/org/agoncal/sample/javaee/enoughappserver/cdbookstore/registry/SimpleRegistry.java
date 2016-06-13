@@ -1,11 +1,13 @@
-package org.agoncal.sample.javaee.enoughappserver.registry;
+package org.agoncal.sample.javaee.enoughappserver.cdbookstore.registry;
 
 import java.util.logging.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@ApplicationScoped
 public class SimpleRegistry implements Registry
 {
 
@@ -15,17 +17,17 @@ public class SimpleRegistry implements Registry
    public String discoverTopBooksService()
    {
       String[] topBooksServiceURLs = { "http://localhost:8080/topbooks", "http://localhost:8082/topbooks" };
-      return pingWorkingURL(topBooksServiceURLs);
+      return discoverService(topBooksServiceURLs);
    }
 
    @Override
    public String discoverTopCDsService()
    {
       String[] topCDsServiceURLs = { "http://localhost:8080/topcds", "http://localhost:8081/topcds" };
-      return pingWorkingURL(topCDsServiceURLs);
+      return discoverService(topCDsServiceURLs);
    }
 
-   private static String pingWorkingURL(String[] urls)
+   private static String discoverService(String[] urls)
    {
       for (String url : urls)
       {
@@ -48,17 +50,5 @@ public class SimpleRegistry implements Registry
          }
       }
       return null;
-   }
-
-   @Override
-   public void registerService(String name, String uri)
-   {
-      throw new UnsupportedOperationException("Not implemeted");
-   }
-
-   @Override
-   public void unregisterService(String name, String uri)
-   {
-      throw new UnsupportedOperationException("Not implemeted");
    }
 }

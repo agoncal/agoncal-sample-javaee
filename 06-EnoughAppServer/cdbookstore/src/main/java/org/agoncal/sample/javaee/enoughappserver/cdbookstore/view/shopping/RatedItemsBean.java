@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 
 import org.agoncal.sample.javaee.enoughappserver.cdbookstore.model.Book;
 import org.agoncal.sample.javaee.enoughappserver.cdbookstore.model.CD;
-import org.agoncal.sample.javaee.enoughappserver.registry.Registry;
+import org.agoncal.sample.javaee.enoughappserver.cdbookstore.registry.Registry;
 
 @Named
 @RequestScoped
