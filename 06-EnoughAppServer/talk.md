@@ -1,4 +1,4 @@
-# Talk
+# Just Enough App Server
 
 ## Getting ready
 
@@ -7,6 +7,7 @@
 - Take all the connectic out and boot the Raspberri
 - Then plug things in
 - Change keyboard layout : `Menu -> Preferences -> Clavier et Souris -> Clavier -> Keyboard Laout`
+- `sudo apt-get update` and `sudo apt-get dist-upgrade`
 - Open 3 terminal in the `~/Download` directory and `java -jar` the 3 services
 
 ### Setup environment 
