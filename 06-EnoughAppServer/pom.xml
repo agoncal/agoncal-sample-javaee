@@ -22,19 +22,18 @@
         <!--Java EE-->
         <version.javaee7>7.0</version.javaee7>
         <!--Web-->
-        <version.bootstrap>3.3.6</version.bootstrap>
-        <version.primefaces>5.3.10</version.primefaces>
+        <version.bootstrap>3.3.7-1</version.bootstrap>
+        <version.primefaces>6.0</version.primefaces>
         <version.primefaces.themes>1.0.10</version.primefaces.themes>
         <!--Other-->
-        <version.lorem>2.0</version.lorem>
+        <version.lorem>2.1</version.lorem>
         <!--Swarm-->
-        <version.wildfly-swarm>1.0.0.Final</version.wildfly-swarm>
+        <version.wildfly-swarm>2016.9</version.wildfly-swarm>
         <!--Maven Plugins-->
         <version.maven.clean.plugin>3.0.0</version.maven.clean.plugin>
         <version.maven.compiler.plugin>3.5.1</version.maven.compiler.plugin>
-        <version.maven.jar.plugin>3.0.0</version.maven.jar.plugin>
-        <version.maven.war.plugin>2.6</version.maven.war.plugin>
-        <version.docker.maven.plugin>0.14.2</version.docker.maven.plugin>
+        <version.maven.jar.plugin>3.0.2</version.maven.jar.plugin>
+        <version.maven.war.plugin>3.0.0</version.maven.war.plugin>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -115,11 +114,6 @@
                         <source>${version.java}</source>
                         <target>${version.java}</target>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>${version.docker.maven.plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

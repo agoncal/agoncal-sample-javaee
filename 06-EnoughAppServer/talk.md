@@ -20,7 +20,7 @@
 
 ### Deploy the 3 web apps to WildFly
 
-- Start WildFly `$Tools/JBoss/wildfly-10.0.0.Final/bin` and execute `./standalone.sh`
+- Start WildFly `$Tools/JBoss/wildfly-10.1.0.Final/bin` and execute `./standalone.sh`
 - Make sure there's no other app deployed on the console at [http://localhost:9990/console/App.html#standalone-deployments](). Undeploy if needed `$DEMO $ ./undeploy.sh`
 - Package the three applications `$DEMO $ mvn clean install` 
 - Deploy the three applications `$DEMO $ ./deploy.sh`
@@ -29,7 +29,7 @@
 ### Terminal
 
 - Terminal 1 on `$DEMO/topcds`
-- Terminal 2 on `$Tools/JBoss/wildfly-10.0.0.Final/bin`
+- Terminal 2 on `$Tools/JBoss/wildfly-10.1.0.Final/bin`
 - Terminal 3 on `$DEMO/topbooks`
 - Terminal 4 on `$DEMO/cdbookstore`
 - Open terminal and increase font
@@ -93,7 +93,7 @@
     - Build the app with Swarm Mmanagement `../$ mvn clean install -Pswarm-management`
     - Execute `java -jar target/topcds-swarm.jar`
     - Show TopCDs at URL [http://localhost:8081/topcds]() (port 8081)
-- Terminal 2 on `$Tools/JBoss/wildfly-10.0.0.Final/bin`
+- Terminal 2 on `$Tools/JBoss/wildfly-10.1.0.Final/bin`
     - Run JBoss CLI : `./jboss-cli.sh`
     - `connect`
     - `deployment-info`
